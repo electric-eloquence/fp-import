@@ -70,7 +70,7 @@ class FpImporter {
         yml = fs.readFileSync(file, conf.enc);
         this.data = yaml.safeLoad(yml);
       }
-      catch (err){
+      catch (err) {
         utils.error(err);
         return;
       }
@@ -118,7 +118,7 @@ class FpImporter {
 
     this.targetMustache = code;
     this.writeYml(regex, this.engine);
-    if (this.engine == 'jsp') {
+    if (this.engine === 'jsp') {
       this.writeYml(/<\/?\w+:(.|\s)*?>/g, 'jstl');
     }
     fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
@@ -214,9 +214,6 @@ function importBackendFiles(engine) {
       let fpImporter = {};
       let nestedDirs = '';
       let stats = null;
-      let templatesDir = '';
-      let templatesExt = '';
-      let yml = '';
 
       nestedDirs = path.dirname(files1[i]).replace(`${TEMPLATES_DIR_DEFAULT}`, '');
       fileYml = `${conf.src}/_patterns/03-templates`;
@@ -226,7 +223,7 @@ function importBackendFiles(engine) {
       fileYml += `/${path.basename(files1[i]).replace(/\.\w+$/, '.yml')}`;
 
       try {
-        stats = fs.statSync(fileYml); 
+        stats = fs.statSync(fileYml);
       }
       catch (err) {
         // Fail gracefully.
@@ -237,7 +234,7 @@ function importBackendFiles(engine) {
         let stats1 = null;
 
         try {
-          stats1 = fs.statSync(dirP); 
+          stats1 = fs.statSync(dirP);
         }
         catch (err) {
           // Fail gracefully.
