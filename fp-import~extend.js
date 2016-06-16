@@ -119,7 +119,7 @@ class FpImporter {
     this.targetMustache = code;
     this.writeYml(regex, this.engine);
     if (this.engine == 'jsp') {
-      this.writeYml(/<\w+:(.|\s)*?\/>/g, 'jslt');
+      this.writeYml(/<\/?\w+:(.|\s)*?>/g, 'jstl');
     }
     fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
   }
@@ -169,6 +169,9 @@ class FpImporter {
       this.sourceFile = this.sourceDir + '/' + path.basename(this.file).replace(/\.yml$/, `.${this.templatesExt}`);
       this.replaceTags();
       this.retainMustache();
+
+      // Log to console.
+      utils.log(`${this.engine} file \x1b[36m%s\x1b[0m imported.`, this.sourceFile);
     }
   }
 }
