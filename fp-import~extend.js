@@ -19,10 +19,10 @@ const utils = require('../../../core/lib/utils');
 const ROOT_DIR = utils.rootDir();
 
 const sourceDirDefaults = {
-  assets: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.assets_dir),
-  scripts: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.scripts_dir),
-  styles: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.styles_dir),
-  templates: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.templates_dir)
+  assets: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.assets_dir) ? pref.backend.synced_dirs.assets_dir : '',
+  scripts: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.scripts_dir) ? pref.backend.synced_dirs.scripts_dir : '',
+  styles: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.styles_dir) ? pref.backend.synced_dirs.styles_dir : '',
+  templates: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.templates_dir) ? pref.backend.synced_dirs.templates_dir : ''
 };
 
 const sourceExtDefaults = {
@@ -64,7 +64,7 @@ const getDelimiters = function (engine) {
 class FpImporter {
   constructor(file, type, engine) {
     this.assetsDir = '';
-    this.data = {};
+    this.data;
     this.engine = engine || '';
     this.file = file;
     this.scriptsDir = '';
@@ -98,6 +98,8 @@ class FpImporter {
         return;
       }
     }
+
+    this.data = this.data || {};
 
     // Cast undefined configs as empty strings.
     switch (type) {
@@ -193,10 +195,11 @@ class FpImporter {
     }
   }
 
-  main() {
+  main() { 
     if ((this.data[`${this.type}_dir`] || sourceDirDefaults[this.type]) && (this.data[`${this.type}_ext`] || sourceExtDefaults[this.type])) {
       this.sourceDir = utils.backendDirCheck(ROOT_DIR, this.data[`${this.type}_dir`]).replace(`${ROOT_DIR}/`, '');
-      this.sourceExt = this.data[`${this.type}_ext`].trim() || sourceExtDefaults[this.type];
+      this.sourceExt = this.data[`${this.type}_ext`] || sourceExtDefaults[this.type];
+      this.sourceExt = this.sourceExt.trim();
       this.sourceFile = this.sourceDir + '/' + path.basename(this.file).replace(/\.yml$/, `.${this.sourceExt}`);
 
       if (this.type === 'templates') {
@@ -261,10 +264,10 @@ function importBackendFiles(type, engine) {
     let files1 = [];
 
     if (type === 'scripts') {
-      files1 = glob.sync(`${dir}/**/*(!.min)${ext}`);
+      files1 = glob.sync(`${ROOT_DIR}/backend/${dir}/**/*(!.min)${ext}`);
     }
     else {
-      files1 = glob.sync(`${dir}/**/*${ext}`);
+      files1 = glob.sync(`${ROOT_DIR}/backend/${dir}/**/*${ext}`);
     }
 
     for (let i = 0; i < files1.length; i++) {
@@ -283,10 +286,10 @@ function importBackendFiles(type, engine) {
         continue;
       }
 
-      nestedDirs = path.dirname(files1[i]).replace(`${dir}`, '');
+      nestedDirs = path.dirname(files1[i]).replace(`${ROOT_DIR}/backend/${dir}`, '');
       fileYml = targetDirDefaults[type];
       fileYml += nestedDirs;
-      fileYml = `${ROOT_DIR}/${fileYml}`;
+//      fileYml = `${ROOT_DIR}/${fileYml}`;
       dirP = fileYml;
       fileYml += '/' + fileYmlBasename;
 
@@ -317,14 +320,9 @@ function importBackendFiles(type, engine) {
           data.templates_dir += (data.templates_dir.slice(-1) !== '\n') ? '\n' : '';
         }
 
-        try {
-          fpImporter = new FpImporter(fileYml, type, engine);
-          fpImporter.setData(data);
-          fpImporter.main();
-        }
-        catch (err) {
-          utils.error(err);
-        }
+        fpImporter = new FpImporter(fileYml, type, engine);
+        fpImporter.setData(data);
+        fpImporter.main();
       }
     }
   }
