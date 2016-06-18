@@ -14,12 +14,30 @@ const gulp = require('gulp');
 const path = require('path');
 const yaml = require('js-yaml');
 
-const templater = require('../../../core/tasks/templater');
 const utils = require('../../../core/lib/utils');
 
 const ROOT_DIR = utils.rootDir();
-const TEMPLATES_DIR_DEFAULT = utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.templates_dir);
-const TEMPLATES_EXT_DEFAULT = templater.templatesExtCheck(pref.backend.synced_dirs.templates_ext);
+
+const sourceDirDefaults = {
+  assets: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.assets_dir),
+  scripts: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.scripts_dir),
+  styles: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.styles_dir),
+  templates: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.templates_dir)
+};
+
+const sourceExtDefaults = {
+  assets: utils.extCheck(pref.backend.synced_dirs.assets_ext),
+  scripts: utils.extCheck(pref.backend.synced_dirs.scripts_ext),
+  styles: utils.extCheck(pref.backend.synced_dirs.styles_ext),
+  templates: utils.extCheck(pref.backend.synced_dirs.templates_ext)
+};
+
+const targetDirDefaults = {
+  assets: `${ROOT_DIR}/${conf.src}/assets`,
+  scripts: `${ROOT_DIR}/${conf.src}/scripts/src`,
+  styles: `${ROOT_DIR}/${conf.src}/styles`,
+  templates: `${ROOT_DIR}/${conf.src}/_patterns/03-templates`
+};
 
 // Using an expression instead of a statement only for categorical purposes.
 // Keeping consts with consts while defining getDelimiters before FpImporter to
@@ -44,19 +62,24 @@ const getDelimiters = function (engine) {
 };
 
 class FpImporter {
-  constructor(file, engine) {
+  constructor(file, type, engine) {
+    this.assetsDir = '';
     this.data = {};
-    this.engine = engine;
+    this.engine = engine || '';
     this.file = file;
-    this.targetMustache;
-    this.targetMustacheFile = file.replace(/\.yml$/, '.mustache');
+    this.scriptsDir = '';
     this.sourceDir;
     this.sourceFile;
+    this.stylesDir = '';
+    this.targetMustache;
+    this.targetMustacheFile = file.replace(/\.yml$/, '.mustache');
     this.templatesDir = '';
     this.templatesExt = '';
+    this.type = type;
 
     var stats;
     var yml;
+
     try {
       stats = fs.statSync(this.file);
     }
@@ -76,20 +99,27 @@ class FpImporter {
       }
     }
 
-    if (typeof this.data.templates_dir === 'string') {
-      this.templatesDir = utils.backendDirCheck(ROOT_DIR, this.data.templates_dir);
-    }
-    else {
-      this.data.templates_dir = '';
-      this.templatesDir = TEMPLATES_DIR_DEFAULT;
-    }
+    // Cast undefined configs as empty strings.
+    switch (type) {
+      case 'assets':
+        this.data.assets_dir = this.data.assets_dir || '';
+        this.data.assets_ext = this.data.assets_ext || '';
+        break;
 
-    if (typeof this.data.templates_ext === 'string') {
-      this.templatesExt = templater.templatesExtCheck(this.data.templates_ext);
-    }
-    else {
-      this.data.templates_ext = '';
-      this.templatesExt = TEMPLATES_EXT_DEFAULT;
+      case 'scripts':
+        this.data.scripts_dir = this.data.scripts_dir || '';
+        this.data.scripts_ext = this.data.scripts_ext || '';
+        break;
+
+      case 'styles':
+        this.data.styles_dir = this.data.styles_dir || '';
+        this.data.styles_ext = this.data.styles_ext || '';
+        break;
+
+      case 'templates':
+        this.data.templates_dir = this.data.templates_dir || '';
+        this.data.templates_ext = this.data.templates_ext || '';
+        break;
     }
   }
 
@@ -107,11 +137,11 @@ class FpImporter {
     var regex = new RegExp(`${delimiters[0]}(.|\\s)*?${delimiters[1]}`, 'g');
 
     fs.writeFileSync(this.file, '');
-    if (this.data.templates_dir && this.data.templates_dir.trim() !== pref.backend.synced_dirs.templates_dir) {
+    if (this.data.templates_dir && this.data.templates_dir.trim() !== sourceDirDefaults.templates) {
       fs.appendFileSync(this.file, '"templates_dir": |2\n');
       fs.appendFileSync(this.file, `  ${this.data.templates_dir}`);
     }
-    if (this.data.templates_ext && this.data.templates_ext.trim() !== pref.backend.synced_dirs.templates_dir) {
+    if (this.data.templates_ext && this.data.templates_ext.trim() !== sourceExtDefaults.templates) {
       fs.appendFileSync(this.file, '"templates_ext": |2\n');
       fs.appendFileSync(this.file, `  ${this.data.templates_ext}`);
     }
@@ -164,11 +194,18 @@ class FpImporter {
   }
 
   main() {
-    if (this.templatesDir && this.templatesExt) {
-      this.sourceDir = utils.backendDirCheck(ROOT_DIR, this.data.templates_dir).replace(`${ROOT_DIR}/`, '');
-      this.sourceFile = this.sourceDir + '/' + path.basename(this.file).replace(/\.yml$/, `.${this.templatesExt}`);
-      this.replaceTags();
-      this.retainMustache();
+    if ((this.data[`${this.type}_dir`] || sourceDirDefaults[this.type]) && (this.data[`${this.type}_ext`] || sourceExtDefaults[this.type])) {
+      this.sourceDir = utils.backendDirCheck(ROOT_DIR, this.data[`${this.type}_dir`]).replace(`${ROOT_DIR}/`, '');
+      this.sourceExt = this.data[`${this.type}_ext`].trim() || sourceExtDefaults[this.type];
+      this.sourceFile = this.sourceDir + '/' + path.basename(this.file).replace(/\.yml$/, `.${this.sourceExt}`);
+
+      if (this.type === 'templates') {
+        this.replaceTags();
+        this.retainMustache();
+      }
+      else {
+        fs.copySync(this.sourceFile, path.dirname(this.file));
+      }
 
       // Log to console.
       utils.log(`${this.engine} file \x1b[36m%s\x1b[0m imported.`, this.sourceFile);
@@ -176,8 +213,27 @@ class FpImporter {
   }
 }
 
-function importBackendFiles(engine) {
-  var files = glob.sync(`${conf.src}/_patterns/03-templates/**/*.yml`);
+function importBackendFiles(type, engine) {
+  var files;
+
+  switch (engine) {
+    case 'erb':
+    case 'jsp':
+    case 'hbs':
+    case 'php':
+    case 'twig':
+      files = glob.sync(`${conf.src}/_patterns/03-templates/**/*.yml`);
+      break;
+    case 'assets':
+      files = glob.sync(`${conf.src}/assets/**/*.yml`);
+      break;
+    case 'scripts':
+      files = glob.sync(`${conf.src}/scripts/src/**/*.yml`);
+      break;
+    case 'styles':
+      files = glob.sync(`${conf.src}/styles/**/*.yml`);
+      break;
+  }
 
   for (let i = 0; i < files.length; i++) {
     let fpImporter = {};
@@ -192,35 +248,47 @@ function importBackendFiles(engine) {
 
     // Only process valid files.
     if (stats && stats.isFile()) {
-      try {
-        fpImporter = new FpImporter(files[i], engine);
-        fpImporter.main();
-      }
-      catch (err) {
-        utils.error(err);
-      }
+      fpImporter = new FpImporter(files[i], type, engine);
+      fpImporter.main();
     }
   }
 
-  // Allowing a mass import of files under templates_dir defined in pref.yml.
+  // Allowing a mass import of files under sourceDirDefaults.
   // Skips the files processed in the above block.
-  if (TEMPLATES_DIR_DEFAULT && TEMPLATES_EXT_DEFAULT) {
-    let files1 = glob.sync(`${TEMPLATES_DIR_DEFAULT}/**/*.${TEMPLATES_EXT_DEFAULT}`);
+  if (sourceDirDefaults[type] && sourceExtDefaults[type]) {
+    let dir = sourceDirDefaults[type];
+    let ext = sourceExtDefaults[type];
+    let files1 = [];
+
+    if (type === 'scripts') {
+      files1 = glob.sync(`${dir}/**/*(!.min)${ext}`);
+    }
+    else {
+      files1 = glob.sync(`${dir}/**/*${ext}`);
+    }
 
     for (let i = 0; i < files1.length; i++) {
       let data = {};
       let dirP = '';
       let fileYml = '';
+      let fileYmlBasename = '';
       let fpImporter = {};
       let nestedDirs = '';
+      let regex = new RegExp(`${sourceExtDefaults[type]}$`);
       let stats = null;
 
-      nestedDirs = path.dirname(files1[i]).replace(`${TEMPLATES_DIR_DEFAULT}`, '');
-      fileYml = `${conf.src}/_patterns/03-templates`;
+      // Only proceed if the extension matches.
+      fileYmlBasename = path.basename(files1[i]).replace(regex, 'yml');
+      if (files1[i] === fileYmlBasename) {
+        continue;
+      }
+
+      nestedDirs = path.dirname(files1[i]).replace(`${dir}`, '');
+      fileYml = targetDirDefaults[type];
       fileYml += nestedDirs;
       fileYml = `${ROOT_DIR}/${fileYml}`;
       dirP = fileYml;
-      fileYml += `/${path.basename(files1[i]).replace(/\.\w+$/, '.yml')}`;
+      fileYml += '/' + fileYmlBasename;
 
       try {
         stats = fs.statSync(fileYml);
@@ -244,10 +312,13 @@ function importBackendFiles(engine) {
           fs.mkdirsSync(dirP);
         }
 
-        data.templates_dir = pref.backend.synced_dirs.templates_dir + nestedDirs;
-        data.templates_dir += (data.templates_dir.slice(-1) !== '\n') ? '\n' : '';
+        if (type === 'templates') {
+          data.templates_dir = sourceDirDefaults.templates + nestedDirs;
+          data.templates_dir += (data.templates_dir.slice(-1) !== '\n') ? '\n' : '';
+        }
+
         try {
-          fpImporter = new FpImporter(fileYml, engine);
+          fpImporter = new FpImporter(fileYml, type, engine);
           fpImporter.setData(data);
           fpImporter.main();
         }
@@ -256,31 +327,30 @@ function importBackendFiles(engine) {
         }
       }
     }
-
   }
 }
 
 gulp.task('import:erb', function (cb) {
-  importBackendFiles('erb');
+  importBackendFiles('templates', 'erb');
   cb();
 });
 
 gulp.task('import:hbs', function (cb) {
-  importBackendFiles('hbs');
+  importBackendFiles('templates', 'hbs');
   cb();
 });
 
 gulp.task('import:jsp', function (cb) {
-  importBackendFiles('jsp');
+  importBackendFiles('templates', 'jsp');
   cb();
 });
 
 gulp.task('import:php', function (cb) {
-  importBackendFiles('php');
+  importBackendFiles('templates', 'php');
   cb();
 });
 
 gulp.task('import:twig', function (cb) {
-  importBackendFiles('twig');
+  importBackendFiles('templates', 'twig');
   cb();
 });
