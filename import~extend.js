@@ -195,7 +195,7 @@ class FpImporter {
     }
   }
 
-  main() { 
+  main() {
     if ((this.data[`${this.type}_dir`] || sourceDirDefaults[this.type]) && (this.data[`${this.type}_ext`] || sourceExtDefaults[this.type])) {
       this.sourceDir = utils.backendDirCheck(ROOT_DIR, this.data[`${this.type}_dir`]).replace(`${ROOT_DIR}/`, '');
       this.sourceExt = this.data[`${this.type}_ext`] || sourceExtDefaults[this.type];
@@ -270,7 +270,44 @@ function importBackendFiles(type, engine) {
       files1 = glob.sync(`${ROOT_DIR}/backend/${dir}/**/*${ext}`);
     }
 
+    globbed:
     for (let i = 0; i < files1.length; i++) {
+      // Only proceed if wasn't in processed in for files loop.
+      for (let j = 0; j < files.length; j++) {
+        let data = null;
+        let stats = null;
+        let yml = '';
+
+        try {
+          stats = fs.statSync(files[j]);
+        }
+        catch (err) {
+          // Fail gracefully.
+        }
+
+        // Check if file exists. Read its YAML if it does.
+        if (stats && stats.isFile()) {
+          try {
+            yml = fs.readFileSync(files[j], conf.enc);
+            data = yaml.safeLoad(yml);
+          }
+          catch (err) {
+            utils.error(err);
+            return;
+          }
+        }
+
+        data = data || {};
+
+        if (
+          data[`${type}_dir`] &&
+          data[`${type}_dir`].trim() === path.dirname(files1[i]).replace(`${ROOT_DIR}/backend/`, '') &&
+          path.basename(files[j]).replace(/yml$/, sourceExtDefaults[type]) === path.basename(files1[i])
+        ) {
+          continue globbed;
+        }
+      }
+
       let data = {};
       let dirP = '';
       let fileYml = '';
@@ -282,14 +319,13 @@ function importBackendFiles(type, engine) {
 
       // Only proceed if the extension matches.
       fileYmlBasename = path.basename(files1[i]).replace(regex, 'yml');
-      if (files1[i] === fileYmlBasename) {
+      if (fileYmlBasename === path.basename(files1[i])) {
         continue;
       }
 
       nestedDirs = path.dirname(files1[i]).replace(`${ROOT_DIR}/backend/${dir}`, '');
       fileYml = targetDirDefaults[type];
       fileYml += nestedDirs;
-//      fileYml = `${ROOT_DIR}/${fileYml}`;
       dirP = fileYml;
       fileYml += '/' + fileYmlBasename;
 
@@ -300,7 +336,6 @@ function importBackendFiles(type, engine) {
         // Fail gracefully.
       }
 
-      // Proceed only fileYml doesn't exist.
       if (!stats) {
         let stats1 = null;
 
