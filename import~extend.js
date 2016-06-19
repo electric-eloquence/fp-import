@@ -395,7 +395,7 @@ function importBackendFiles(type, engine) {
       }
 
       if (!stats1) {
-        fs.mkdirsSync(dirP);
+        fs.mkdirpSync(dirP);
       }
 
       if (type !== 'templates' && path.extname(files1[i]).slice(1) !== sourceExtDefaults[type]) {
