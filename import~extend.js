@@ -33,9 +33,9 @@ const sourceExtDefaults = {
 };
 
 const targetDirDefaults = {
-  assets: `${ROOT_DIR}/${conf.src}/assets`,
-  scripts: `${ROOT_DIR}/${conf.src}/scripts/src`,
-  styles: `${ROOT_DIR}/${conf.src}/styles`,
+  assets: `${ROOT_DIR}/${conf.src}/_assets`,
+  scripts: `${ROOT_DIR}/${conf.src}/_scripts/src`,
+  styles: `${ROOT_DIR}/${conf.src}/_styles`,
   templates: `${ROOT_DIR}/${conf.src}/_patterns/03-templates`
 };
 
@@ -260,13 +260,13 @@ function importBackendFiles(type, engine) {
 
   switch (type) {
     case 'assets':
-      files = glob.sync(`${conf.src}/assets/**/*.yml`) || [];
+      files = glob.sync(`${conf.src}/_assets/**/*.yml`) || [];
       break;
     case 'scripts':
-      files = glob.sync(`${conf.src}/scripts/src/**/*.yml`) || [];
+      files = glob.sync(`${conf.src}/_scripts/src/**/*.yml`) || [];
       break;
     case 'styles':
-      files = glob.sync(`${conf.src}/styles/**/*.yml`) || [];
+      files = glob.sync(`${conf.src}/_styles/**/*.yml`) || [];
       break;
     case 'templates':
       files = glob.sync(`${conf.src}/_patterns/03-templates/**/*.yml`) || [];
