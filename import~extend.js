@@ -143,7 +143,7 @@ class FpImporter {
       // Do not import commented-out Handlebars tags.
       // Not including the closing HTML comment tag because it causes regex to
       // fail if the closing delimiter is at the end of the line.
-      regex = new RegExp(`(^|[^<][^!][^\\-][^\\-][^\\{][^\\{][^!])${delimiters[0]}[\\S\\s]*?${delimiters[1]}`, 'g');
+      regex = new RegExp(`(^\\s*|[^<][^!][^\\-][^\\-][^\\{][^\\{][^!])${delimiters[0]}[\\S\\s]*?${delimiters[1]}`, 'gm');
     }
     else {
       regex = new RegExp(`${delimiters[0]}[\\S\\s]*?${delimiters[1]}`, 'g');
@@ -156,7 +156,7 @@ class FpImporter {
     if (this.engine === 'jsp') {
       // Not including the closing HTML comment tag because it causes regex to
       // fail if the closing delimiter is at the end of the line.
-      code = code.replace(/(^|[^<][^!][^\-][^\-])(<%--[\S\s]*?--%>)/gm,  '$1<!--$2-->');
+      code = code.replace(/(^\s*|[^<][^!][^\-][^\-])(<%--[\S\s]*?--%>)/gm,  '$1<!--$2-->');
     }
 
     fs.writeFileSync(this.file, '');
@@ -208,11 +208,19 @@ class FpImporter {
 
         key = key.replace(/^\{\{\s*/, '');
         key = key.replace(/\s*\}\}$/, '');
+        // Can't include the pipe because it breaks the search.
+        key = `"${key}": `;
+
+        // Skip duplicate keys.
+        let data = fs.readFileSync(this.file, conf.enc);
+        if (data.search(key) > -1) {
+          continue;
+        }
 
         value = matches[i].replace(/\{{/g, '\\{\\{');
         value = value.replace(/\}}/g, '\\}\\}');
 
-        fs.appendFileSync(this.file, `"${key}": |2\n`);
+        fs.appendFileSync(this.file, `${key}|2\n`);
         fs.appendFileSync(this.file, `  ${value}\n`);
       }
       fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
