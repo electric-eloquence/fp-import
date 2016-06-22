@@ -283,7 +283,7 @@ function importBackendFiles(type, engine, argv) {
     if (stats && stats.isFile()) {
       if (path.extname(file) !== '.yml') {
         file = file.replace(/\.\w+$/, '.yml');
-        fs.appendFileSync(file, '');
+        fs.writeFileSync(file, '');
       }
       fpImporter = new FpImporter(file, type, engine);
       fpImporter.main();
