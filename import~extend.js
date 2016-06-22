@@ -48,7 +48,7 @@ const getDelimiters = function (engine) {
       return ['<%', '%>'];
 
     case 'jsp':
-      return ['<%[^\-][^\-]', '[^\-][^\-]%>'];
+      return ['<%[^\-]', '[^\-]%>'];
 
     case 'hbs':
       return ['\\{\\{[^!]', '\\}\\}'];
@@ -139,12 +139,14 @@ class FpImporter {
     var code = fs.readFileSync(this.sourceFile, conf.enc);
     var regex;
 
-    // Not importing commented-out tags.
     if (this.engine === 'hbs') {
-      regex = new RegExp(`[^<][^!][^\\-][^\\-][^\\{][^\\{][^!]${delimiters[0]}(.|\\s)*?${delimiters[1]}[^\\-][^\\-][^>]`, 'g');
+      // Do not import commented-out Handlebars tags.
+      // Not including the closing HTML comment tag because it causes regex to
+      // fail if the closing delimiter is at the end of the line.
+      regex = new RegExp(`(^|[^<][^!][^\\-][^\\-][^\\{][^\\{][^!])${delimiters[0]}[\\S\\s]*?${delimiters[1]}`, 'g');
     }
     else {
-      regex = new RegExp(`${delimiters[0]}(.|\\s)*?${delimiters[1]}`, 'g');
+      regex = new RegExp(`${delimiters[0]}[\\S\\s]*?${delimiters[1]}`, 'g');
     }
 
     // Automatically wrapping JSP comments in HTML comments so they don't show
@@ -152,7 +154,9 @@ class FpImporter {
     // Need to check that we're not wrapping already wrapped comments.
 
     if (this.engine === 'jsp') {
-      code = code.replace(/([^<][^!][^\-][^\-])(<%--[\S\s]*?--%>)/g,  '$1<!--$2-->');
+      // Not including the closing HTML comment tag because it causes regex to
+      // fail if the closing delimiter is at the end of the line.
+      code = code.replace(/(^|[^<][^!][^\-][^\-])(<%--[\S\s]*?--%>)/gm,  '$1<!--$2-->');
     }
 
     fs.writeFileSync(this.file, '');
@@ -181,10 +185,10 @@ class FpImporter {
     var matches;
 
     if (this.engine === 'hbs') {
-      regex = new RegExp('<!--\\{\\{!\\{\\{(.|\\s)*?\\}\\}-->', 'g');
+      regex = new RegExp('<!--\\{\\{!\\{\\{[\\S\\s]*?\\}\\}-->', 'g');
     }
     else {
-      regex = new RegExp('<!--\\{\\{(.|\\s)*?\\}\\}-->', 'g');
+      regex = new RegExp('<!--\\{\\{[\\S\\s]*?\\}\\}-->', 'g');
     }
     matches = this.targetMustache.match(regex);
 
@@ -228,7 +232,7 @@ class FpImporter {
         let key = '';
         let value = '';
         let values = [];
-        let regex = new RegExp(`${delimiters[0]}(.|\\s)*?${delimiters[1]}`);
+        let regex = new RegExp(`${delimiters[0]}[\\S\\s]*?${delimiters[1]}`);
 
         if (i === 0) {
           key = keyBase;
