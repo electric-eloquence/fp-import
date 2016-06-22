@@ -45,8 +45,10 @@ const targetDirDefaults = {
 const getDelimiters = function (engine) {
   switch (engine) {
     case 'erb':
-    case 'jsp':
       return ['<%', '%>'];
+
+    case 'jsp':
+      return ['<%[^\-][^\-]', '[^\-][^\-]%>'];
 
     case 'hbs':
       return ['\\{\\{[^!]', '\\}\\}'];
@@ -145,11 +147,11 @@ class FpImporter {
       regex = new RegExp(`[^<][^!][^\\-][^\\-]${delimiters[0]}(.|\\s)*?${delimiters[1]}[^\\-][^\\-][^>]`, 'g');
     }
 
+    fs.writeFileSync(this.file, '');
     if (
       (this.data.templates_dir && this.data.templates_dir.trim() !== sourceDirDefaults.templates) ||
       (this.data.templates_ext && this.data.templates_ext.trim() !== sourceExtDefaults.templates)
     ) {
-      fs.writeFileSync(this.file, '');
 
       if (this.data.templates_dir && this.data.templates_dir.trim() !== sourceDirDefaults.templates) {
         fs.appendFileSync(this.file, '"templates_dir": |2\n');
@@ -162,9 +164,9 @@ class FpImporter {
     }
 
     this.targetMustache = code;
-    this.writeYml(regex);
+    this.writeYml(regex, delimiters, this.engine);
     if (this.engine === 'jsp') {
-      this.writeYml(/<\/?\w+:(.|\s)*?>/g, 'jstl');
+      this.writeYml(/<\/?\w+:(.|\s)*?>/g, delimiters, 'jstl');
     }
     fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
   }
@@ -208,26 +210,17 @@ class FpImporter {
     }
   }
 
-  writeYml(regex) {
-    var delimiters = getDelimiters(this.engine);
-    if (!delimiters) {
-      return;
-    }
-
+  writeYml(regex, delimiters, key) {
     var matches = this.targetMustache.match(regex);
 
     if (matches) {
       for (let i = 0; i < matches.length; i++) {
-        let key = '';
         let value = '';
         let values = [];
         let regex = new RegExp(`${delimiters[0]}(.|\\s)*?${delimiters[1]}`);
 
-        if (i === 0) {
-          key = this.engine;
-        }
-        else {
-          key = `${this.engine}_${i}`;
+        if (i > 0) {
+          key += `_${i}`;
         }
 
         values = regex.exec(matches[i]);
