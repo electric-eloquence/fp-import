@@ -135,7 +135,15 @@ class FpImporter {
     }
 
     var code = fs.readFileSync(this.sourceFile, conf.enc);
-    var regex = new RegExp(`${delimiters[0]}(.|\\s)*?${delimiters[1]}`, 'g');
+    var regex;
+
+    // Not importing commented-out tags.
+    if (this.engine === 'hbs') {
+      regex = new RegExp(`[^<][^!][^\\-][^\\-][^\\{][^\\{][^!]${delimiters[0]}(.|\\s)*?${delimiters[1]}[^\\-][^\\-][^>]`, 'g');
+    }
+    else {
+      regex = new RegExp(`[^<][^!][^\\-][^\\-]${delimiters[0]}(.|\\s)*?${delimiters[1]}[^\\-][^\\-][^>]`, 'g');
+    }
 
     if (
       (this.data.templates_dir && this.data.templates_dir.trim() !== sourceDirDefaults.templates) ||
@@ -154,7 +162,7 @@ class FpImporter {
     }
 
     this.targetMustache = code;
-    this.writeYml(regex, this.engine);
+    this.writeYml(regex);
     if (this.engine === 'jsp') {
       this.writeYml(/<\/?\w+:(.|\s)*?>/g, 'jstl');
     }
@@ -162,42 +170,75 @@ class FpImporter {
   }
 
   retainMustache() {
-    var regex = new RegExp('<!--\\{\\{(.|\\s)*?\\}\\}-->', 'g');
-    var matches = this.targetMustache.match(regex);
+    var regex;
+    var matches;
 
-    if (matches) {
-      for (let i = 0; i < matches.length; i++) {
-        if (this.engine === 'hbs') {
-          this.targetMustache = this.targetMustache.replace(matches[i], `{{${matches[i].slice(7, -3)}`);
-        }
-        else {
-          this.targetMustache = this.targetMustache.replace(matches[i], matches[i].slice(4, -3));
-        }
-      }
-      fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
+    if (this.engine === 'hbs') {
+      regex = new RegExp('<!--\\{\\{!\\{\\{(.|\\s)*?\\}\\}-->', 'g');
     }
-  }
-
-  writeYml(regex, engine) {
-    var matches = this.targetMustache.match(regex);
+    else {
+      regex = new RegExp('<!--\\{\\{(.|\\s)*?\\}\\}-->', 'g');
+    }
+    matches = this.targetMustache.match(regex);
 
     if (matches) {
       for (let i = 0; i < matches.length; i++) {
         let key = '';
         let value = '';
 
-        if (i === 0) {
-          key = engine;
+        if (this.engine === 'hbs') {
+          key = matches[i].slice(7, -3);
+          this.targetMustache = this.targetMustache.replace(matches[i], key);
         }
         else {
-          key = `${engine}_${i}`;
+          key = matches[i].slice(4, -3);
+          this.targetMustache = this.targetMustache.replace(matches[i], key);
         }
-        value = matches[i].replace(/^/gm, '  ');
-        value = value.replace(/\{/g, '\\{');
-        value = value.replace(/\}/g, '\\}');
+
+        key = key.replace(/^\{\{\s*/, '');
+        key = key.replace(/\s*\}\}$/, '');
+
+        value = matches[i].replace(/\{{/g, '\\{\\{');
+        value = value.replace(/\}}/g, '\\}\\}');
+
+        fs.appendFileSync(this.file, `"${key}": |2\n`);
+        fs.appendFileSync(this.file, `  ${value}\n`);
+      }
+      fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
+    }
+  }
+
+  writeYml(regex) {
+    var delimiters = getDelimiters(this.engine);
+    if (!delimiters) {
+      return;
+    }
+
+    var matches = this.targetMustache.match(regex);
+
+    if (matches) {
+      for (let i = 0; i < matches.length; i++) {
+        let key = '';
+        let value = '';
+        let values = [];
+        let regex = new RegExp(`${delimiters[0]}(.|\\s)*?${delimiters[1]}`);
+
+        if (i === 0) {
+          key = this.engine;
+        }
+        else {
+          key = `${this.engine}_${i}`;
+        }
+
+        values = regex.exec(matches[i]);
+        value = values[0].replace(/^/gm, '  ');
+        value = value.replace(/\{{/g, '\\{\\{');
+        value = value.replace(/\}}/g, '\\}\\}');
+
         fs.appendFileSync(this.file, `"${key}": |2\n`);
         fs.appendFileSync(this.file, `${value}\n`);
-        this.targetMustache = this.targetMustache.replace(matches[i], `{{ ${key} }}`);
+
+        this.targetMustache = this.targetMustache.replace(values[0], `{{ ${key} }}`);
       }
     }
   }
