@@ -68,8 +68,6 @@ class FpImporter {
     this.file = file;
     this.sourceDir;
     this.sourceFile;
-    this.targetMustache;
-    this.targetMustacheFile = file.replace(/\.yml$/, '.mustache');
     this.type = type;
 
     var stats;
@@ -116,6 +114,8 @@ class FpImporter {
       case 'templates':
         this.data.templates_dir = this.data.templates_dir || '';
         this.data.templates_ext = this.data.templates_ext || '';
+        this.targetMustache;
+        this.targetMustacheFile = file.replace(/\.yml$/, '.mustache');
         break;
     }
   }
@@ -142,6 +142,7 @@ class FpImporter {
       (this.data.templates_ext && this.data.templates_ext.trim() !== sourceExtDefaults.templates)
     ) {
       fs.writeFileSync(this.file, '');
+
       if (this.data.templates_dir && this.data.templates_dir.trim() !== sourceDirDefaults.templates) {
         fs.appendFileSync(this.file, '"templates_dir": |2\n');
         fs.appendFileSync(this.file, `  ${this.data.templates_dir}`);
@@ -192,6 +193,8 @@ class FpImporter {
           key = `${engine}_${i}`;
         }
         value = matches[i].replace(/^/gm, '  ');
+        value = value.replace(/\{/g, '\\{');
+        value = value.replace(/\}/g, '\\}');
         fs.appendFileSync(this.file, `"${key}": |2\n`);
         fs.appendFileSync(this.file, `${value}\n`);
         this.targetMustache = this.targetMustache.replace(matches[i], `{{ ${key} }}`);
@@ -255,8 +258,41 @@ class FpImporter {
   }
 }
 
-function importBackendFiles(type, engine) {
-  var files;
+function importBackendFiles(type, engine, argv) {
+  // First, check for -f argument, and import single file, and then exit.
+  if (argv && argv.f) {
+    if (argv.f.indexOf(conf.src) !== 0) {
+      utils.error(`Error: invalid path! Must be under ${conf.src}`);
+      return;
+    }
+
+    // Requires relative path, not absolute.
+    let file = argv.f;
+    let fpImporter = {};
+    let stats = null;
+
+    try {
+      stats = fs.statSync(file);
+    }
+    catch (err) {
+      utils.error(err);
+      return;
+    }
+
+    // Only process valid files.
+    if (stats && stats.isFile()) {
+      if (path.extname(file) !== '.yml') {
+        file = file.replace(/\.\w+$/, '.yml');
+        fs.appendFileSync(file, '');
+      }
+      fpImporter = new FpImporter(file, type, engine);
+      fpImporter.main();
+    }
+
+    return;
+  }
+
+  let files = [];
 
   switch (type) {
     case 'assets':
@@ -411,41 +447,57 @@ function importBackendFiles(type, engine) {
 }
 
 gulp.task('import:assets', function (cb) {
-  importBackendFiles('assets');
+  let argv = require('yargs')(process.argv).argv;
+
+  importBackendFiles('assets', null, argv);
   cb();
 });
 
 gulp.task('import:scripts', function (cb) {
-  importBackendFiles('scripts');
+  let argv = require('yargs')(process.argv).argv;
+
+  importBackendFiles('scripts', null, argv);
   cb();
 });
 
 gulp.task('import:styles', function (cb) {
-  importBackendFiles('styles');
+  let argv = require('yargs')(process.argv).argv;
+
+  importBackendFiles('styles', null, argv);
   cb();
 });
 
 gulp.task('import:erb', function (cb) {
-  importBackendFiles('templates', 'erb');
+  let argv = require('yargs')(process.argv).argv;
+
+  importBackendFiles('templates', 'erb', argv);
   cb();
 });
 
 gulp.task('import:hbs', function (cb) {
-  importBackendFiles('templates', 'hbs');
+  let argv = require('yargs')(process.argv).argv;
+
+  importBackendFiles('templates', 'hbs', argv);
   cb();
 });
 
 gulp.task('import:jsp', function (cb) {
-  importBackendFiles('templates', 'jsp');
+  let argv = require('yargs')(process.argv).argv;
+
+  importBackendFiles('templates', 'jsp', argv);
   cb();
 });
 
 gulp.task('import:php', function (cb) {
-  importBackendFiles('templates', 'php');
+  let argv = require('yargs')(process.argv).argv;
+
+  importBackendFiles('templates', 'php', argv);
   cb();
 });
 
 gulp.task('import:twig', function (cb) {
-  importBackendFiles('templates', 'twig');
+  let argv = require('yargs')(process.argv).argv;
+
+  importBackendFiles('templates', 'twig', argv);
   cb();
 });
