@@ -144,7 +144,15 @@ class FpImporter {
       regex = new RegExp(`[^<][^!][^\\-][^\\-][^\\{][^\\{][^!]${delimiters[0]}(.|\\s)*?${delimiters[1]}[^\\-][^\\-][^>]`, 'g');
     }
     else {
-      regex = new RegExp(`[^<][^!][^\\-][^\\-]${delimiters[0]}(.|\\s)*?${delimiters[1]}[^\\-][^\\-][^>]`, 'g');
+      regex = new RegExp(`${delimiters[0]}(.|\\s)*?${delimiters[1]}`, 'g');
+    }
+
+    // Automatically wrapping JSP comments in HTML comments so they don't show
+    // up in the Fepper UI, but also don't get translated during fp template.
+    // Need to check that we're not wrapping already wrapped comments.
+
+    if (this.engine === 'jsp') {
+      code = code.replace(/([^<][^!][^\-][^\-])(<%--[\S\s]*?--%>)/g,  '$1<!--$2-->');
     }
 
     fs.writeFileSync(this.file, '');
@@ -164,10 +172,7 @@ class FpImporter {
     }
 
     this.targetMustache = code;
-    this.writeYml(regex, delimiters, this.engine);
-    if (this.engine === 'jsp') {
-      this.writeYml(/<\/?\w+:(.|\s)*?>/g, delimiters, 'jstl');
-    }
+    this.writeYml(regex, this.engine);
     fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
   }
 
@@ -210,17 +215,26 @@ class FpImporter {
     }
   }
 
-  writeYml(regex, delimiters, key) {
+  writeYml(regex, keyBase, delimiters) {
+    delimiters = delimiters || getDelimiters(keyBase);
+    if (!delimiters) {
+      return;
+    }
+
     var matches = this.targetMustache.match(regex);
 
     if (matches) {
       for (let i = 0; i < matches.length; i++) {
+        let key = '';
         let value = '';
         let values = [];
         let regex = new RegExp(`${delimiters[0]}(.|\\s)*?${delimiters[1]}`);
 
-        if (i > 0) {
-          key += `_${i}`;
+        if (i === 0) {
+          key = keyBase;
+        }
+        else {
+          key = `${keyBase}_${i}`;
         }
 
         values = regex.exec(matches[i]);
