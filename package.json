@@ -2,6 +2,9 @@
   "name": "fp-import",
   "version": "0.2.0",
   "description": "Import extension for Fepper",
+  "dependencies": {
+    "yargs": "^4.7.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/electric-eloquence/fp-import.git"
