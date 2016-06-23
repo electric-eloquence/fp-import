@@ -176,6 +176,9 @@ class FpImporter {
     }
 
     this.targetMustache = code;
+    if (this.engine === 'jsp') {
+      this.writeYml(/<\/?\w+:(.|\s)*?[^%]>/g, 'jstl', ['<[^%]', '[^%]>']);
+    }
     this.writeYml(regex, this.engine);
     fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
   }
