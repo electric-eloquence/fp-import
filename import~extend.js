@@ -220,8 +220,8 @@ class FpImporter {
           continue;
         }
 
-        value = matches[i].replace(/\{{/g, '\\{\\{');
-        value = value.replace(/\}}/g, '\\}\\}');
+        value = matches[i].replace(/\{\{/g, '\\{\\{');
+        value = value.replace(/\}\}/g, '\\}\\}');
 
         fs.appendFileSync(this.file, `${key}|2\n`);
         fs.appendFileSync(this.file, `  ${value}\n`);
@@ -254,13 +254,13 @@ class FpImporter {
 
         values = regex.exec(matches[i]);
         value = values[0].replace(/^/gm, '  ');
-        value = value.replace(/\{{/g, '\\{\\{');
-        value = value.replace(/\}}/g, '\\}\\}');
+        value = value.replace(/\{\{/g, '\\{\\{');
+        value = value.replace(/\}\}/g, '\\}\\}');
 
         fs.appendFileSync(this.file, `"${key}": |2\n`);
         fs.appendFileSync(this.file, `${value}\n`);
 
-        this.targetMustache = this.targetMustache.replace(values[0], `{{ ${key} }}`);
+        this.targetMustache = this.targetMustache.replace(values[0], `{{{ ${key} }}}`);
       }
     }
   }
