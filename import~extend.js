@@ -149,16 +149,6 @@ class FpImporter {
       regex = new RegExp(`${delimiters[0]}[\\S\\s]*?${delimiters[1]}`, 'g');
     }
 
-    // Automatically wrapping JSP comments in HTML comments so they don't show
-    // up in the Fepper UI, but also don't get translated during fp template.
-    // Need to check that we're not wrapping already wrapped comments.
-
-    if (this.engine === 'jsp') {
-      // Not including the closing HTML comment tag because it causes regex to
-      // fail if the closing delimiter is at the end of the line.
-      code = code.replace(/(^\s*|[^<][^!][^\-][^\-])(<%--[\S\s]*?--%>)/gm,  '$1<!--$2-->');
-    }
-
     fs.writeFileSync(this.file, '');
     if (
       (this.data.templates_dir && this.data.templates_dir.trim() !== sourceDirDefaults.templates) ||
@@ -177,7 +167,8 @@ class FpImporter {
 
     this.targetMustache = code;
     if (this.engine === 'jsp') {
-      this.writeYml(/<\/?\w+:(.|\s)*?[^%]>/g, 'jstl', ['<[^%]', '[^%]>']);
+      this.writeYml(/<%--[\S\s]*?--%>/g, 'jcomment', ['<%--', '--%>']);
+      this.writeYml(/<\/?\w+:[\S\s]*?[^%]>/g, 'jstl', ['<[^%]', '[^%]>']);
     }
     this.writeYml(regex, this.engine);
     fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
