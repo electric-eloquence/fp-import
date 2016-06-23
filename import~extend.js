@@ -306,6 +306,27 @@ class FpImporter {
   }
 }
 
+function exportBackendFile(argv) {
+  // First, check for -f argument, and import single file, and then exit.
+  if (!argv || !argv.f) {
+    utils.error('Error: need an -f argument!');
+    return;
+  }
+
+  if (argv.f.indexOf(conf.src) !== 0) {
+    utils.error(`Error: invalid path! Must be under ${conf.src}`);
+    return;
+  }
+
+  var templater = require('../../../core/tasks/templater');
+
+  var file = `${ROOT_DIR}/${argv.f}`;
+  var nestedDirs = path.dirname(file).replace(`${targetDirDefaults.templates}`, '');
+  var sourceDirDefault = utils.backendDirCheck(ROOT_DIR, sourceDirDefaults.templates + nestedDirs);
+
+  templater.templateProcess(`${ROOT_DIR}/${argv.f}`, sourceDirDefault, sourceExtDefaults.templates, ROOT_DIR, conf, pref);
+}
+
 function importBackendFiles(type, engine, argv) {
   // First, check for -f argument, and import single file, and then exit.
   if (argv && argv.f) {
@@ -493,6 +514,13 @@ function importBackendFiles(type, engine, argv) {
     }
   }
 }
+
+gulp.task('export', function (cb) {
+  let argv = require('yargs')(process.argv).argv;
+
+  exportBackendFile(argv);
+  cb();
+});
 
 gulp.task('import:assets', function (cb) {
   let argv = require('yargs')(process.argv).argv;
