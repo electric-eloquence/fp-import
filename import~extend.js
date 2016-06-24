@@ -156,11 +156,11 @@ class FpImporter {
     ) {
 
       if (this.data.templates_dir && this.data.templates_dir.trim() !== sourceDirDefaults.templates) {
-        fs.appendFileSync(this.file, '"templates_dir": |2\n');
+        fs.appendFileSync(this.file, `'templates_dir': |2\n`);
         fs.appendFileSync(this.file, `  ${this.data.templates_dir}`);
       }
       if (this.data.templates_ext && this.data.templates_ext.trim() !== sourceExtDefaults.templates) {
-        fs.appendFileSync(this.file, '"templates_ext": |2\n');
+        fs.appendFileSync(this.file, `'templates_ext': |2\n`);
         fs.appendFileSync(this.file, `  ${this.data.templates_ext}`);
       }
     }
@@ -203,7 +203,7 @@ class FpImporter {
         key = key.replace(/^\{\{\s*/, '');
         key = key.replace(/\s*\}\}$/, '');
         // Can't include the pipe because it breaks the search.
-        key = `"${key}": `;
+        key = `'${key}': `;
 
         // Skip duplicate keys.
         let data = fs.readFileSync(this.file, conf.enc);
@@ -248,7 +248,7 @@ class FpImporter {
         value = value.replace(/\{\{/g, '\\{\\{');
         value = value.replace(/\}\}/g, '\\}\\}');
 
-        fs.appendFileSync(this.file, `"${key}": |2\n`);
+        fs.appendFileSync(this.file, `'${key}': |2\n`);
         fs.appendFileSync(this.file, `${value}\n`);
 
         this.targetMustache = this.targetMustache.replace(values[0], `{{{ ${key} }}}`);
@@ -296,11 +296,11 @@ class FpImporter {
           fs.writeFileSync(this.file, '');
 
           if (dir.trim()) {
-            fs.appendFileSync(this.file, `"${this.type}_dir": |2\n`);
+            fs.appendFileSync(this.file, `'${this.type}_dir': |2\n`);
             fs.appendFileSync(this.file, `  ${dir}`);
           }
           if (ext.trim()) {
-            fs.appendFileSync(this.file, `"${this.type}_ext": |2\n`);
+            fs.appendFileSync(this.file, `'${this.type}_ext': |2\n`);
             fs.appendFileSync(this.file, `  ${ext}`);
           }
         }
