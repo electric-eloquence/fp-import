@@ -202,6 +202,8 @@ class FpImporter {
 
         key = key.replace(/^\{\{\s*/, '');
         key = key.replace(/\s*\}\}$/, '');
+        // Escape reserved YAML characters.
+        key = key.replace(/([\*\?\[\]])/g, '\\$1');
         // Can't include the pipe because it breaks the search.
         key = `'${key}': `;
 
