@@ -1,7 +1,8 @@
 # Import extension for Fepper
 
-### Commands
+### WARNING! Importing from the backend will overwrite your frontend files, including YAML!
 
+### Commands
 ```shell
 fp import:erb
 fp import:hbs
