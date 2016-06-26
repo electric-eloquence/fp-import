@@ -18,6 +18,14 @@ const utils = require('../../../core/lib/utils');
 
 const ROOT_DIR = utils.rootDir();
 
+const engines = [
+  'erb',
+  'jsp',
+  'hbs',
+  'php',
+  'twig'
+];
+
 const sourceDirDefaults = {
   assets: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.assets_dir) ? pref.backend.synced_dirs.assets_dir : '',
   scripts: utils.backendDirCheck(ROOT_DIR, pref.backend.synced_dirs.scripts_dir) ? pref.backend.synced_dirs.scripts_dir : '',
@@ -532,6 +540,24 @@ gulp.task('export', function (cb) {
   cb();
 });
 
+gulp.task('import', function (cb) {
+  var templatesExt = null;
+
+  for (let i = 0; i < engines.length; i++) {
+    if (sourceExtDefaults.templates === engines[i]) {
+      templatesExt = engines[i];
+    }
+  }
+
+  importBackendFiles('assets');
+  importBackendFiles('scripts');
+  importBackendFiles('styles');
+  if (templatesExt) {
+    importBackendFiles('templates', templatesExt);
+  }
+  cb();
+});
+
 gulp.task('import:assets', function (cb) {
   let argv = require('yargs')(process.argv).argv;
 
@@ -553,37 +579,11 @@ gulp.task('import:styles', function (cb) {
   cb();
 });
 
-gulp.task('import:erb', function (cb) {
-  let argv = require('yargs')(process.argv).argv;
+for (let i = 0; i < engines.length; i++) {
+  gulp.task(`import:${engines[i]}`, function (cb) {
+    let argv = require('yargs')(process.argv).argv;
 
-  importBackendFiles('templates', 'erb', argv);
-  cb();
-});
-
-gulp.task('import:hbs', function (cb) {
-  let argv = require('yargs')(process.argv).argv;
-
-  importBackendFiles('templates', 'hbs', argv);
-  cb();
-});
-
-gulp.task('import:jsp', function (cb) {
-  let argv = require('yargs')(process.argv).argv;
-
-  importBackendFiles('templates', 'jsp', argv);
-  cb();
-});
-
-gulp.task('import:php', function (cb) {
-  let argv = require('yargs')(process.argv).argv;
-
-  importBackendFiles('templates', 'php', argv);
-  cb();
-});
-
-gulp.task('import:twig', function (cb) {
-  let argv = require('yargs')(process.argv).argv;
-
-  importBackendFiles('templates', 'twig', argv);
-  cb();
-});
+    importBackendFiles('templates', engines[i], argv);
+    cb();
+  });
+}
