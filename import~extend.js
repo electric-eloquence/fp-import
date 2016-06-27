@@ -336,13 +336,54 @@ function exportBackendFile(argv) {
     return;
   }
 
-  var templater = require('../../../core/tasks/templater');
-
+  var basename;
   var file = `${ROOT_DIR}/${argv.f}`;
+  var fpImporter;
+  var type;
+  var ymlFile;
+
+  for (let i in targetDirDefaults) {
+    if (targetDirDefaults.hasOwnProperty(i)) {
+      if (file.indexOf(targetDirDefaults[i]) === 0) {
+        type = i;
+
+        if (i !== 'templates') {
+          if (file.slice(-4) === 'yml') {
+            ymlFile = file;
+          }
+          else {
+            ymlFile = file.replace(/\.\w+$/, '.yml');
+          }
+
+          fpImporter = new FpImporter(ymlFile, i);
+
+          if (file.slice(-4) === '.yml') {
+            file = file.slice(0, -4) + '.' + fpImporter.data[`${i}_ext`].trim();
+          }
+
+          basename = path.basename(file);
+          fs.copySync(file, ROOT_DIR + '/backend/' + fpImporter.data[`${i}_dir`].trim() + '/' + basename);
+
+          // Log to console.
+          utils.log(`${type} file \x1b[36m%s\x1b[0m exported.`, file);
+
+          return;
+        }
+        break;
+      }
+    }
+  }
+
+  if (type !== 'templates') {
+    utils.error('Error: Not a valid file for export!');
+    return;
+  }
+
+  var templater = require('../../../core/tasks/templater');
   var nestedDirs = path.dirname(file).replace(`${targetDirDefaults.templates}`, '');
   var sourceDirDefault = utils.backendDirCheck(ROOT_DIR, sourceDirDefaults.templates + nestedDirs);
 
-  templater.templateProcess(`${ROOT_DIR}/${argv.f}`, sourceDirDefault, sourceExtDefaults.templates, ROOT_DIR, conf, pref);
+  templater.templateProcess(file, sourceDirDefault, sourceExtDefaults.templates, ROOT_DIR, conf, pref);
 }
 
 function importBackendFiles(type, engine, argv) {
