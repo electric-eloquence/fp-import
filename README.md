@@ -21,8 +21,8 @@ corresponding to `pref.backend.synced_dirs.templates_ext` configured in pref.yml
 This `templates_ext` value must match the spelling of those listed above.
 
 An -f argument may be passed with any of these commands, except for `fp import`, 
-for targeting a single file. The target file must be in `patternlab-node/source`, 
-  either with the `.mustache` extension or the `.yml` extension.
+for targeting a single file. The target file must be in `ui/source`, either with 
+the `.mustache` extension or the `.yml` extension.
 
 The -f argument is required for `fp export`. The `fp export` command functions 
 exactly the same as `fp template`, but will target only a single file.
