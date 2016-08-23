@@ -74,11 +74,8 @@ const getDelimiters = function (engine) {
 
 class FpImporter {
   constructor(file, type, engine) {
-    this.data;
     this.engine = engine || '';
     this.file = file;
-    this.sourceDir;
-    this.sourceFile;
     this.type = type;
 
     var stats;
@@ -133,7 +130,6 @@ class FpImporter {
         this.data.templates_ext = this.data.templates_ext || '';
         this.data.templates_dir = this.data.templates_dir.trim();
         this.data.templates_ext = this.data.templates_ext.trim();
-        this.targetMustache;
         this.targetMustacheFile = file.replace(/\.yml$/, '.mustache');
         break;
     }
