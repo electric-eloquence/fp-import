@@ -228,7 +228,7 @@ class FpImporter {
 
         // Skip duplicate keys.
         let data = fs.readFileSync(this.file, conf.enc);
-        if (data.search(key) > -1) {
+        if (data.indexOf(key) > -1) {
           continue;
         }
 
