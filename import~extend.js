@@ -476,7 +476,7 @@ function importBackendFiles(type, engine, argv) {
       }
 
       // Do not proceed if this is a minified script.
-      if (type === 'scripts' && files1[i].search(/\.min\.\w+$/) > -1) {
+      if (type === 'scripts' && /\.min\.\w+$/.test(files1[i])) {
         continue;
       }
 
