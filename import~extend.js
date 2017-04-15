@@ -321,7 +321,7 @@ class FpImporter {
       }
 
       // Log to console.
-      utils.log(`${(this.engine || this.type)} file \x1b[36m%s\x1b[0m imported.`, this.sourceFile);
+      utils.log(`${(this.engine || this.type)} file %s imported.`, this.sourceFile);
     }
   }
 }
@@ -367,7 +367,7 @@ function exportBackendFile(argv) {
           fs.copySync(file, rootDir + '/backend/' + fpImporter.data[`${i}_dir`] + '/' + basename);
 
           // Log to console.
-          utils.log(`${type} file \x1b[36m%s\x1b[0m exported.`, file);
+          utils.log(`${type} file %s exported.`, file);
 
           return;
         }
