@@ -12,5 +12,22 @@
   "license": "MIT",
   "engines": {
     "node": ">= 7.6.0"
-  }
+  },
+  "keywords": [
+    "atomic",
+    "component",
+    "design",
+    "end",
+    "fepper",
+    "front",
+    "front-end",
+    "frontend",
+    "lab",
+    "library",
+    "pattern",
+    "prototype",
+    "prototyper",
+    "prototyping",
+    "template"
+  ]
 }
