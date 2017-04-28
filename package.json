@@ -1,6 +1,6 @@
 {
   "name": "fp-import",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Import extension for Fepper",
   "dependencies": {
     "yargs": "^4.7.1"
