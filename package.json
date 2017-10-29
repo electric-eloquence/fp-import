@@ -5,7 +5,7 @@
   "main": "import~extend.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/electric-eloquence/fp-import.git"
+    "url": "git+https://github.com/electric-eloquence/fp-import.git"
   },
   "keywords": [
     "atomic",
@@ -25,6 +25,10 @@
     "template"
   ],
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/electric-eloquence/fp-import/issues"
+  },
+  "homepage": "https://github.com/electric-eloquence/fp-import#readme",
   "engines": {
     "node": ">= 8.5.0"
   },
