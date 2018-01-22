@@ -78,8 +78,8 @@ class FpImporter {
     this.file = file;
     this.type = type;
 
-    var stats;
-    var yml;
+    let stats;
+    let yml;
 
     try {
       stats = fs.statSync(this.file);
@@ -144,19 +144,24 @@ class FpImporter {
   }
 
   replaceTags() {
-    var delimiters = getDelimiters(this.engine);
+    const delimiters = getDelimiters(this.engine);
+
     if (!delimiters) {
       return;
     }
 
-    var code = fs.readFileSync(this.sourceFile, conf.enc);
-    var regex;
+    const code = fs.readFileSync(this.sourceFile, conf.enc);
+
+    let regex;
 
     if (this.engine === 'hbs') {
       // Do not import commented-out Handlebars tags.
       // Not including the closing HTML comment tag because it causes regex to
       // fail if the closing delimiter is at the end of the line.
-      regex = new RegExp(`(^\\s*|[^<][^!][^\\-][^\\-][^\\{][^\\{][^!])${delimiters[0]}[\\S\\s]*?${delimiters[1]}`, 'gm');
+      regex = new RegExp(
+        `(^\\s*|[^<][^!][^\\-][^\\-][^\\{][^\\{][^!])${delimiters[0]}[\\S\\s]*?${delimiters[1]}`,
+        'gm'
+      );
     }
     else {
       regex = new RegExp(`${delimiters[0]}[\\S\\s]*?${delimiters[1]}`, 'g');
@@ -169,11 +174,11 @@ class FpImporter {
     ) {
 
       if (this.data.templates_dir && this.data.templates_dir !== sourceDirDefaults.templates) {
-        fs.appendFileSync(this.file, `'templates_dir': |2\n`);
+        fs.appendFileSync(this.file, '\'templates_dir\': |2\n');
         fs.appendFileSync(this.file, `  ${this.data.templates_dir}\n`);
       }
       if (this.data.templates_ext && this.data.templates_ext !== sourceExtDefaults.templates) {
-        fs.appendFileSync(this.file, `'templates_ext': |2\n`);
+        fs.appendFileSync(this.file, '\'templates_ext\': |2\n');
         fs.appendFileSync(this.file, `  ${this.data.templates_ext}\n`);
       }
     }
@@ -188,8 +193,8 @@ class FpImporter {
   }
 
   retainMustache() {
-    var regex;
-    var matches;
+    let regex;
+    let matches;
 
     if (this.engine === 'hbs') {
       regex = new RegExp('<!--\\{\\{!\\{\\{[\\S\\s]*?\\}\\}-->', 'g');
@@ -238,13 +243,14 @@ class FpImporter {
     }
   }
 
-  writeYml(regex, keyBase, delimiters) {
-    delimiters = delimiters || getDelimiters(keyBase);
+  writeYml(regex, keyBase, delimiters_) {
+    const delimiters = delimiters_ || getDelimiters(keyBase);
+
     if (!delimiters) {
       return;
     }
 
-    var matches = this.targetMustache.match(regex);
+    const matches = this.targetMustache.match(regex);
 
     if (matches) {
       for (let i = 0; i < matches.length; i++) {
@@ -274,7 +280,10 @@ class FpImporter {
   }
 
   main() {
-    if ((this.data[`${this.type}_dir`] || sourceDirDefaults[this.type]) && (this.data[`${this.type}_ext`] || sourceExtDefaults[this.type])) {
+    if (
+      (this.data[`${this.type}_dir`] || sourceDirDefaults[this.type]) &&
+      (this.data[`${this.type}_ext`] || sourceExtDefaults[this.type])
+    ) {
       if (!this.sourceDir) {
         let nestedDirs = '';
         let sourceDir = '';
@@ -338,11 +347,11 @@ function exportBackendFile(argv) {
     return;
   }
 
-  var basename;
-  var file = path.normalize(`${rootDir}/${argv.f}`);
-  var fpImporter;
-  var type;
-  var ymlFile;
+  let basename;
+  let file = path.normalize(`${rootDir}/${argv.f}`);
+  let fpImporter;
+  let type;
+  let ymlFile;
 
   for (let i in targetDirDefaults) {
     if (targetDirDefaults.hasOwnProperty(i)) {
@@ -381,9 +390,9 @@ function exportBackendFile(argv) {
     return;
   }
 
-  var templater = require('../../../app/core/tasks/templater');
-  var nestedDirs = path.dirname(file).replace(`${targetDirDefaults.templates}`, '');
-  var sourceDirDefault = utils.backendDirCheck(sourceDirDefaults.templates + nestedDirs);
+  const templater = require('../../../app/core/tasks/templater');
+  const nestedDirs = path.dirname(file).replace(`${targetDirDefaults.templates}`, '');
+  const sourceDirDefault = utils.backendDirCheck(sourceDirDefaults.templates + nestedDirs);
 
   templater.templateProcess(file, sourceDirDefault, sourceExtDefaults.templates, rootDir, conf, pref);
 }
@@ -507,7 +516,10 @@ function importBackendFiles(type, engine, argv) {
           data[`${type}_dir`] &&
           data[`${type}_dir`] === path.dirname(files1[i]).replace(`${rootDir}/backend/`, '')
         ) {
-          if (sourceExtDefaults[type] && path.basename(files[j]).replace(/.yml$/, sourceExtDefaults[type]) === path.basename(files1[i])) {
+          if (
+            sourceExtDefaults[type] &&
+            path.basename(files[j]).replace(/.yml$/, sourceExtDefaults[type]) === path.basename(files1[i])
+          ) {
             continue globbed;
           }
           else if (path.basename(files[j]).slice(0, -4) === path.basename(files1[i]).replace(/\.\w+$/, '')) {
