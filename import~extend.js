@@ -293,7 +293,7 @@ class FpImporter {
 
       this.sourceExt = this.data[`${this.type}_ext`] || sourceExtDefaults[this.type];
       this.sourceExt = this.sourceExt;
-      let basename = path.basename(this.file).replace(/\.yml$/, `.${this.sourceExt}`);
+      let basename = path.basename(this.file).replace(/\.yml$/, `${this.sourceExt}`);
       this.sourceFile = utils.pathResolve(`${this.sourceDir}/${basename}`);
 
       if (this.type === 'templates') {
@@ -360,7 +360,7 @@ function exportBackendFile(argv) {
           fpImporter = new FpImporter(ymlFile, i);
 
           if (file.slice(-4) === '.yml') {
-            file = file.slice(0, -4) + '.' + fpImporter.data[`${i}_ext`];
+            file = file.slice(0, -4) + fpImporter.data[`${i}_ext`];
           }
 
           basename = path.basename(file);
@@ -467,7 +467,7 @@ function importBackendFiles(type, engine, argv) {
     globbed:
     for (let i = 0; i < files1.length; i++) {
       // Do not proceed if default extension is set and this doesn't have it.
-      if (sourceExtDefaults[type] && path.extname(files1[i]) !== `.${sourceExtDefaults[type]}`) {
+      if (sourceExtDefaults[type] && path.extname(files1[i]) !== `${sourceExtDefaults[type]}`) {
         continue;
       }
 
@@ -507,7 +507,7 @@ function importBackendFiles(type, engine, argv) {
           data[`${type}_dir`] &&
           data[`${type}_dir`] === path.dirname(files1[i]).replace(`${rootDir}/backend/`, '')
         ) {
-          if (sourceExtDefaults[type] && path.basename(files[j]).replace(/yml$/, sourceExtDefaults[type]) === path.basename(files1[i])) {
+          if (sourceExtDefaults[type] && path.basename(files[j]).replace(/.yml$/, sourceExtDefaults[type]) === path.basename(files1[i])) {
             continue globbed;
           }
           else if (path.basename(files[j]).slice(0, -4) === path.basename(files1[i]).replace(/\.\w+$/, '')) {
@@ -526,7 +526,7 @@ function importBackendFiles(type, engine, argv) {
       let sourceDir = '';
 
       if (sourceExtDefaults[type]) {
-        fileYmlBasename = path.basename(files1[i], sourceExtDefaults[type]) + 'yml';
+        fileYmlBasename = path.basename(files1[i], sourceExtDefaults[type]) + '.yml';
       }
       else {
         fileYmlBasename = path.basename(files1[i]).replace(/\.\w+$/, '.yml');
@@ -564,8 +564,8 @@ function importBackendFiles(type, engine, argv) {
         fs.mkdirpSync(dirP);
       }
 
-      if (type !== 'templates' && path.extname(files1[i]).slice(1) !== sourceExtDefaults[type]) {
-        data[`${type}_ext`] = path.extname(files1[i]).slice(1);
+      if (type !== 'templates' && path.extname(files1[i]) !== sourceExtDefaults[type]) {
+        data[`${type}_ext`] = path.extname(files1[i]);
       }
 
       fpImporter = new FpImporter(fileYml, type, engine);
