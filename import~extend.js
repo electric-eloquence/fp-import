@@ -106,30 +106,30 @@ class FpImporter {
     switch (type) {
       case 'assets':
         this.data.assets_dir = this.data.assets_dir || '';
-        this.data.assets_ext = this.data.assets_ext || '';
         this.data.assets_dir = this.data.assets_dir.trim();
-        this.data.assets_ext = utils.extCheck(this.data.assets_ext.trim());
+        this.data.assets_ext = this.data.assets_ext || '';
+        this.data.assets_ext = utils.extCheck(this.data.assets_ext);
         break;
 
       case 'scripts':
         this.data.scripts_dir = this.data.scripts_dir || '';
-        this.data.scripts_ext = this.data.scripts_ext || '';
         this.data.scripts_dir = this.data.scripts_dir.trim();
-        this.data.scripts_ext = utils.extCheck(this.data.scripts_ext.trim());
+        this.data.scripts_ext = this.data.scripts_ext || '';
+        this.data.scripts_ext = utils.extCheck(this.data.scripts_ext);
         break;
 
       case 'styles':
         this.data.styles_dir = this.data.styles_dir || '';
-        this.data.styles_ext = this.data.styles_ext || '';
         this.data.styles_dir = this.data.styles_dir.trim();
-        this.data.styles_ext = utils.extCheck(this.data.styles_ext.trim());
+        this.data.styles_ext = this.data.styles_ext || '';
+        this.data.styles_ext = utils.extCheck(this.data.styles_ext);
         break;
 
       case 'templates':
         this.data.templates_dir = this.data.templates_dir || '';
-        this.data.templates_ext = this.data.templates_ext || '';
         this.data.templates_dir = this.data.templates_dir.trim();
-        this.data.templates_ext = utils.extCheck(this.data.templates_ext.trim());
+        this.data.templates_ext = this.data.templates_ext || '';
+        this.data.templates_ext = utils.extCheck(this.data.templates_ext);
         this.targetMustacheFile = file.replace(/\.yml$/, '.mustache');
         break;
     }
