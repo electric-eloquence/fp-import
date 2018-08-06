@@ -5,19 +5,19 @@
  */
 'use strict';
 
-const conf = global.conf;
-const pref = global.pref;
-const rootDir = global.rootDir;
+const path = require('path');
 
 const fs = require('fs-extra');
 const glob = require('glob');
 const gulp = require('gulp');
-const path = require('path');
+const utils = require('fepper-utils');
 const yaml = require('js-yaml');
 
-const utils = require('../../../app/core/lib/utils');
+const conf = global.conf;
+const pref = global.pref;
+const rootDir = global.rootDir;
 
-const srcDir = path.normalize(`${rootDir}/${conf.ui.paths.source.root}`);
+const srcDir = conf.ui.paths.source.root;
 
 const engines = [
   'erb',
@@ -35,10 +35,10 @@ const sourceDirDefaults = {
 };
 
 const sourceExtDefaults = {
-  assets: utils.extCheck(pref.backend.synced_dirs.assets_ext),
-  scripts: utils.extCheck(pref.backend.synced_dirs.scripts_ext),
-  styles: utils.extCheck(pref.backend.synced_dirs.styles_ext),
-  templates: utils.extCheck(pref.backend.synced_dirs.templates_ext)
+  assets: utils.extNormalize(pref.backend.synced_dirs.assets_ext),
+  scripts: utils.extNormalize(pref.backend.synced_dirs.scripts_ext),
+  styles: utils.extNormalize(pref.backend.synced_dirs.styles_ext),
+  templates: utils.extNormalize(pref.backend.synced_dirs.templates_ext)
 };
 
 const targetDirDefaults = {
@@ -303,7 +303,7 @@ class FpImporter {
       this.sourceExt = this.data[`${this.type}_ext`] || sourceExtDefaults[this.type];
       this.sourceExt = this.sourceExt;
       let basename = path.basename(this.file).replace(/\.yml$/, `${this.sourceExt}`);
-      this.sourceFile = utils.pathResolve(`${this.sourceDir}/${basename}`);
+      this.sourceFile = `${this.sourceDir}/${basename}`;
 
       if (this.type === 'templates') {
         this.replaceTags();
@@ -390,7 +390,7 @@ function exportBackendFile(argv) {
     return;
   }
 
-  const templater = require('../../../app/core/tasks/templater');
+  const templater = global.fepper.tasks.templater;
   const nestedDirs = path.dirname(file).replace(`${targetDirDefaults.templates}`, '');
   const sourceDirDefault = utils.backendDirCheck(sourceDirDefaults.templates + nestedDirs);
 
@@ -589,7 +589,7 @@ function importBackendFiles(type, engine, argv) {
 }
 
 gulp.task('export', function (cb) {
-  let argv = require('yargs')(process.argv).argv;
+  const argv = require('yargs').argv;
 
   exportBackendFile(argv);
   cb();
@@ -597,7 +597,8 @@ gulp.task('export', function (cb) {
 
 gulp.task('import', function (cb) {
   // If an -f argument was submitted, it's probably a mistake.
-  let argv = require('yargs')(process.argv).argv;
+  const argv = require('yargs').argv;
+
   if (argv.f) {
     utils.error('Error: do not submit an -f argument for fp import!');
     cb();
@@ -622,21 +623,21 @@ gulp.task('import', function (cb) {
 });
 
 gulp.task('import:assets', function (cb) {
-  let argv = require('yargs')(process.argv).argv;
+  const argv = require('yargs').argv;
 
   importBackendFiles('assets', null, argv);
   cb();
 });
 
 gulp.task('import:scripts', function (cb) {
-  let argv = require('yargs')(process.argv).argv;
+  const argv = require('yargs').argv;
 
   importBackendFiles('scripts', null, argv);
   cb();
 });
 
 gulp.task('import:styles', function (cb) {
-  let argv = require('yargs')(process.argv).argv;
+  const argv = require('yargs').argv;
 
   importBackendFiles('styles', null, argv);
   cb();
@@ -644,7 +645,7 @@ gulp.task('import:styles', function (cb) {
 
 for (let i = 0; i < engines.length; i++) {
   gulp.task(`import:${engines[i]}`, function (cb) {
-    let argv = require('yargs')(process.argv).argv;
+    const argv = require('yargs').argv;
 
     importBackendFiles('templates', engines[i], argv);
     cb();
