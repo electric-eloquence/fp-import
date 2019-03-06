@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {{#if page.title}}
+        {{page.title}} | {{config.site.name}}
+      {{else}}
+        {{config.site.name}}
+      {{/if}}
+    </title>
+ 	{{> meta-partials/meta_tags}}
+  </head>
+  <body>
+    {{{page.body}}}
+    <!--{{# templates-responsive_footer }}-->
+      <!--{{> 03-templates/responsive_footer }}-->
+    <!--{{/ templates-responsive_footer }}-->
+  </body>
+</html>

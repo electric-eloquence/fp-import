@@ -1,0 +1,21 @@
+<% require 'fileutils' %>
+<% require 'rexml/parsers/pullparser' %>
+<%
+  class Pub
+    CHECKER = "pubcheck"
+    STYLESHEET = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', "book.xsl"))
+    CALLOUT_PATH = File.join('images', 'callouts')
+    CALLOUT_FULL_PATH = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', CALLOUT_PATH))
+    CALLOUT_LIMIT = 15
+    OUTPUT_DIR = ".pubtmp#{Time.now.to_f.to_s}"
+    META_DIR = "META-INF"
+    OEBPS_DIR = "OEBPS"
+    ZIPPER = "zip"
+  end
+%>
+<div>
+  <%= Pub::CHECKER %>
+</div>
+<!--{{# templates-responsive_footer }}-->
+  <!--{{> 03-templates/responsive_footer }}-->
+<!--{{/ templates-responsive_footer }}-->

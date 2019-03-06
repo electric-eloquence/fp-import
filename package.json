@@ -3,6 +3,16 @@
   "version": "0.10.3",
   "description": "Import extension for Fepper",
   "main": "import~extend.js",
+  "scripts": {
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "eslint *.js && eslint test/tests/*-tests.js",
+    "test": "nyc mocha test/tests/*-tests.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint && npm test"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/electric-eloquence/fp-import.git"
@@ -33,8 +43,21 @@
     "node": ">= 8.5.0"
   },
   "dependencies": {
+    "fs-extra": "^7.0.1",
     "glob": "^7.1.2",
-    "js-yaml": "^3.12.0",
+    "slash": "^2.0.0",
     "yargs": "^12.0.1"
+  },
+  "devDependencies": {
+    "chai": "4.x",
+    "coveralls": "3.x",
+    "diveSync": "^0.3.0",
+    "eslint": "5.x",
+    "fepper": "*",
+    "fepper-utils": "*",
+    "gulp": "https://github.com/electric-eloquence/gulp/tarball/v3-lts",
+    "husky": "1.x",
+    "mocha": "6.x",
+    "nyc": "13.x"
   }
 }
