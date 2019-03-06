@@ -895,21 +895,6 @@ function importBackendFiles(type, engine) {
 
       const fileBackendDir = dirname(fileBackend);
       const fileBackendExt = extname(fileBackend);
-
-      /*
-      if (type === 'scripts' || type === 'styles') {
-        // Do not proceed if this is a minified file.
-        if (/\.min\.\w+$/.test(fileBackend)) {
-          continue;
-        }
-
-        // Do not proceed if this is a sourcemap.
-        if (fileBackendExt === '.map') {
-          continue;
-        }
-      }
-      */
-
       const fileYmlBasename = basename(fileBackend, fileBackendExt) + '.yml';
       const nestedDirs = fileBackendDir.replace(sourceDirDefault, '');
       let data = {};
