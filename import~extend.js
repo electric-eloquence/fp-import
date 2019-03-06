@@ -1,262 +1,312 @@
-/**
- * @todo Bring a full-fledge Handlebars parser into Pattern Lab, so we can just
- *   drop Handlebars templates from backend to front, and vice-versa, without
- *   modification.
- */
 'use strict';
-
-const path = require('path');
 
 const fs = require('fs-extra');
 const glob = require('glob');
 const gulp = require('gulp');
 const utils = require('fepper-utils');
 const yaml = require('js-yaml');
+const yargs = require('yargs');
+
+const slash = require('slash');
+const path = require('path');
+const {
+  basename,
+  dirname,
+  extname
+} = path;
+const normalize = rawPath => slash(path.normalize(rawPath));
+const resolve = rawPath => slash(path.resolve(rawPath)).replace(/^[A-Z]:/, '');
 
 const conf = global.conf;
 const pref = global.pref;
 const rootDir = global.rootDir;
 
-const srcDir = conf.ui.paths.source.root;
-
 const engines = [
-  'erb',
-  'jsp',
-  'hbs',
-  'php',
-  'twig'
+  '.erb',
+  '.jsp',
+  '.hbs',
+  '.php',
+  '.twig'
 ];
 
-const sourceDirDefaults = {
-  assets: utils.backendDirCheck(pref.backend.synced_dirs.assets_dir) ? pref.backend.synced_dirs.assets_dir : '',
-  scripts: utils.backendDirCheck(pref.backend.synced_dirs.scripts_dir) ? pref.backend.synced_dirs.scripts_dir : '',
-  styles: utils.backendDirCheck(pref.backend.synced_dirs.styles_dir) ? pref.backend.synced_dirs.styles_dir : '',
-  templates: utils.backendDirCheck(pref.backend.synced_dirs.templates_dir) ? pref.backend.synced_dirs.templates_dir : ''
-};
-
-const sourceExtDefaults = {
-  assets: utils.extNormalize(pref.backend.synced_dirs.assets_ext),
-  scripts: utils.extNormalize(pref.backend.synced_dirs.scripts_ext),
-  styles: utils.extNormalize(pref.backend.synced_dirs.styles_ext),
-  templates: utils.extNormalize(pref.backend.synced_dirs.templates_ext)
-};
-
-const targetDirDefaults = {
-  assets: `${srcDir}/_assets`,
-  scripts: `${srcDir}/_scripts/src`,
-  styles: `${srcDir}/_styles`,
-  templates: `${srcDir}/_patterns/03-templates`
-};
-
-// Using an expression instead of a statement only for categorical purposes.
-// Keeping consts with consts while defining getDelimiters before FpImporter to
-// avoid hoisting.
-const getDelimiters = function (engine) {
+// Assigning anonymous functions to consts for categorical purposes.
+// Named functions are declared further down the list of declarations, after the FpImporter class.
+// While it makes some sense to declare getDelimiters there, we want to declare getDelimiters before FpImporter to avoid
+// hoisting.
+const getDelimiters = (engine) => {
   switch (engine) {
-    case 'erb':
+    case '.erb':
       return ['<%', '%>'];
 
-    case 'jsp':
-      return ['<%[^\-]', '[^\-]%>'];
-
-    case 'hbs':
+    case '.hbs':
       return ['\\{\\{[^!]', '\\}\\}'];
 
-    case 'php':
+    case '.jsp':
+      return ['<%[^\\-]', '[^\\-]%>'];
+
+    case '.php':
       return ['<\\?', '\\?>'];
 
-    case 'twig':
-      return ['\\{%', '%\\}'];
+    case '.twig':
+      return ['\\{[#%\\{]', '[#%\\}]\\}'];
   }
-
-  return null;
 };
 
+const getIndexOfSubString = (string, subString) => {
+  if (!subString) {
+    return -1;
+  }
+
+  return string.indexOf(subString);
+};
+
+const getRelativePath = relPath => relPath.replace(`${rootDir}/`, '');
+
+// We want to declare sourceDirDefaults, sourceExtDefaults, and targetDirDefaults as convenience objects, with
+// properties keyed by type. Since we might mutate the pref object for testing (or any other practical purpose), we need
+// to refresh their values each time those objects get consulted.
+const refreshPrefs = () => {
+  return {
+    sourceDirDefaults: {
+      assets: utils.backendDirCheck(pref.backend.synced_dirs.assets_dir),
+      scripts: utils.backendDirCheck(pref.backend.synced_dirs.scripts_dir),
+      styles: utils.backendDirCheck(pref.backend.synced_dirs.styles_dir),
+      templates: utils.backendDirCheck(pref.backend.synced_dirs.templates_dir)
+    },
+
+    sourceExtDefaults: {
+      assets: utils.extNormalize(pref.backend.synced_dirs.assets_ext),
+      scripts: utils.extNormalize(pref.backend.synced_dirs.scripts_ext),
+      styles: utils.extNormalize(pref.backend.synced_dirs.styles_ext),
+      templates: utils.extNormalize(pref.backend.synced_dirs.templates_ext)
+    },
+
+    targetDirDefaults: {
+      assets: conf.ui.paths.source.images,
+      scripts: conf.ui.paths.source.js,
+      styles: conf.ui.paths.source.css,
+      templates: conf.ui.paths.source.templates
+    }
+  };
+};
+
+const replaceExtname = (file, ext) => file.slice(0, -(extname(file).length)) + ext;
+
 class FpImporter {
-  constructor(file, type, engine) {
+  constructor(args) {
+    const {
+      file,
+      type,
+      engine,
+      data,
+      sourceDir,
+      sourceExt,
+      sourceFile
+    } = args;
+
     this.engine = engine || '';
     this.file = file;
     this.type = type;
-
-    let stats;
-    let yml;
-
-    try {
-      stats = fs.statSync(this.file);
-    }
-    catch (err) {
-      // Fail gracefully.
-    }
-
-    // Check if file exists. Read its YAML if it does.
-    if (stats && stats.isFile()) {
-      try {
-        yml = fs.readFileSync(file, conf.enc);
-        this.data = yaml.safeLoad(yml);
-      }
-      catch (err) {
-        utils.error(err);
-        return;
-      }
-    }
-
-    this.data = this.data || {};
-
-    // Cast undefined configs as empty strings. Trim defined configs.
-    switch (type) {
-      case 'assets':
-        this.data.assets_dir = this.data.assets_dir || '';
-        this.data.assets_dir = this.data.assets_dir.trim();
-        this.data.assets_ext = this.data.assets_ext || '';
-        this.data.assets_ext = utils.extNormalize(this.data.assets_ext);
-        break;
-
-      case 'scripts':
-        this.data.scripts_dir = this.data.scripts_dir || '';
-        this.data.scripts_dir = this.data.scripts_dir.trim();
-        this.data.scripts_ext = this.data.scripts_ext || '';
-        this.data.scripts_ext = utils.extNormalize(this.data.scripts_ext);
-        break;
-
-      case 'styles':
-        this.data.styles_dir = this.data.styles_dir || '';
-        this.data.styles_dir = this.data.styles_dir.trim();
-        this.data.styles_ext = this.data.styles_ext || '';
-        this.data.styles_ext = utils.extNormalize(this.data.styles_ext);
-        break;
-
-      case 'templates':
-        this.data.templates_dir = this.data.templates_dir || '';
-        this.data.templates_dir = this.data.templates_dir.trim();
-        this.data.templates_ext = this.data.templates_ext || '';
-        this.data.templates_ext = utils.extNormalize(this.data.templates_ext);
-        this.targetMustacheFile = file.replace(/\.yml$/, '.mustache');
-        break;
-    }
-  }
-
-  setData(data) {
     this.data = data;
-  }
-
-  setSourceDir(sourceDir) {
     this.sourceDir = sourceDir;
+    this.sourceExt = sourceExt;
+    this.sourceFile = sourceFile;
+
+    const thisFileExists = fs.existsSync(this.file);
+
+    if (!this.data) {
+      if (thisFileExists) {
+        try {
+          const yml = fs.readFileSync(this.file, conf.enc);
+          this.data = yaml.safeLoad(yml) || {};
+        }
+        catch (err) {
+          /* istanbul ignore next */
+          utils.error(err);
+          /* istanbul ignore next */
+          return;
+        }
+      }
+
+      this.data = this.data || {};
+      this.data[`${type}_dir`] = utils.backendDirCheck(this.data[`${type}_dir`]) || this.data[`${type}_dir`];
+      this.data[`${type}_ext`] = utils.extNormalize(this.data[`${type}_ext`]) || this.data[`${type}_ext`];
+    }
+
+    this.data[`${type}_dir`] = this.data[`${type}_dir`] ? this.data[`${type}_dir`].trim() : '';
+    this.data[`${type}_ext`] = this.data[`${type}_ext`] ? this.data[`${type}_ext`].trim() : '';
+
+    const {
+      sourceDirDefaults,
+      sourceExtDefaults
+    } = refreshPrefs();
+
+    // These conditional assignments should be ok because the main method will error and return if there is a problem
+    // with the local and global prefs.
+    if (!this.sourceDir) {
+      this.sourceDir = this.data[`${type}_dir`] || sourceDirDefaults[type] || '';
+    }
+
+    if (!this.sourceExt) {
+      this.sourceExt = this.data[`${type}_ext`] || sourceExtDefaults[type] || '';
+    }
+
+    if (!this.sourceFile) {
+      this.sourceFile = this.sourceDir + '/' + basename(this.file, '.yml') + this.sourceExt;
+    }
+
+    if (type === 'templates') {
+      this.targetMustacheFile = this.file.replace(/\.yml$/, conf.ui.patternExtension);
+    }
   }
 
   replaceTags() {
     const delimiters = getDelimiters(this.engine);
 
+    /* istanbul ignore if */
     if (!delimiters) {
       return;
     }
 
-    const code = fs.readFileSync(this.sourceFile, conf.enc);
-
-    let regex;
-
-    if (this.engine === 'hbs') {
-      // Do not import commented-out Handlebars tags.
-      // Not including the closing HTML comment tag because it causes regex to
-      // fail if the closing delimiter is at the end of the line.
-      regex = new RegExp(
-        `(^\\s*|[^<][^!][^\\-][^\\-][^\\{][^\\{][^!])${delimiters[0]}[\\S\\s]*?${delimiters[1]}`,
-        'gm'
-      );
-    }
-    else {
-      regex = new RegExp(`${delimiters[0]}[\\S\\s]*?${delimiters[1]}`, 'g');
-    }
+    const {
+      sourceDirDefaults,
+      sourceExtDefaults
+    } = refreshPrefs();
 
     fs.writeFileSync(this.file, '');
-    if (
-      (this.data.templates_dir && this.data.templates_dir !== sourceDirDefaults.templates) ||
-      (this.data.templates_ext && this.data.templates_ext !== sourceExtDefaults.templates)
-    ) {
 
-      if (this.data.templates_dir && this.data.templates_dir !== sourceDirDefaults.templates) {
-        fs.appendFileSync(this.file, '\'templates_dir\': |2\n');
-        fs.appendFileSync(this.file, `  ${this.data.templates_dir}\n`);
+    if (this.data.templates_dir !== sourceDirDefaults.templates && this.sourceDir !== sourceDirDefaults.templates) {
+      let dir;
+
+      if (this.data.templates_dir) {
+        dir = this.data.templates_dir.replace(`${conf.backend_dir}/`, '');
       }
-      if (this.data.templates_ext && this.data.templates_ext !== sourceExtDefaults.templates) {
-        fs.appendFileSync(this.file, '\'templates_ext\': |2\n');
-        fs.appendFileSync(this.file, `  ${this.data.templates_ext}\n`);
+      else {
+        dir = this.sourceDir.replace(`${conf.backend_dir}/`, '');
       }
+
+      fs.appendFileSync(this.file, '\'templates_dir\': |2\n');
+      fs.appendFileSync(this.file, `  ${dir}\n`);
+    }
+
+    if (this.data.templates_ext !== sourceExtDefaults.templates && this.sourceExt !== sourceExtDefaults.templates) {
+      fs.appendFileSync(this.file, '\'templates_ext\': |2\n');
+      fs.appendFileSync(this.file, `  ${this.data.templates_ext || this.sourceExt}\n`);
+    }
+
+    const regex = new RegExp(`${delimiters[0]}[\\S\\s]*?${delimiters[1]}`, 'g');
+    let code = fs.readFileSync(this.sourceFile, conf.enc);
+
+    if (this.engine === '.hbs') {
+
+      // Triple-stashes (for leaving rendered HTML unescaped) will not be processed correctly.
+      // We need to convert them to {{& which does the same thing.
+      code = code.replace(/\{\{\{([\S\s]*?)\}\}\}/g, '{{& $1}}');
+    }
+
+    if (this.engine === '.hbs' || this.engine === '.twig') {
+
+      // Do not import Feplet tags nested within HTML comment tags.
+      // They might be necessary for use as Fepper code.
+      // However since Feplet tags are delimited the same as Handlebars tags,
+      // escape commented Feplet here, and restore them later.
+      code = code.replace(/<!--\s*\{\{/g, '<!--<%');
+      code = code.replace(/\}\}\s*-->/g, '%>-->');
     }
 
     this.targetMustache = code;
-    if (this.engine === 'jsp') {
+
+    if (this.engine === '.jsp') {
       this.writeYml(/<%--[\S\s]*?--%>/g, 'jcomment', ['<%--', '--%>']);
       this.writeYml(/<\/?\w+:[\S\s]*?[^%]>/g, 'jstl', ['<[^%]', '[^%]>']);
     }
+
     this.writeYml(regex, this.engine);
     fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
   }
 
   retainMustache() {
+    /* istanbul ignore if */
+    if (!this.targetMustache) {
+      return;
+    }
+
     let regex;
     let matches;
 
-    if (this.engine === 'hbs') {
-      regex = new RegExp('<!--\\{\\{!\\{\\{[\\S\\s]*?\\}\\}-->', 'g');
+    if (this.engine === '.hbs' || this.engine === '.twig') {
+      regex = new RegExp('<!--<%[\\S\\s]*?%>-->', 'g');
     }
     else {
       regex = new RegExp('<!--\\{\\{[\\S\\s]*?\\}\\}-->', 'g');
     }
+
     matches = this.targetMustache.match(regex);
 
     if (matches) {
       for (let i = 0; i < matches.length; i++) {
-        let key = '';
+        const match = matches[i];
+        let key = match.slice(4, -3);
         let value = '';
 
-        if (this.engine === 'hbs') {
-          key = matches[i].slice(7, -3);
-          this.targetMustache = this.targetMustache.replace(matches[i], key);
+        if (this.engine === '.hbs' || this.engine === '.twig') {
+          key = '{{' + key.slice(2, -2) + '}}';
         }
-        else {
-          key = matches[i].slice(4, -3);
-          this.targetMustache = this.targetMustache.replace(matches[i], key);
-        }
+
+        this.targetMustache = this.targetMustache.replace(match, key);
 
         key = key.replace(/^\{\{\s*/, '');
         key = key.replace(/\s*\}\}$/, '');
         // Escape reserved YAML characters with backslashes.
+        // eslint-disable-next-line no-useless-escape
         key = key.replace(/([\(\)\*\?\[\]\^\|])/g, '\\$1');
         // Escape single-quotes by duplicating them.
         key = key.replace(/'/g, '\'\'');
-        // Can't include the pipe because it breaks the search.
+        // Can't include the pipe because it breaks the indexOf() search. But must include everything before.
         key = `'${key}': `;
 
         // Skip duplicate keys.
         let data = fs.readFileSync(this.file, conf.enc);
+
+        /* istanbul ignore if */
         if (data.indexOf(key) > -1) {
           continue;
         }
 
-        value = matches[i].replace(/\{\{/g, '\\{\\{');
-        value = value.replace(/\}\}/g, '\\}\\}');
+        if (this.engine === '.hbs' || this.engine === '.twig') {
+          value = match.replace(/<%/g, '\\{\\{');
+          value = value.replace(/%>/g, '\\}\\}');
+        }
+        else {
+          value = match.replace(/\{\{/g, '\\{\\{');
+          value = value.replace(/\}\}/g, '\\}\\}');
+        }
+
+        value = value.replace(/^/gm, '  ');
 
         fs.appendFileSync(this.file, `${key}|2\n`);
-        fs.appendFileSync(this.file, `  ${value}\n`);
+        fs.appendFileSync(this.file, `${value}\n`);
       }
+
       fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
     }
   }
 
-  writeYml(regex, keyBase, delimiters_) {
-    const delimiters = delimiters_ || getDelimiters(keyBase);
+  writeYml(regex_, engine, delimiters_) {
+    const delimiters = delimiters_ || getDelimiters(engine);
 
+    /* istanbul ignore if */
     if (!delimiters) {
       return;
     }
 
-    const matches = this.targetMustache.match(regex);
+    const keyBase = engine[0] === '.' ? engine.slice(1) : engine;
+    const matches = this.targetMustache.match(regex_);
 
     if (matches) {
       for (let i = 0; i < matches.length; i++) {
+        const match = matches[i];
         let key = '';
-        let value = '';
-        let values = [];
         let regex = new RegExp(`${delimiters[0]}[\\S\\s]*?${delimiters[1]}`);
 
         if (i === 0) {
@@ -266,8 +316,8 @@ class FpImporter {
           key = `${keyBase}_${i}`;
         }
 
-        values = regex.exec(matches[i]);
-        value = values[0].replace(/^/gm, '  ');
+        const values = regex.exec(match);
+        let value = values[0].replace(/^/gm, '  ');
         value = value.replace(/\{\{/g, '\\{\\{');
         value = value.replace(/\}\}/g, '\\}\\}');
 
@@ -280,374 +330,734 @@ class FpImporter {
   }
 
   main() {
-    if (
-      (this.data[`${this.type}_dir`] || sourceDirDefaults[this.type]) &&
-      (this.data[`${this.type}_ext`] || sourceExtDefaults[this.type])
-    ) {
-      if (!this.sourceDir) {
-        let nestedDirs = '';
-        let sourceDir = '';
+    const {
+      sourceDirDefaults,
+      sourceExtDefaults
+    } = refreshPrefs();
 
-        if (this.data[`${this.type}_dir`]) {
-          sourceDir = this.data[`${this.type}_dir`];
-        }
-        else {
-          nestedDirs = path.dirname(this.file).replace(targetDirDefaults[this.type].replace(`${rootDir}/`, ''), '');
-          sourceDir = sourceDirDefaults[this.type];
-        }
-
-        sourceDir = sourceDir + nestedDirs;
-        this.sourceDir = utils.backendDirCheck(sourceDir).replace(`${rootDir}/`, '');
-      }
-
-      this.sourceExt = this.data[`${this.type}_ext`] || sourceExtDefaults[this.type];
-      this.sourceExt = this.sourceExt;
-      let basename = path.basename(this.file).replace(/\.yml$/, `${this.sourceExt}`);
-      this.sourceFile = `${this.sourceDir}/${basename}`;
-
-      if (this.type === 'templates') {
-        this.replaceTags();
-        this.retainMustache();
-      }
-      else {
-        fs.copySync(this.sourceFile, `${path.dirname(this.file)}/${basename}`);
-
-        let dir = this.data[`${this.type}_dir`];
-        let ext = this.data[`${this.type}_ext`];
-
-        if (dir || ext) {
-          fs.writeFileSync(this.file, '');
-
-          if (dir) {
-            fs.appendFileSync(this.file, `'${this.type}_dir': |2\n`);
-            fs.appendFileSync(this.file, `  ${dir}\n`);
-          }
-          if (ext) {
-            fs.appendFileSync(this.file, `'${this.type}_ext': |2\n`);
-            fs.appendFileSync(this.file, `  ${ext}\n`);
-          }
-        }
-      }
-
-      // Log to console.
-      utils.log(`${(this.engine || this.type)} file %s imported.`, this.sourceFile);
+    if (!this.data[`${this.type}_dir`] && !sourceDirDefaults[this.type] && !this.sourceDir) {
+      return;
     }
+
+    /* istanbul ignore if */
+    if (!this.data[`${this.type}_ext`] && !sourceExtDefaults[this.type] && !this.sourceExt) {
+      return;
+    }
+
+    if (this.data[`${this.type}_dir`] && !utils.backendDirCheck(this.data[`${this.type}_dir`])) {
+      utils.error('Error: %s must exist!', this.data[`${this.type}_dir`]);
+
+      return;
+    }
+
+    if (!fs.existsSync(this.sourceFile)) {
+      const sourceFileRel = getRelativePath(this.sourceFile);
+
+      utils.error(`Error: ${sourceFileRel} must exist!`);
+
+      return;
+    }
+
+    const dir = this.data[`${this.type}_dir`].replace(`${conf.backend_dir}/`, '');
+    const ext = this.data[`${this.type}_ext`];
+
+    if (dir || ext) {
+      fs.writeFileSync(this.file, '');
+    }
+
+    if (this.type === 'templates') {
+      this.replaceTags();
+      this.retainMustache();
+    }
+    else {
+      fs.copySync(this.sourceFile, replaceExtname(this.file, this.sourceExt));
+
+      if (dir) {
+        fs.appendFileSync(this.file, `'${this.type}_dir': |2\n`);
+        fs.appendFileSync(this.file, `  ${dir}\n`);
+      }
+
+      if (ext) {
+        fs.appendFileSync(this.file, `'${this.type}_ext': |2\n`);
+        fs.appendFileSync(this.file, `  ${ext}\n`);
+      }
+    }
+
+    // Log to console.
+    utils.log(`${(this.engine || this.type)} file \x1b[36m%s\x1b[0m imported.`, this.sourceFile);
   }
 }
 
 function exportBackendFile(argv) {
-  // First, check for -f argument, and import single file, and then exit.
+  // Exports a single file only. Therefore, check for -f argument
   if (!argv || !argv.f) {
-    utils.error('Error: need an -f argument!');
+    utils.error('Error: needs -f argument!');
+
     return;
   }
 
-  if (argv.f.indexOf(conf.ui.paths.source.root) !== 0) {
-    utils.error(`Error: invalid path! Must be under ${conf.ui.paths.source.root}`);
+  const {
+    sourceDirDefaults,
+    sourceExtDefaults,
+    targetDirDefaults
+  } = refreshPrefs();
+  let fileFrontend;
+
+  if (fs.existsSync(argv.f)) {
+    fileFrontend = normalize(argv.f);
+  }
+  else {
+    fileFrontend = normalize(`${rootDir}/${argv.f}`);
+  }
+
+  /* istanbul ignore if */
+  if (!fs.existsSync(dirname(fileFrontend))) {
+    utils.error(`Error: invalid path! Must be relative to ${conf.ui.pathsRelative.source.root}/, or else absolute.`);
+
     return;
   }
 
-  let basename;
-  let file = path.normalize(`${rootDir}/${argv.f}`);
-  let fpImporter;
-  let type;
-  let ymlFile;
+  // Validate that this is a frontend file.
+  /* istanbul ignore if */
+  if (getIndexOfSubString(fileFrontend, conf.ui.paths.source.root) !== 0) {
+    utils.error(`Error: invalid path! Must be in the ${conf.ui.pathsRelative.source.root}/ directory.`);
 
+    return;
+  }
+
+  // All types except templates.
   for (let i in targetDirDefaults) {
-    if (targetDirDefaults.hasOwnProperty(i)) {
-      if (file.indexOf(targetDirDefaults[i]) === 0) {
-        type = i;
-
-        if (i !== 'templates') {
-          if (file.slice(-4) === 'yml') {
-            ymlFile = file;
-          }
-          else {
-            ymlFile = file.replace(/\.\w+$/, '.yml');
-          }
-
-          fpImporter = new FpImporter(ymlFile, i);
-
-          if (file.slice(-4) === '.yml') {
-            file = file.slice(0, -4) + fpImporter.data[`${i}_ext`];
-          }
-
-          basename = path.basename(file);
-          fs.copySync(file, rootDir + '/backend/' + fpImporter.data[`${i}_dir`] + '/' + basename);
-
-          // Log to console.
-          utils.log(`${type} file %s exported.`, file);
-
-          return;
-        }
-        break;
-      }
+    /* istanbul ignore if */
+    if (!targetDirDefaults.hasOwnProperty(i)) {
+      continue;
     }
-  }
 
-  if (type !== 'templates') {
-    utils.error('Error: Not a valid file for export!');
-    return;
-  }
+    const type = i;
+    const sourceDirDefault = sourceDirDefaults[type];
+    const sourceExtDefault = sourceExtDefaults[type];
+    const targetDirDefault = targetDirDefaults[type];
 
-  const templater = global.fepper.tasks.templater;
-  const nestedDirs = path.dirname(file).replace(`${targetDirDefaults.templates}`, '');
-  const sourceDirDefault = utils.backendDirCheck(sourceDirDefaults.templates + nestedDirs);
+    if (getIndexOfSubString(fileFrontend, targetDirDefault) !== 0) {
+      continue;
+    }
 
-  templater.templateProcess(file, sourceDirDefault, sourceExtDefaults.templates, rootDir, conf, pref);
-}
+    const fileYml = replaceExtname(fileFrontend, '.yml');
 
-function importBackendFiles(type, engine, argv) {
-  // First, check for -f argument, and import single file, and then exit.
-  if (argv && argv.f) {
-    if (argv.f.indexOf(conf.ui.paths.source.root) !== 0) {
-      utils.error(`Error: invalid path! Must be under ${conf.ui.paths.source.root}`);
+    if (type === 'templates') {
+
+      // This makes it easy to parse the data.
+      const fpImporter = new FpImporter({
+        file: fileYml,
+        type
+      });
+
+      // Validate
+
+      // Exit if FpImporter failed to find or parse the .yml file.
+      // Error message should have been printed by the FpImporter constructor.
+      /* istanbul ignore if */
+      if (!fpImporter.data) {
+        return;
+      }
+
+      let {
+        data
+      } = fpImporter;
+
+      if (
+        (!data['templates_dir'] && !sourceDirDefaults.templates) ||
+        (data['templates_dir'] && !utils.backendDirCheck(data['templates_dir']))
+      ) {
+        utils.error(`Error: 'templates_dir' must be set in pref.yml or ${getRelativePath(fileYml)} and must exist!`);
+
+        return;
+      }
+
+      if (!data['templates_ext'] && !sourceExtDefault) {
+        utils.error(`Error: 'templates_ext' must be set in pref.yml or ${getRelativePath(fileYml)}!`);
+
+        return;
+      }
+
+      const templater = global.fepper.tasks.templater;
+      const nestedDirs = dirname(fileFrontend).replace(`${targetDirDefaults.templates}`, '');
+      const sourceDirDefault = utils.backendDirCheck(sourceDirDefaults.templates + nestedDirs);
+
+      templater.templateProcess(fileFrontend, sourceDirDefault, sourceExtDefaults.templates, rootDir, conf, pref);
+
       return;
     }
 
-    // Requires relative path, not absolute.
-    let file = path.normalize(`${rootDir}/${argv.f}`);
-    let fpImporter = {};
-    let stats = null;
+    // type !== 'templates'
+    else {
+      let data = {};
 
-    try {
-      stats = fs.statSync(file);
-    }
-    catch (err) {
-      utils.error(err);
-      return;
-    }
-
-    // Only process valid files.
-    if (stats && stats.isFile()) {
-      if (path.extname(file) !== '.yml') {
-        file = file.replace(/\.\w+$/, '.yml');
-        fs.writeFileSync(file, '');
-      }
-      fpImporter = new FpImporter(file, type, engine);
-      fpImporter.main();
-    }
-
-    return;
-  }
-
-  let files = [];
-
-  switch (type) {
-    case 'assets':
-      files = glob.sync(`${srcDir}/_assets/**/*.yml`) || [];
-      break;
-    case 'scripts':
-      files = glob.sync(`${srcDir}/_scripts/src/**/*.yml`) || [];
-      break;
-    case 'styles':
-      files = glob.sync(`${srcDir}/_styles/**/*.yml`) || [];
-      break;
-    case 'templates':
-      files = glob.sync(`${srcDir}/_patterns/03-templates/**/*.yml`) || [];
-      break;
-  }
-
-  for (let i = 0; i < files.length; i++) {
-    let fpImporter = {};
-    let stats = null;
-
-    try {
-      stats = fs.statSync(files[i]);
-    }
-    catch (err) {
-      // Fail gracefully.
-    }
-
-    // Only process valid files.
-    if (stats && stats.isFile()) {
-      fpImporter = new FpImporter(files[i], type, engine);
-      fpImporter.main();
-    }
-  }
-
-  // Allowing a mass import of files under sourceDirDefaults[type].
-  // Skips the files processed in the above block.
-  if (sourceDirDefaults[type] && (type !== 'templates' || sourceExtDefaults[type])) {
-    let dir = sourceDirDefaults[type];
-    let ext = sourceExtDefaults[type] || '.*';
-    let files1 = glob.sync(`${rootDir}/backend/${dir}/**/*${ext}`);
-
-    globbed:
-    for (let i = 0; i < files1.length; i++) {
-      // Do not proceed if default extension is set and this doesn't have it.
-      if (sourceExtDefaults[type] && path.extname(files1[i]) !== `${sourceExtDefaults[type]}`) {
-        continue;
-      }
-
-      // Do not proceed if this is a minified script.
-      if (type === 'scripts' && /\.min\.\w+$/.test(files1[i])) {
-        continue;
-      }
-
-      // Only proceed if wasn't in processed in for files loop.
-      for (let j = 0; j < files.length; j++) {
-        let data = null;
-        let stats = null;
-        let yml = '';
-
+      if (fs.existsSync(fileYml)) {
         try {
-          stats = fs.statSync(files[j]);
+          const yml = fs.readFileSync(fileYml, conf.enc);
+          data = yaml.safeLoad(yml) || {};
         }
         catch (err) {
           // Fail gracefully.
-        }
-
-        // Check if file exists. Read its YAML if it does.
-        if (stats && stats.isFile()) {
-          try {
-            yml = fs.readFileSync(files[j], conf.enc);
-            data = yaml.safeLoad(yml);
-          }
-          catch (err) {
-            utils.error(err);
-            return;
-          }
-        }
-
-        data = data || {};
-
-        if (
-          data[`${type}_dir`] &&
-          data[`${type}_dir`] === path.dirname(files1[i]).replace(`${rootDir}/backend/`, '')
-        ) {
-          if (
-            sourceExtDefaults[type] &&
-            path.basename(files[j]).replace(/.yml$/, sourceExtDefaults[type]) === path.basename(files1[i])
-          ) {
-            continue globbed;
-          }
-          else if (path.basename(files[j]).slice(0, -4) === path.basename(files1[i]).replace(/\.\w+$/, '')) {
-            continue globbed;
-          }
+          /* istanbul ignore next */
+          return;
         }
       }
 
-      let data = {};
-      let dirP = '';
-      let fileYml = '';
-      let fileYmlBasename = '';
-      let fpImporter = {};
-      let nestedDirs = '';
-      let stats = null;
-      let sourceDir = '';
+      if (
+        (!data[`${type}_dir`] && !sourceDirDefault) ||
+        (data[`${type}_dir`] && !utils.backendDirCheck(data[`${type}_dir`]))
+      ) {
+        utils.error(`Error: '${type}_dir' must be set in pref.yml or ${getRelativePath(fileYml)} and must exist!`);
 
-      if (sourceExtDefaults[type]) {
-        fileYmlBasename = path.basename(files1[i], sourceExtDefaults[type]) + '.yml';
-      }
-      else {
-        fileYmlBasename = path.basename(files1[i]).replace(/\.\w+$/, '.yml');
+        return;
       }
 
-      nestedDirs = path.dirname(files1[i]).replace(`${rootDir}/backend/${dir}`, '');
-      fileYml = targetDirDefaults[type];
-      fileYml += nestedDirs;
-      dirP = fileYml;
-      fileYml += '/' + fileYmlBasename;
-      sourceDir = utils.backendDirCheck(sourceDirDefaults[type] + nestedDirs);
+      let sourceDir;
 
-      // Only proceed if a YAML has not been created for this file.
+      if (data[`${type}_dir`]) {
+        sourceDir = utils.backendDirCheck(data[`${type}_dir`]);
+      }
+      else if (sourceDirDefault) {
+        const nestedDirs = dirname(fileFrontend).replace(targetDirDefault, '');
+
+        sourceDir = sourceDirDefault + nestedDirs;
+      }
+
+      // For non-templates, ignore _ext setting.
+      const sourceFile = `${sourceDir}/${basename(fileFrontend)}`;
+
       try {
-        stats = fs.statSync(fileYml);
+        fs.ensureDirSync(sourceDir);
       }
       catch (err) {
-        // Fail gracefully.
+        /* istanbul ignore next */
+        utils.error(err);
+        /* istanbul ignore next */
+        return;
       }
 
-      if (stats) {
+      try {
+        fs.copySync(fileFrontend, sourceFile);
+      }
+      catch (err) {
+        /* istanbul ignore next */
+        utils.error(err);
+        /* istanbul ignore next */
+        return;
+      }
+
+      // Log to console.
+      utils.log(`${type} file \x1b[36m%s\x1b[0m exported.`, fileFrontend);
+
+      return;
+    }
+  }
+}
+
+function importBackendFileByArg(type, engine, argv) {
+  if (!argv || !argv.f) {
+    utils.error('Error: needs -f argument!');
+
+    return;
+  }
+
+  const {
+    sourceDirDefaults,
+    sourceExtDefaults,
+    targetDirDefaults
+  } = refreshPrefs();
+  let file;
+
+  // Convert -f argument to absolute path.
+  if (fs.existsSync(dirname(argv.f))) {
+    file = resolve(path.normalize(argv.f));
+  }
+  else {
+    file = normalize(`${rootDir}/${argv.f}`);
+  }
+
+  // Absolute path must be within the project.
+  /* istanbul ignore if */
+  if (getIndexOfSubString(file, rootDir) !== 0) {
+    utils.error(`Error: invalid path! Must be relative to ${conf.ui.pathsRelative.source.root}/, or else absolute.`);
+
+    return;
+  }
+
+  const fileExt = extname(file);
+  const sourceDirDefault = sourceDirDefaults[type];
+  const sourceExtDefault = sourceExtDefaults[type];
+  let targetDirDefault = targetDirDefaults[type];
+  let dataLocal = {};
+  let fileYml;
+
+  // -f arguments may point to the backend or frontend.
+  // Error and return if neither is the case.
+  /* istanbul ignore if */
+  if (getIndexOfSubString(file, conf.backend_dir) !== 0 && getIndexOfSubString(file, targetDirDefault) !== 0) {
+    utils.error('Error: invalid path! The -f argument must be a backend file or a template pattern.');
+
+    return;
+  }
+
+  const data = {};
+  let sourceDir;
+
+  // Must convert backend path to frontend path to get target path.
+  // If backend path, we can only work with sourceDirDefault because we aren't accessing a local .yml file.
+  if (getIndexOfSubString(file, conf.backend_dir) === 0) {
+
+    // Must reset targetDirDefault for non-templates if backend path and no sourceDirDefault.
+    if (!sourceDirDefault) {
+      switch (type) {
+        case 'assets':
+          targetDirDefault = conf.ui.paths.source.imagesSrc;
+
+          break;
+
+        case 'scripts':
+          targetDirDefault = conf.ui.paths.source.jsSrc;
+
+          break;
+
+        case 'styles':
+          targetDirDefault = conf.ui.paths.source.cssBld;
+
+          break;
+      }
+    }
+
+    sourceDir = dirname(file);
+
+    if (getIndexOfSubString(file, sourceDirDefault) === 0) {
+      const nestedDirs = sourceDir.replace(sourceDirDefault, '');
+      const targetDirPlusNestedDirs = targetDirDefault + nestedDirs;
+
+      fileYml = replaceExtname(file.replace(sourceDirDefault, targetDirDefault), '.yml');
+
+      // Ensure the nested directories exist in the target.
+      fs.ensureDirSync(targetDirPlusNestedDirs);
+    }
+    else {
+      fileYml = replaceExtname(`${targetDirDefault}/${basename(file)}`, '.yml');
+    }
+  }
+
+  // Frontend paths.
+  else {
+
+    // Path to YAML file.
+    if (fileExt === '.yml') {
+      fileYml = file;
+    }
+
+    // Path to non-YAML file.
+    else {
+
+      fileYml = replaceExtname(file, '.yml');
+    }
+  }
+
+  // If fileExt === '.yml', it means the .yml file must exist in order to import.
+  // In this case, we want the following if condition to succeed, even if the file is nonexistent, so it errors and
+  // returns when trying to read the nonexistent file.
+  // In other cases where the .yml file is nonexistent, we can refer to global prefs, so no need to error and return.
+  if (fileExt === '.yml' || fs.existsSync(fileYml)) {
+    try {
+      const yml = fs.readFileSync(fileYml, conf.enc);
+      dataLocal = yaml.safeLoad(yml) || {};
+      dataLocal[`${type}_dir`] = dataLocal[`${type}_dir`] ? dataLocal[`${type}_dir`].trim() : '';
+      dataLocal[`${type}_ext`] = dataLocal[`${type}_ext`] ? dataLocal[`${type}_ext`].trim() : '';
+    }
+    catch (err) {
+      /* istanbul ignore next */
+      utils.error(err);
+      /* istanbul ignore next */
+      return;
+    }
+  }
+
+  let sourceDirLocalChecked = utils.backendDirCheck(dataLocal[`${type}_dir`]);
+
+  // At this point, sourceDir would only be defined for backend paths, so use it to filter backend paths.
+  if (sourceDir) {
+    const fileRel = getRelativePath(fileYml);
+
+    if (dataLocal[`${type}_dir`]) {
+
+      // Error and return if the backend arg path does not match the _dir pref in the local .yml file.
+      // For backend-pointing -f args, we do not actually use the local pref.
+      // However, we do want to error if the local pref is wrong.
+      if (sourceDirLocalChecked !== sourceDir) {
+        utils.error(`Error: invalid path! Must correspond to '${type}_dir' set in ${fileRel}.`);
+
+        return;
+      }
+    }
+
+    // Need to define sourceDirLocalChecked with dirname of backend file if dataLocal[`${type}_dir`] is empty.
+    // This value will be assigned to data[`${type}_dir`] later.
+    else {
+      sourceDirLocalChecked = sourceDir;
+    }
+
+    if (type === 'templates' && dataLocal[`${type}_ext`]) {
+
+      // For templates, error and return if the backend extension does not match the _ext pref in the local .yml file.
+      if (dataLocal[`${type}_ext`] && dataLocal[`${type}_ext`] !== fileExt) {
+        utils.error(`Error: invalid extension! Must correspond to '${type}_ext' set in ${fileRel}.`);
+
+        return;
+      }
+    }
+
+    else if (fileExt !== '.yml') {
+      dataLocal[`${type}_ext`] = fileExt;
+    }
+
+    if (!dataLocal[`${type}_dir`] && !sourceDirDefault) {
+      dataLocal[`${type}_dir`] = sourceDir;
+    }
+  }
+
+  // Frontend paths.
+  else {
+
+    // For sourceDir, we're ok with setting it to sourceDirLocalChecked because fpImporter.main will reject wrong
+    // _dir and _ext prefs before allowing a wrong sourceDir.
+    if (sourceDirLocalChecked) {
+      sourceDir = sourceDirLocalChecked;
+    }
+    else {
+
+      // Make sure not to use targetDirDefault because it might point to a src or bld dir.
+      const nestedDirs = dirname(fileYml).replace(targetDirDefaults[type], '');
+      sourceDir = sourceDirDefault + nestedDirs;
+    }
+  }
+
+  data[`${type}_dir`] = dataLocal[`${type}_dir`];
+  data[`${type}_ext`] = dataLocal[`${type}_ext`];
+
+  if (!data[`${type}_dir`] && !sourceDirDefault) {
+    utils.error(`Error: '${type}_dir' must be set in pref.yml or ${getRelativePath(fileYml)} and must exist!`);
+
+    return;
+  }
+
+  let sourceExt;
+
+  if (type === 'templates' || fileExt === '.yml') {
+    sourceExt = data[`${type}_ext`] || sourceExtDefault;
+
+    if (!sourceExt) {
+      utils.error(`Error: '${type}_ext' must be set in pref.yml or ${getRelativePath(fileYml)}!`);
+
+      return;
+    }
+  }
+  else {
+    sourceExt = fileExt;
+  }
+
+  let sourceFile;
+
+  if (getIndexOfSubString(file, sourceDir) === 0) {
+    sourceFile = file;
+  }
+  else {
+    sourceFile = `${sourceDir}/${basename(fileYml, '.yml') + sourceExt}`;
+  }
+
+  const fpImporter = new FpImporter({
+    file: fileYml,
+    type,
+    engine,
+    data,
+    sourceDir,
+    sourceExt,
+    sourceFile
+  });
+
+  fpImporter.main();
+}
+
+function importBackendFiles(type, engine) {
+  const {
+    sourceDirDefaults,
+    sourceExtDefaults,
+    targetDirDefaults
+  } = refreshPrefs();
+  const sourceDirDefault = sourceDirDefaults[type];
+  const sourceExtDefault = sourceExtDefaults[type];
+  const targetDirDefault = targetDirDefaults[type];
+  const filesYml = glob.sync(targetDirDefault + '/**/*.yml');
+
+  // Glob .yml files in the Fepper frontend.
+  for (let i = 0; i < filesYml.length; i++) {
+    const fileYml = filesYml[i];
+    let stat;
+
+    try {
+      stat = fs.statSync(fileYml);
+    }
+    catch (err) {
+      /* istanbul ignore next */
+      utils.error(err);
+      /* istanbul ignore next */
+      continue;
+    }
+
+    /* istanbul ignore if */
+    if (!stat || !stat.isFile()) {
+      continue;
+    }
+
+    let data = {};
+    let fpImporter = {};
+
+    try {
+      const yml = fs.readFileSync(fileYml, conf.enc);
+      data = yaml.safeLoad(yml) || {};
+    }
+    catch (err) {
+      /* istanbul ignore next */
+      utils.error(err);
+      /* istanbul ignore next */
+      continue;
+    }
+
+    let sourceDir;
+
+    // Recognize nested frontend files, and their nesting directory structure.
+    // This is only necessary if they do not have local _dir set.
+    if (!data[`${type}_dir`] && sourceDirDefault) {
+      const fileYmlDir = dirname(fileYml);
+
+      if (fileYmlDir !== targetDirDefault) {
+        const nestedDirs = fileYmlDir.replace(targetDirDefault, '');
+        sourceDir = sourceDirDefault + nestedDirs;
+      }
+    }
+
+    // These assignments should be ok because the main method will error and return if there is a problem with the local
+    // and global prefs.
+    sourceDir = sourceDir || utils.backendDirCheck(data[`${type}_dir`]) || sourceDirDefault;
+    const sourceExt = utils.extNormalize(data[`${type}_ext`]) || sourceExtDefault;
+
+    // Since we're identifying the backend file by the frontend .yml file, we cannot continue if we do not have the
+    // extension of the backend file.
+    if (!sourceExt) {
+      continue;
+    }
+
+    const sourceFileBasename = basename(fileYml, '.yml') + sourceExt;
+    const sourceFile = `${sourceDir}/${sourceFileBasename}`;
+
+    fpImporter = new FpImporter({
+      file: fileYml,
+      type,
+      engine,
+      data,
+      sourceDir,
+      sourceExt,
+      sourceFile
+    });
+
+    fpImporter.main();
+  }
+
+  // Mass import of files under sourceDirDefault. Globs the backend.
+  // OK for sourceExtDefault to be empty if type is not templates.
+  if (sourceDirDefault && (sourceExtDefault || type !== 'templates')) {
+    const ext = sourceExtDefault || '.*';
+    const filesBackend = glob.sync(`${sourceDirDefault}/**/*${ext}`);
+
+    globbedBackend:
+    for (let i = 0; i < filesBackend.length; i++) {
+      const fileBackend = filesBackend[i];
+      let stat;
+
+      try {
+        stat = fs.statSync(fileBackend);
+      }
+      catch (err) {
+        /* istanbul ignore next */
+        utils.error(err);
+        /* istanbul ignore next */
         continue;
       }
 
-      let stats1 = null;
-
-      try {
-        stats1 = fs.statSync(dirP);
-      }
-      catch (err) {
-        // Fail gracefully.
+      if (!stat || !stat.isFile()) {
+        continue;
       }
 
-      if (!stats1) {
-        fs.mkdirpSync(dirP);
+      const fileBackendDir = dirname(fileBackend);
+      const fileBackendExt = extname(fileBackend);
+
+      /*
+      if (type === 'scripts' || type === 'styles') {
+        // Do not proceed if this is a minified file.
+        if (/\.min\.\w+$/.test(fileBackend)) {
+          continue;
+        }
+
+        // Do not proceed if this is a sourcemap.
+        if (fileBackendExt === '.map') {
+          continue;
+        }
+      }
+      */
+
+      const fileYmlBasename = basename(fileBackend, fileBackendExt) + '.yml';
+      const nestedDirs = fileBackendDir.replace(sourceDirDefault, '');
+      let data = {};
+
+      // Assemble frontend .yml file path.
+      let fileYml = targetDirDefault;
+      fileYml += nestedDirs;
+      const targetDirPlusNestedDirs = fileYml;
+      fileYml += '/' + fileYmlBasename;
+
+      // Do not proceed if template was imported in by globbing the frontend for .yml files.
+      for (let j = 0; j < filesYml.length; j++) {
+        if (filesYml[j] === fileYml) {
+          continue globbedBackend;
+        }
       }
 
-      if (type !== 'templates' && path.extname(files1[i]) !== sourceExtDefaults[type]) {
-        data[`${type}_ext`] = path.extname(files1[i]);
+      fs.ensureDirSync(targetDirPlusNestedDirs);
+
+      // Optionally, try to load local data.
+      /* istanbul ignore if */
+      if (fs.existsSync(fileYml)) {
+        try {
+          const yml = fs.readFileSync(fileYml, conf.enc);
+          data = yaml.safeLoad(yml) || {};
+        }
+        catch (err) {
+          utils.error(err);
+        }
       }
 
-      fpImporter = new FpImporter(fileYml, type, engine);
-      fpImporter.setData(data);
-      fpImporter.setSourceDir(sourceDir);
+      // These assignments should be ok because the main method will error and return if there is a problem with the
+      // local and global prefs.
+      const sourceDir = utils.backendDirCheck(data[`${type}_dir`]) || (sourceDirDefault + nestedDirs);
+      const sourceFile = fileBackend;
+      let sourceExt;
+
+      // Do not proceed if the _dir pref does not correspond to the dirname of the backend file.
+      /* istanbul ignore if */
+      if (sourceDir !== fileBackendDir) {
+        continue;
+      }
+
+      if (type === 'templates') {
+        sourceExt = utils.extNormalize(data[`${type}_ext`]) || sourceExtDefault;
+
+        // Do not proceed if the _ext pref does not match the extname of the backend file.
+        /* istanbul ignore if */
+        if (sourceExt !== fileBackendExt) {
+          continue;
+        }
+      }
+      else {
+        sourceExt = fileBackendExt;
+      }
+
+      const fpImporter = new FpImporter({
+        file: fileYml,
+        type,
+        engine,
+        data,
+        sourceDir,
+        sourceExt,
+        sourceFile
+      });
+
       fpImporter.main();
     }
   }
 }
 
+// Declare gulp tasks.
+
 gulp.task('export', function (cb) {
-  const argv = require('yargs').argv;
+  const argv = yargs(process.argv).argv;
 
   exportBackendFile(argv);
+
   cb();
 });
 
 gulp.task('import', function (cb) {
   // If an -f argument was submitted, it's probably a mistake.
-  const argv = require('yargs').argv;
+  const argv = yargs(process.argv).argv;
 
   if (argv.f) {
-    utils.error('Error: do not submit an -f argument for fp import!');
+    utils.error('Error: `fp import` (with no subtask) does not recognize -f argument!');
+
     cb();
     return;
   }
 
-  let templatesExt = null;
+  const {
+    sourceExtDefaults
+  } = refreshPrefs();
+  let templatesExt;
 
   for (let i = 0; i < engines.length; i++) {
-    if (sourceExtDefaults.templates === engines[i]) {
-      templatesExt = engines[i];
+    const engine = engines[i];
+
+    if (sourceExtDefaults.templates === engine) {
+      templatesExt = engine;
     }
   }
 
   importBackendFiles('assets');
   importBackendFiles('scripts');
   importBackendFiles('styles');
+
   if (templatesExt) {
     importBackendFiles('templates', templatesExt);
   }
+
   cb();
 });
 
-gulp.task('import:assets', function (cb) {
-  const argv = require('yargs').argv;
+gulp.task('import:asset', function (cb) {
+  const argv = yargs(process.argv).argv;
 
-  importBackendFiles('assets', null, argv);
+  importBackendFileByArg('assets', null, argv);
+
   cb();
 });
 
-gulp.task('import:scripts', function (cb) {
-  const argv = require('yargs').argv;
+gulp.task('import:script', function (cb) {
+  const argv = yargs(process.argv).argv;
 
-  importBackendFiles('scripts', null, argv);
+  importBackendFileByArg('scripts', null, argv);
+
   cb();
 });
 
-gulp.task('import:styles', function (cb) {
-  const argv = require('yargs').argv;
+gulp.task('import:style', function (cb) {
+  const argv = yargs(process.argv).argv;
 
-  importBackendFiles('styles', null, argv);
+  importBackendFileByArg('styles', null, argv);
+
   cb();
 });
 
 for (let i = 0; i < engines.length; i++) {
-  gulp.task(`import:${engines[i]}`, function (cb) {
-    const argv = require('yargs').argv;
+  const engine = engines[i];
 
-    importBackendFiles('templates', engines[i], argv);
+  gulp.task(`import:${engine.slice(1)}`, function (cb) {
+    const argv = yargs(process.argv).argv;
+
+    importBackendFileByArg('templates', engine, argv);
+
     cb();
   });
 }

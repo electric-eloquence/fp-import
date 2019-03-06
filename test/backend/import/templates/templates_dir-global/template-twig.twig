@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% if page.title %}
+        {{ page.title|e }} | {{ config.site.name|e }}
+      {% else %}
+        {{ config.site.name|e }}
+      {% endif %}
+    </title>
+ 	{% include 'meta-partials/meta_tags.twig' %}
+  </head>
+  <body>
+    {% page.body %}
+    <!--{{# templates-responsive_footer }}-->
+      <!--{{> 03-templates/responsive_footer }}-->
+    <!--{{/ templates-responsive_footer }}-->
+  </body>
+</html>
