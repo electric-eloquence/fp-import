@@ -15,7 +15,7 @@ const {
   extname
 } = path;
 const normalize = rawPath => slash(path.normalize(rawPath));
-const resolve = rawPath => slash(path.resolve(rawPath)).replace(/^[A-Z]:/, '');
+const resolve = rawPath => slash(path.resolve(rawPath));
 
 const conf = global.conf;
 const pref = global.pref;
