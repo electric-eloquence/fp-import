@@ -173,7 +173,7 @@ class FpImporter {
       sourceExtDefaults
     } = refreshPrefs();
 
-    fs.writeFileSync(this.file, '');
+    fs.outputFileSync(this.file, '');
 
     if (this.data.templates_dir !== sourceDirDefaults.templates && this.sourceDir !== sourceDirDefaults.templates) {
       let dir;
@@ -222,7 +222,7 @@ class FpImporter {
     }
 
     this.writeYml(regex, this.engine);
-    fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
+    fs.outputFileSync(this.targetMustacheFile, this.targetMustache);
   }
 
   retainMustache() {
@@ -288,7 +288,7 @@ class FpImporter {
         fs.appendFileSync(this.file, `${value}\n`);
       }
 
-      fs.writeFileSync(this.targetMustacheFile, this.targetMustache);
+      fs.outputFileSync(this.targetMustacheFile, this.targetMustache);
     }
   }
 
@@ -362,7 +362,7 @@ class FpImporter {
     const ext = this.data[`${this.type}_ext`];
 
     if (dir || ext) {
-      fs.writeFileSync(this.file, '');
+      fs.outputFileSync(this.file, '');
     }
 
     if (this.type === 'templates') {
