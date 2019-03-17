@@ -111,14 +111,14 @@ describe('fp import', function () {
           const asset2ExistsAfter = fs.existsSync(asset2);
           const asset3ExistsAfter = fs.existsSync(asset3);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(asset3ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(asset1ExistsAfter).to.equal(false);
-          expect(asset2ExistsAfter).to.equal(false);
-          expect(asset3ExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(asset3ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(asset1ExistsAfter).to.be.false;
+          expect(asset2ExistsAfter).to.be.false;
+          expect(asset3ExistsAfter).to.be.false;
 
           done();
         }
@@ -149,14 +149,14 @@ describe('fp import', function () {
           const asset2ExistsAfter = fs.existsSync(asset2);
           const asset3ExistsAfter = fs.existsSync(asset3);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(asset3ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(asset1ExistsAfter).to.equal(true);
-          expect(asset2ExistsAfter).to.equal(true);
-          expect(asset3ExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(asset3ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(asset1ExistsAfter).to.be.true;
+          expect(asset2ExistsAfter).to.be.true;
+          expect(asset3ExistsAfter).to.be.true;
 
           done();
         }
@@ -187,14 +187,14 @@ describe('fp import', function () {
           const asset2ExistsAfter = fs.existsSync(asset2);
           const asset3ExistsAfter = fs.existsSync(asset3);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(asset3ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(asset1ExistsAfter).to.equal(false);
-          expect(asset2ExistsAfter).to.equal(false);
-          expect(asset3ExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(asset3ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(asset1ExistsAfter).to.be.false;
+          expect(asset2ExistsAfter).to.be.false;
+          expect(asset3ExistsAfter).to.be.false;
 
           done();
         }
@@ -225,14 +225,14 @@ describe('fp import', function () {
           const asset2ExistsAfter = fs.existsSync(asset2);
           const asset3ExistsAfter = fs.existsSync(asset3);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(asset3ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(asset1ExistsAfter).to.equal(true);
-          expect(asset2ExistsAfter).to.equal(true);
-          expect(asset3ExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(asset3ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(asset1ExistsAfter).to.be.true;
+          expect(asset2ExistsAfter).to.be.true;
+          expect(asset3ExistsAfter).to.be.true;
 
           done();
         }
@@ -275,14 +275,14 @@ describe('fp import', function () {
           const asset2ExistsAfter = fs.existsSync(asset2);
           const asset3ExistsAfter = fs.existsSync(asset3);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(asset3ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(asset1ExistsAfter).to.equal(false);
-          expect(asset2ExistsAfter).to.equal(false);
-          expect(asset3ExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(asset3ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(asset1ExistsAfter).to.be.false;
+          expect(asset2ExistsAfter).to.be.false;
+          expect(asset3ExistsAfter).to.be.false;
 
           done();
         }
@@ -320,14 +320,14 @@ describe('fp import', function () {
           const asset2ExistsAfter = fs.existsSync(asset2);
           const asset3ExistsAfter = fs.existsSync(asset3);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(asset3ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(asset1ExistsAfter).to.equal(false);
-          expect(asset2ExistsAfter).to.equal(false);
-          expect(asset3ExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(asset3ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(asset1ExistsAfter).to.be.false;
+          expect(asset2ExistsAfter).to.be.false;
+          expect(asset3ExistsAfter).to.be.false;
 
           done();
         }
@@ -362,14 +362,14 @@ describe('fp import', function () {
           const asset2ExistsAfter = fs.existsSync(asset2);
           const asset3ExistsAfter = fs.existsSync(asset3);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(asset3ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(asset1ExistsAfter).to.equal(true);
-          expect(asset2ExistsAfter).to.equal(true);
-          expect(asset3ExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(asset3ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(asset1ExistsAfter).to.be.true;
+          expect(asset2ExistsAfter).to.be.true;
+          expect(asset3ExistsAfter).to.be.true;
 
           done();
         }
@@ -405,14 +405,14 @@ describe('fp import', function () {
           const asset2ExistsAfter = fs.existsSync(asset2);
           const asset3ExistsAfter = fs.existsSync(asset3);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(asset3ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(asset1ExistsAfter).to.equal(true);
-          expect(asset2ExistsAfter).to.equal(true);
-          expect(asset3ExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(asset3ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(asset1ExistsAfter).to.be.true;
+          expect(asset2ExistsAfter).to.be.true;
+          expect(asset3ExistsAfter).to.be.true;
 
           done();
         }
@@ -448,12 +448,12 @@ describe('fp import', function () {
           const asset1ExistsAfter = fs.existsSync(asset1);
           const asset2ExistsAfter = fs.existsSync(asset2);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(asset1ExistsAfter).to.equal(true);
-          expect(asset2ExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(asset1ExistsAfter).to.be.true;
+          expect(asset2ExistsAfter).to.be.true;
 
           done();
         }
@@ -484,14 +484,14 @@ describe('fp import', function () {
           const asset2ExistsAfter = fs.existsSync(asset2);
           const asset3ExistsAfter = fs.existsSync(asset3);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(asset3ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(asset1ExistsAfter).to.equal(false);
-          expect(asset2ExistsAfter).to.equal(false);
-          expect(asset3ExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(asset3ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(asset1ExistsAfter).to.be.false;
+          expect(asset2ExistsAfter).to.be.false;
+          expect(asset3ExistsAfter).to.be.false;
 
           done();
         }
@@ -522,14 +522,14 @@ describe('fp import', function () {
           const asset2ExistsAfter = fs.existsSync(asset2);
           const asset3ExistsAfter = fs.existsSync(asset3);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(asset3ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(asset1ExistsAfter).to.equal(false);
-          expect(asset2ExistsAfter).to.equal(false);
-          expect(asset3ExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(asset3ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(asset1ExistsAfter).to.be.false;
+          expect(asset2ExistsAfter).to.be.false;
+          expect(asset3ExistsAfter).to.be.false;
 
           done();
         }
@@ -564,14 +564,14 @@ describe('fp import', function () {
           const asset2ExistsAfter = fs.existsSync(asset2);
           const asset3ExistsAfter = fs.existsSync(asset3);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(asset3ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false); // The override which does not import.
-          expect(asset1ExistsAfter).to.equal(true);
-          expect(asset2ExistsAfter).to.equal(true);
-          expect(asset3ExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(asset3ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false; // The override which does not import.
+          expect(asset1ExistsAfter).to.be.true;
+          expect(asset2ExistsAfter).to.be.true;
+          expect(asset3ExistsAfter).to.be.true;
 
           done();
         }
@@ -606,14 +606,14 @@ describe('fp import', function () {
           const asset2ExistsAfter = fs.existsSync(asset2);
           const asset3ExistsAfter = fs.existsSync(asset3);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(asset1ExistsBefore).to.equal(false);
-          expect(asset2ExistsBefore).to.equal(false);
-          expect(asset3ExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(asset1ExistsAfter).to.equal(true);
-          expect(asset2ExistsAfter).to.equal(false); // The override which does not import.
-          expect(asset3ExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(asset1ExistsBefore).to.be.false;
+          expect(asset2ExistsBefore).to.be.false;
+          expect(asset3ExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(asset1ExistsAfter).to.be.true;
+          expect(asset2ExistsAfter).to.be.false; // The override which does not import.
+          expect(asset3ExistsAfter).to.be.true;
 
           done();
         }
@@ -674,14 +674,14 @@ describe('fp import', function () {
           const script2ExistsAfter = fs.existsSync(script2);
           const script3ExistsAfter = fs.existsSync(script3);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(script3ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(script1ExistsAfter).to.equal(false);
-          expect(script2ExistsAfter).to.equal(false);
-          expect(script3ExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(script3ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(script1ExistsAfter).to.be.false;
+          expect(script2ExistsAfter).to.be.false;
+          expect(script3ExistsAfter).to.be.false;
 
           done();
         }
@@ -712,14 +712,14 @@ describe('fp import', function () {
           const script2ExistsAfter = fs.existsSync(script2);
           const script3ExistsAfter = fs.existsSync(script3);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(script3ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(script1ExistsAfter).to.equal(true);
-          expect(script2ExistsAfter).to.equal(true);
-          expect(script3ExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(script3ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(script1ExistsAfter).to.be.true;
+          expect(script2ExistsAfter).to.be.true;
+          expect(script3ExistsAfter).to.be.true;
 
           done();
         }
@@ -750,14 +750,14 @@ describe('fp import', function () {
           const script2ExistsAfter = fs.existsSync(script2);
           const script3ExistsAfter = fs.existsSync(script3);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(script3ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(script1ExistsAfter).to.equal(false);
-          expect(script2ExistsAfter).to.equal(false);
-          expect(script3ExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(script3ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(script1ExistsAfter).to.be.false;
+          expect(script2ExistsAfter).to.be.false;
+          expect(script3ExistsAfter).to.be.false;
 
           done();
         }
@@ -788,14 +788,14 @@ describe('fp import', function () {
           const script2ExistsAfter = fs.existsSync(script2);
           const script3ExistsAfter = fs.existsSync(script3);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(script3ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(script1ExistsAfter).to.equal(true);
-          expect(script2ExistsAfter).to.equal(true);
-          expect(script3ExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(script3ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(script1ExistsAfter).to.be.true;
+          expect(script2ExistsAfter).to.be.true;
+          expect(script3ExistsAfter).to.be.true;
 
           done();
         }
@@ -838,14 +838,14 @@ describe('fp import', function () {
           const script2ExistsAfter = fs.existsSync(script2);
           const script3ExistsAfter = fs.existsSync(script3);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(script3ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(script1ExistsAfter).to.equal(false);
-          expect(script2ExistsAfter).to.equal(false);
-          expect(script3ExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(script3ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(script1ExistsAfter).to.be.false;
+          expect(script2ExistsAfter).to.be.false;
+          expect(script3ExistsAfter).to.be.false;
 
           done();
         }
@@ -883,14 +883,14 @@ describe('fp import', function () {
           const script2ExistsAfter = fs.existsSync(script2);
           const script3ExistsAfter = fs.existsSync(script3);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(script3ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(script1ExistsAfter).to.equal(false);
-          expect(script2ExistsAfter).to.equal(false);
-          expect(script3ExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(script3ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(script1ExistsAfter).to.be.false;
+          expect(script2ExistsAfter).to.be.false;
+          expect(script3ExistsAfter).to.be.false;
 
           done();
         }
@@ -922,12 +922,12 @@ describe('fp import', function () {
           const script1ExistsAfter = fs.existsSync(script1);
           const script2ExistsAfter = fs.existsSync(script2);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(script1ExistsAfter).to.equal(true);
-          expect(script2ExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(script1ExistsAfter).to.be.true;
+          expect(script2ExistsAfter).to.be.true;
 
           done();
         }
@@ -963,14 +963,14 @@ describe('fp import', function () {
           const script2ExistsAfter = fs.existsSync(script2);
           const script3ExistsAfter = fs.existsSync(script3);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(script3ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(script1ExistsAfter).to.equal(true);
-          expect(script2ExistsAfter).to.equal(true);
-          expect(script3ExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(script3ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(script1ExistsAfter).to.be.true;
+          expect(script2ExistsAfter).to.be.true;
+          expect(script3ExistsAfter).to.be.true;
 
           done();
         }
@@ -1006,12 +1006,12 @@ describe('fp import', function () {
           const script1ExistsAfter = fs.existsSync(script1);
           const script2ExistsAfter = fs.existsSync(script2);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(script1ExistsAfter).to.equal(true);
-          expect(script2ExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(script1ExistsAfter).to.be.true;
+          expect(script2ExistsAfter).to.be.true;
 
           done();
         }
@@ -1042,14 +1042,14 @@ describe('fp import', function () {
           const script2ExistsAfter = fs.existsSync(script2);
           const script3ExistsAfter = fs.existsSync(script3);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(script3ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(script1ExistsAfter).to.equal(false);
-          expect(script2ExistsAfter).to.equal(false);
-          expect(script3ExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(script3ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(script1ExistsAfter).to.be.false;
+          expect(script2ExistsAfter).to.be.false;
+          expect(script3ExistsAfter).to.be.false;
 
           done();
         }
@@ -1080,14 +1080,14 @@ describe('fp import', function () {
           const script2ExistsAfter = fs.existsSync(script2);
           const script3ExistsAfter = fs.existsSync(script3);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(script3ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(script1ExistsAfter).to.equal(false);
-          expect(script2ExistsAfter).to.equal(false);
-          expect(script3ExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(script3ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(script1ExistsAfter).to.be.false;
+          expect(script2ExistsAfter).to.be.false;
+          expect(script3ExistsAfter).to.be.false;
 
           done();
         }
@@ -1122,14 +1122,14 @@ describe('fp import', function () {
           const script2ExistsAfter = fs.existsSync(script2);
           const script3ExistsAfter = fs.existsSync(script3);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(script3ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false); // The override which does not import.
-          expect(script1ExistsAfter).to.equal(true);
-          expect(script2ExistsAfter).to.equal(true);
-          expect(script3ExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(script3ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false; // The override which does not import.
+          expect(script1ExistsAfter).to.be.true;
+          expect(script2ExistsAfter).to.be.true;
+          expect(script3ExistsAfter).to.be.true;
 
           done();
         }
@@ -1164,14 +1164,14 @@ describe('fp import', function () {
           const script2ExistsAfter = fs.existsSync(script2);
           const script3ExistsAfter = fs.existsSync(script3);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(script1ExistsBefore).to.equal(false);
-          expect(script2ExistsBefore).to.equal(false);
-          expect(script3ExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(script1ExistsAfter).to.equal(true);
-          expect(script2ExistsAfter).to.equal(false); // The override which does not import.
-          expect(script3ExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(script1ExistsBefore).to.be.false;
+          expect(script2ExistsBefore).to.be.false;
+          expect(script3ExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(script1ExistsAfter).to.be.true;
+          expect(script2ExistsAfter).to.be.false; // The override which does not import.
+          expect(script3ExistsAfter).to.be.true;
 
           done();
         }
@@ -1232,14 +1232,14 @@ describe('fp import', function () {
           const style2ExistsAfter = fs.existsSync(style2);
           const style3ExistsAfter = fs.existsSync(style3);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(style3ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(style1ExistsAfter).to.equal(false);
-          expect(style2ExistsAfter).to.equal(false);
-          expect(style3ExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(style3ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(style1ExistsAfter).to.be.false;
+          expect(style2ExistsAfter).to.be.false;
+          expect(style3ExistsAfter).to.be.false;
 
           done();
         }
@@ -1270,14 +1270,14 @@ describe('fp import', function () {
           const style2ExistsAfter = fs.existsSync(style2);
           const style3ExistsAfter = fs.existsSync(style3);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(style3ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(style1ExistsAfter).to.equal(true);
-          expect(style2ExistsAfter).to.equal(true);
-          expect(style3ExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(style3ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(style1ExistsAfter).to.be.true;
+          expect(style2ExistsAfter).to.be.true;
+          expect(style3ExistsAfter).to.be.true;
 
           done();
         }
@@ -1308,14 +1308,14 @@ describe('fp import', function () {
           const style2ExistsAfter = fs.existsSync(style2);
           const style3ExistsAfter = fs.existsSync(style3);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(style3ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(style1ExistsAfter).to.equal(false);
-          expect(style2ExistsAfter).to.equal(false);
-          expect(style3ExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(style3ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(style1ExistsAfter).to.be.false;
+          expect(style2ExistsAfter).to.be.false;
+          expect(style3ExistsAfter).to.be.false;
 
           done();
         }
@@ -1346,14 +1346,14 @@ describe('fp import', function () {
           const style2ExistsAfter = fs.existsSync(style2);
           const style3ExistsAfter = fs.existsSync(style3);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(style3ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(style1ExistsAfter).to.equal(true);
-          expect(style2ExistsAfter).to.equal(true);
-          expect(style3ExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(style3ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(style1ExistsAfter).to.be.true;
+          expect(style2ExistsAfter).to.be.true;
+          expect(style3ExistsAfter).to.be.true;
 
           done();
         }
@@ -1396,14 +1396,14 @@ describe('fp import', function () {
           const style2ExistsAfter = fs.existsSync(style2);
           const style3ExistsAfter = fs.existsSync(style3);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(style3ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(style1ExistsAfter).to.equal(false);
-          expect(style2ExistsAfter).to.equal(false);
-          expect(style3ExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(style3ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(style1ExistsAfter).to.be.false;
+          expect(style2ExistsAfter).to.be.false;
+          expect(style3ExistsAfter).to.be.false;
 
           done();
         }
@@ -1441,14 +1441,14 @@ describe('fp import', function () {
           const style2ExistsAfter = fs.existsSync(style2);
           const style3ExistsAfter = fs.existsSync(style3);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(style3ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(style1ExistsAfter).to.equal(false);
-          expect(style2ExistsAfter).to.equal(false);
-          expect(style3ExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(style3ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(style1ExistsAfter).to.be.false;
+          expect(style2ExistsAfter).to.be.false;
+          expect(style3ExistsAfter).to.be.false;
 
           done();
         }
@@ -1480,12 +1480,12 @@ describe('fp import', function () {
           const style1ExistsAfter = fs.existsSync(style1);
           const style2ExistsAfter = fs.existsSync(style2);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(style1ExistsAfter).to.equal(true);
-          expect(style2ExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(style1ExistsAfter).to.be.true;
+          expect(style2ExistsAfter).to.be.true;
 
           done();
         }
@@ -1521,14 +1521,14 @@ describe('fp import', function () {
           const style2ExistsAfter = fs.existsSync(style2);
           const style3ExistsAfter = fs.existsSync(style3);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(style3ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(style1ExistsAfter).to.equal(true);
-          expect(style2ExistsAfter).to.equal(true);
-          expect(style3ExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(style3ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(style1ExistsAfter).to.be.true;
+          expect(style2ExistsAfter).to.be.true;
+          expect(style3ExistsAfter).to.be.true;
 
           done();
         }
@@ -1564,12 +1564,12 @@ describe('fp import', function () {
           const style1ExistsAfter = fs.existsSync(style1);
           const style2ExistsAfter = fs.existsSync(style2);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(style1ExistsAfter).to.equal(true);
-          expect(style2ExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(style1ExistsAfter).to.be.true;
+          expect(style2ExistsAfter).to.be.true;
 
           done();
         }
@@ -1600,14 +1600,14 @@ describe('fp import', function () {
           const style2ExistsAfter = fs.existsSync(style2);
           const style3ExistsAfter = fs.existsSync(style3);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(style3ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(style1ExistsAfter).to.equal(false);
-          expect(style2ExistsAfter).to.equal(false);
-          expect(style3ExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(style3ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(style1ExistsAfter).to.be.false;
+          expect(style2ExistsAfter).to.be.false;
+          expect(style3ExistsAfter).to.be.false;
 
           done();
         }
@@ -1638,14 +1638,14 @@ describe('fp import', function () {
           const style2ExistsAfter = fs.existsSync(style2);
           const style3ExistsAfter = fs.existsSync(style3);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(style3ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(style1ExistsAfter).to.equal(false);
-          expect(style2ExistsAfter).to.equal(false);
-          expect(style3ExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(style3ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(style1ExistsAfter).to.be.false;
+          expect(style2ExistsAfter).to.be.false;
+          expect(style3ExistsAfter).to.be.false;
 
           done();
         }
@@ -1680,14 +1680,14 @@ describe('fp import', function () {
           const style2ExistsAfter = fs.existsSync(style2);
           const style3ExistsAfter = fs.existsSync(style3);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(style3ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false); // The override which does not import.
-          expect(style1ExistsAfter).to.equal(true);
-          expect(style2ExistsAfter).to.equal(true);
-          expect(style3ExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(style3ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false; // The override which does not import.
+          expect(style1ExistsAfter).to.be.true;
+          expect(style2ExistsAfter).to.be.true;
+          expect(style3ExistsAfter).to.be.true;
 
           done();
         }
@@ -1722,14 +1722,14 @@ describe('fp import', function () {
           const style2ExistsAfter = fs.existsSync(style2);
           const style3ExistsAfter = fs.existsSync(style3);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(style1ExistsBefore).to.equal(false);
-          expect(style2ExistsBefore).to.equal(false);
-          expect(style3ExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(style1ExistsAfter).to.equal(true);
-          expect(style2ExistsAfter).to.equal(false); // The override which does not import.
-          expect(style3ExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(style1ExistsBefore).to.be.false;
+          expect(style2ExistsBefore).to.be.false;
+          expect(style3ExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(style1ExistsAfter).to.be.true;
+          expect(style2ExistsAfter).to.be.false; // The override which does not import.
+          expect(style3ExistsAfter).to.be.true;
 
           done();
         }
@@ -1863,14 +1863,14 @@ describe('fp import', function () {
           const template2ExistsAfter = fs.existsSync(template2);
           const template3ExistsAfter = fs.existsSync(template3);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(template1ExistsAfter).to.equal(false);
-          expect(template2ExistsAfter).to.equal(false);
-          expect(template3ExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(template1ExistsAfter).to.be.false;
+          expect(template2ExistsAfter).to.be.false;
+          expect(template3ExistsAfter).to.be.false;
 
           done();
         }
@@ -1901,14 +1901,14 @@ describe('fp import', function () {
           const template2ExistsAfter = fs.existsSync(template2);
           const template3ExistsAfter = fs.existsSync(template3);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(template1ExistsAfter).to.equal(false);
-          expect(template2ExistsAfter).to.equal(false);
-          expect(template3ExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(template1ExistsAfter).to.be.false;
+          expect(template2ExistsAfter).to.be.false;
+          expect(template3ExistsAfter).to.be.false;
 
           done();
         }
@@ -1939,14 +1939,14 @@ describe('fp import', function () {
           const template2ExistsAfter = fs.existsSync(template2);
           const template3ExistsAfter = fs.existsSync(template3);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(template1ExistsAfter).to.equal(false);
-          expect(template2ExistsAfter).to.equal(false);
-          expect(template3ExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(template1ExistsAfter).to.be.false;
+          expect(template2ExistsAfter).to.be.false;
+          expect(template3ExistsAfter).to.be.false;
 
           done();
         }
@@ -1985,14 +1985,14 @@ describe('fp import', function () {
           const templateYmlActual2 = fs.readFileSync(templateYml2, conf.enc);
           const templateYmlActual3 = fs.readFileSync(templateYml3, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(template1ExistsAfter).to.equal(true);
-          expect(template2ExistsAfter).to.equal(true);
-          expect(template3ExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(template1ExistsAfter).to.be.true;
+          expect(template2ExistsAfter).to.be.true;
+          expect(template3ExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateMustacheActual1).to.equal(templateMustacheExpected);
           expect(templateMustacheActual2).to.equal(templateMustacheExpected);
@@ -2036,14 +2036,14 @@ describe('fp import', function () {
           const template2ExistsAfter = fs.existsSync(template2);
           const template3ExistsAfter = fs.existsSync(template3);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(template1ExistsAfter).to.equal(false);
-          expect(template2ExistsAfter).to.equal(false);
-          expect(template3ExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(template1ExistsAfter).to.be.false;
+          expect(template2ExistsAfter).to.be.false;
+          expect(template3ExistsAfter).to.be.false;
 
           done();
         }
@@ -2081,14 +2081,14 @@ describe('fp import', function () {
           const template2ExistsAfter = fs.existsSync(template2);
           const template3ExistsAfter = fs.existsSync(template3);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(template1ExistsAfter).to.equal(false);
-          expect(template2ExistsAfter).to.equal(false);
-          expect(template3ExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(template1ExistsAfter).to.be.false;
+          expect(template2ExistsAfter).to.be.false;
+          expect(template3ExistsAfter).to.be.false;
 
           done();
         }
@@ -2125,14 +2125,14 @@ describe('fp import', function () {
           const templateMustacheActual = fs.readFileSync(template, conf.enc);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(template1ExistsAfter).to.equal(true);
-          expect(template2ExistsAfter).to.equal(true);
-          expect(template3ExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(template1ExistsAfter).to.be.true;
+          expect(template2ExistsAfter).to.be.true;
+          expect(template3ExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedDir + templateYmlExpected);
 
@@ -2177,14 +2177,14 @@ describe('fp import', function () {
           const templateYmlActual2 = fs.readFileSync(templateYml2, conf.enc);
           const templateYmlActual3 = fs.readFileSync(templateYml3, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(template1ExistsAfter).to.equal(true);
-          expect(template2ExistsAfter).to.equal(true);
-          expect(template3ExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(template1ExistsAfter).to.be.true;
+          expect(template2ExistsAfter).to.be.true;
+          expect(template3ExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateMustacheActual1).to.equal(templateMustacheExpected);
           expect(templateMustacheActual2).to.equal(templateMustacheExpected);
@@ -2239,14 +2239,14 @@ describe('fp import', function () {
           const templateYmlActual2 = fs.readFileSync(templateYml2, conf.enc);
           const templateYmlActual3 = fs.readFileSync(templateYml3, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(template1ExistsAfter).to.equal(true);
-          expect(template2ExistsAfter).to.equal(true);
-          expect(template3ExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(template1ExistsAfter).to.be.true;
+          expect(template2ExistsAfter).to.be.true;
+          expect(template3ExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateMustacheActual1).to.equal(templateMustacheExpected);
           expect(templateMustacheActual2).to.equal(templateMustacheExpected);
@@ -2285,14 +2285,14 @@ describe('fp import', function () {
           const template2ExistsAfter = fs.existsSync(template2);
           const template3ExistsAfter = fs.existsSync(template3);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(template1ExistsAfter).to.equal(false);
-          expect(template2ExistsAfter).to.equal(false);
-          expect(template3ExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(template1ExistsAfter).to.be.false;
+          expect(template2ExistsAfter).to.be.false;
+          expect(template3ExistsAfter).to.be.false;
 
           done();
         }
@@ -2323,14 +2323,14 @@ describe('fp import', function () {
           const template2ExistsAfter = fs.existsSync(template2);
           const template3ExistsAfter = fs.existsSync(template3);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(template1ExistsAfter).to.equal(false);
-          expect(template2ExistsAfter).to.equal(false);
-          expect(template3ExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(template1ExistsAfter).to.be.false;
+          expect(template2ExistsAfter).to.be.false;
+          expect(template3ExistsAfter).to.be.false;
 
           done();
         }
@@ -2365,14 +2365,14 @@ describe('fp import', function () {
           const template2ExistsAfter = fs.existsSync(template2);
           const template3ExistsAfter = fs.existsSync(template3);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false); // The override which does not import.
-          expect(template1ExistsAfter).to.equal(true);
-          expect(template2ExistsAfter).to.equal(true);
-          expect(template3ExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false; // The override which does not import.
+          expect(template1ExistsAfter).to.be.true;
+          expect(template2ExistsAfter).to.be.true;
+          expect(template3ExistsAfter).to.be.true;
 
           done();
         }
@@ -2407,14 +2407,14 @@ describe('fp import', function () {
           const template2ExistsAfter = fs.existsSync(template2);
           const template3ExistsAfter = fs.existsSync(template3);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(template1ExistsBefore).to.equal(false);
-          expect(template2ExistsBefore).to.equal(false);
-          expect(template3ExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(template1ExistsAfter).to.equal(true);
-          expect(template2ExistsAfter).to.equal(false); // The override which does not import.
-          expect(template3ExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(template1ExistsBefore).to.be.false;
+          expect(template2ExistsBefore).to.be.false;
+          expect(template3ExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(template1ExistsAfter).to.be.true;
+          expect(template2ExistsAfter).to.be.false; // The override which does not import.
+          expect(template3ExistsAfter).to.be.true;
 
           done();
         }

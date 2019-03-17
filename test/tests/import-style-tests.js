@@ -107,10 +107,10 @@ describe('fp import:style', function () {
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedDir + styleYmlExpectedExt);
 
           done();
@@ -145,10 +145,10 @@ describe('fp import:style', function () {
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedDir + styleYmlExpectedExt);
 
           done();
@@ -179,10 +179,10 @@ describe('fp import:style', function () {
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedExt);
 
           done();
@@ -216,10 +216,10 @@ describe('fp import:style', function () {
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedDir + styleYmlExpectedExt);
 
           done();
@@ -248,10 +248,10 @@ describe('fp import:style', function () {
           const styleExistsAfter = fs.existsSync(style);
           const styleYmlExistsAfter = fs.existsSync(styleYml);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
 
           done();
         }
@@ -281,9 +281,9 @@ describe('fp import:style', function () {
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpected);
 
           done();
@@ -319,9 +319,9 @@ describe('fp import:style', function () {
 `;
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpected);
 
           done();
@@ -351,9 +351,9 @@ describe('fp import:style', function () {
           const styleYmlExistsAfter = fs.existsSync(styleYml);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpected);
 
           done();
@@ -386,9 +386,9 @@ describe('fp import:style', function () {
   .css
 `;
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpected);
 
           done();
@@ -418,9 +418,9 @@ describe('fp import:style', function () {
           const styleYmlExistsAfter = fs.existsSync(styleYml);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpected);
 
           done();
@@ -454,10 +454,10 @@ describe('fp import:style', function () {
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedDir + styleYmlExpectedExt);
 
           done();
@@ -491,10 +491,10 @@ describe('fp import:style', function () {
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedDir + styleYmlExpectedExt);
 
           done();
@@ -526,9 +526,9 @@ describe('fp import:style', function () {
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpected);
 
           done();
@@ -565,9 +565,9 @@ describe('fp import:style', function () {
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpected);
 
           done();
@@ -598,10 +598,10 @@ describe('fp import:style', function () {
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedExt);
 
           done();
@@ -637,10 +637,10 @@ describe('fp import:style', function () {
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedDir + styleYmlExpectedExt);
 
           done();
@@ -676,9 +676,9 @@ describe('fp import:style', function () {
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpected);
 
           done();
@@ -710,8 +710,8 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
 
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
 
           done();
         }
@@ -739,8 +739,8 @@ argument', function (done) {
         () => {
           const styleExistsAfter = fs.existsSync(style);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
 
           done();
         }
@@ -770,10 +770,10 @@ argument', function (done) {
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(styleYmlExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(styleYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -799,8 +799,8 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
 
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
 
           done();
         }
@@ -829,10 +829,10 @@ argument', function (done) {
           const styleYmlExistsAfter = fs.existsSync(styleYml);
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(styleYmlExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(styleYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -857,8 +857,8 @@ argument', function (done) {
         () => {
           const styleExistsAfter = fs.existsSync(style);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
 
           done();
         }
@@ -888,9 +888,9 @@ argument', function (done) {
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpected);
 
           done();
@@ -922,9 +922,9 @@ argument', function (done) {
           const styleYmlExistsAfter = fs.existsSync(styleYml);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedDir);
 
           done();
@@ -953,9 +953,9 @@ argument', function (done) {
           const styleYmlExistsAfter = fs.existsSync(styleYml);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedExt);
 
           done();
@@ -987,9 +987,9 @@ argument', function (done) {
           const styleYmlExistsAfter = fs.existsSync(styleYml);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedDir + styleYmlExpectedExt);
 
           done();
@@ -1018,10 +1018,10 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
           const styleYmlExistsAfter = fs.existsSync(styleYml);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(styleYmlExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(styleYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -1049,10 +1049,10 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
           const styleYmlExistsAfter = fs.existsSync(styleYml);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -1083,9 +1083,9 @@ argument', function (done) {
           const styleYmlExistsAfter = fs.existsSync(styleYml);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedDir);
 
 
@@ -1120,10 +1120,10 @@ argument', function (done) {
           const styleYmlExistsAfter = fs.existsSync(styleYml);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleYmlExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
-          expect(styleYmlExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleYmlExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
+          expect(styleYmlExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedExt);
 
           done();
@@ -1154,8 +1154,8 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal('');
 
           done();
@@ -1184,8 +1184,8 @@ argument', function (done) {
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
 
           done();
         }
@@ -1212,8 +1212,8 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
 
           expect(pref.backend.synced_dirs.styles_ext).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
 
           done();
         }
@@ -1240,8 +1240,8 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
 
           done();
         }
@@ -1268,8 +1268,8 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal('');
 
           done();
@@ -1299,8 +1299,8 @@ argument', function (done) {
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
           expect(pref.backend.synced_dirs.styles_dir).to.not.exist;
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
           expect(styleYmlActual).to.equal(styleYmlExpected);
 
           done();
@@ -1331,8 +1331,8 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedDir);
 
           done();
@@ -1360,8 +1360,8 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedExt);
 
           done();
@@ -1392,8 +1392,8 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(true);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.true;
           expect(styleYmlActual).to.equal(styleYmlExpectedDir + styleYmlExpectedExt);
 
           done();
@@ -1420,8 +1420,8 @@ argument', function (done) {
         () => {
           const styleExistsAfter = fs.existsSync(style);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
 
           done();
         }
@@ -1447,8 +1447,8 @@ argument', function (done) {
         () => {
           const styleExistsAfter = fs.existsSync(style);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
 
           done();
         }
@@ -1478,8 +1478,8 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
           expect(styleYmlActual).to.equal(styleYmlExpectedDir);
 
           done();
@@ -1510,8 +1510,8 @@ argument', function (done) {
           const styleExistsAfter = fs.existsSync(style);
           const styleYmlActual = fs.readFileSync(styleYml, conf.enc);
 
-          expect(styleExistsBefore).to.equal(false);
-          expect(styleExistsAfter).to.equal(false);
+          expect(styleExistsBefore).to.be.false;
+          expect(styleExistsAfter).to.be.false;
           expect(styleYmlActual).to.equal(styleYmlExpectedExt);
 
           done();

@@ -107,10 +107,10 @@ describe('fp import:script', function () {
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedDir + scriptYmlExpectedExt);
 
           done();
@@ -145,10 +145,10 @@ describe('fp import:script', function () {
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedDir + scriptYmlExpectedExt);
 
           done();
@@ -179,10 +179,10 @@ describe('fp import:script', function () {
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedExt);
 
           done();
@@ -216,10 +216,10 @@ describe('fp import:script', function () {
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedDir + scriptYmlExpectedExt);
 
           done();
@@ -248,10 +248,10 @@ describe('fp import:script', function () {
           const scriptExistsAfter = fs.existsSync(script);
           const scriptYmlExistsAfter = fs.existsSync(scriptYml);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
 
           done();
         }
@@ -281,9 +281,9 @@ describe('fp import:script', function () {
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpected);
 
           done();
@@ -319,9 +319,9 @@ describe('fp import:script', function () {
 `;
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpected);
 
           done();
@@ -351,9 +351,9 @@ describe('fp import:script', function () {
           const scriptYmlExistsAfter = fs.existsSync(scriptYml);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpected);
 
           done();
@@ -386,9 +386,9 @@ describe('fp import:script', function () {
   .js
 `;
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpected);
 
           done();
@@ -418,9 +418,9 @@ describe('fp import:script', function () {
           const scriptYmlExistsAfter = fs.existsSync(scriptYml);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpected);
 
           done();
@@ -454,10 +454,10 @@ describe('fp import:script', function () {
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedDir + scriptYmlExpectedExt);
 
           done();
@@ -491,10 +491,10 @@ describe('fp import:script', function () {
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedDir + scriptYmlExpectedExt);
 
           done();
@@ -526,9 +526,9 @@ describe('fp import:script', function () {
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpected);
 
           done();
@@ -565,9 +565,9 @@ describe('fp import:script', function () {
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpected);
 
           done();
@@ -598,10 +598,10 @@ describe('fp import:script', function () {
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedExt);
 
           done();
@@ -637,10 +637,10 @@ describe('fp import:script', function () {
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedDir + scriptYmlExpectedExt);
 
           done();
@@ -676,9 +676,9 @@ describe('fp import:script', function () {
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpected);
 
           done();
@@ -710,8 +710,8 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
 
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
 
           done();
         }
@@ -739,8 +739,8 @@ argument', function (done) {
         () => {
           const scriptExistsAfter = fs.existsSync(script);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
 
           done();
         }
@@ -770,10 +770,10 @@ argument', function (done) {
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(scriptYmlExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(scriptYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -799,8 +799,8 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
 
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
 
           done();
         }
@@ -829,10 +829,10 @@ argument', function (done) {
           const scriptYmlExistsAfter = fs.existsSync(scriptYml);
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(scriptYmlExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(scriptYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -857,8 +857,8 @@ argument', function (done) {
         () => {
           const scriptExistsAfter = fs.existsSync(script);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
 
           done();
         }
@@ -888,9 +888,9 @@ argument', function (done) {
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpected);
 
           done();
@@ -922,9 +922,9 @@ argument', function (done) {
           const scriptYmlExistsAfter = fs.existsSync(scriptYml);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedDir);
 
           done();
@@ -953,9 +953,9 @@ argument', function (done) {
           const scriptYmlExistsAfter = fs.existsSync(scriptYml);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedExt);
 
           done();
@@ -987,9 +987,9 @@ argument', function (done) {
           const scriptYmlExistsAfter = fs.existsSync(scriptYml);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedDir + scriptYmlExpectedExt);
 
           done();
@@ -1018,10 +1018,10 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
           const scriptYmlExistsAfter = fs.existsSync(scriptYml);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(scriptYmlExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(scriptYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -1049,10 +1049,10 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
           const scriptYmlExistsAfter = fs.existsSync(scriptYml);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -1083,9 +1083,9 @@ argument', function (done) {
           const scriptYmlExistsAfter = fs.existsSync(scriptYml);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedDir);
 
 
@@ -1120,10 +1120,10 @@ argument', function (done) {
           const scriptYmlExistsAfter = fs.existsSync(scriptYml);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptYmlExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
-          expect(scriptYmlExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptYmlExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
+          expect(scriptYmlExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedExt);
 
           done();
@@ -1154,8 +1154,8 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal('');
 
           done();
@@ -1184,8 +1184,8 @@ argument', function (done) {
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
 
           done();
         }
@@ -1212,8 +1212,8 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
 
           expect(pref.backend.synced_dirs.scripts_ext).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
 
           done();
         }
@@ -1240,8 +1240,8 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
 
           done();
         }
@@ -1268,8 +1268,8 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal('');
 
           done();
@@ -1299,8 +1299,8 @@ argument', function (done) {
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
           expect(pref.backend.synced_dirs.scripts_dir).to.not.exist;
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
           expect(scriptYmlActual).to.equal(scriptYmlExpected);
 
           done();
@@ -1331,8 +1331,8 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedDir);
 
           done();
@@ -1360,8 +1360,8 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedExt);
 
           done();
@@ -1392,8 +1392,8 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(true);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.true;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedDir + scriptYmlExpectedExt);
 
           done();
@@ -1420,8 +1420,8 @@ argument', function (done) {
         () => {
           const scriptExistsAfter = fs.existsSync(script);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
 
           done();
         }
@@ -1447,8 +1447,8 @@ argument', function (done) {
         () => {
           const scriptExistsAfter = fs.existsSync(script);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
 
           done();
         }
@@ -1478,8 +1478,8 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedDir);
 
           done();
@@ -1510,8 +1510,8 @@ argument', function (done) {
           const scriptExistsAfter = fs.existsSync(script);
           const scriptYmlActual = fs.readFileSync(scriptYml, conf.enc);
 
-          expect(scriptExistsBefore).to.equal(false);
-          expect(scriptExistsAfter).to.equal(false);
+          expect(scriptExistsBefore).to.be.false;
+          expect(scriptExistsAfter).to.be.false;
           expect(scriptYmlActual).to.equal(scriptYmlExpectedExt);
 
           done();

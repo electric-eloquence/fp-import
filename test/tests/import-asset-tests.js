@@ -107,10 +107,10 @@ describe('fp import:asset', function () {
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedDir + assetYmlExpectedExt);
 
           done();
@@ -145,10 +145,10 @@ describe('fp import:asset', function () {
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedDir + assetYmlExpectedExt);
 
           done();
@@ -179,10 +179,10 @@ describe('fp import:asset', function () {
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedExt);
 
           done();
@@ -216,10 +216,10 @@ describe('fp import:asset', function () {
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedDir + assetYmlExpectedExt);
 
           done();
@@ -248,10 +248,10 @@ describe('fp import:asset', function () {
           const assetExistsAfter = fs.existsSync(asset);
           const assetYmlExistsAfter = fs.existsSync(assetYml);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
 
           done();
         }
@@ -281,9 +281,9 @@ describe('fp import:asset', function () {
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpected);
 
           done();
@@ -319,9 +319,9 @@ describe('fp import:asset', function () {
 `;
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpected);
 
           done();
@@ -351,9 +351,9 @@ describe('fp import:asset', function () {
           const assetYmlExistsAfter = fs.existsSync(assetYml);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpected);
 
           done();
@@ -386,9 +386,9 @@ describe('fp import:asset', function () {
   .svg
 `;
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpected);
 
           done();
@@ -418,9 +418,9 @@ describe('fp import:asset', function () {
           const assetYmlExistsAfter = fs.existsSync(assetYml);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpected);
 
           done();
@@ -454,10 +454,10 @@ describe('fp import:asset', function () {
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedDir + assetYmlExpectedExt);
 
           done();
@@ -491,10 +491,10 @@ describe('fp import:asset', function () {
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedDir + assetYmlExpectedExt);
 
           done();
@@ -526,9 +526,9 @@ describe('fp import:asset', function () {
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpected);
 
           done();
@@ -565,9 +565,9 @@ describe('fp import:asset', function () {
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpected);
 
           done();
@@ -598,10 +598,10 @@ describe('fp import:asset', function () {
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedExt);
 
           done();
@@ -637,10 +637,10 @@ describe('fp import:asset', function () {
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedDir + assetYmlExpectedExt);
 
           done();
@@ -676,9 +676,9 @@ describe('fp import:asset', function () {
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpected);
 
           done();
@@ -710,8 +710,8 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
 
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
 
           done();
         }
@@ -739,8 +739,8 @@ argument', function (done) {
         () => {
           const assetExistsAfter = fs.existsSync(asset);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
 
           done();
         }
@@ -770,10 +770,10 @@ argument', function (done) {
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(assetYmlExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(assetYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -799,8 +799,8 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
 
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
 
           done();
         }
@@ -829,10 +829,10 @@ argument', function (done) {
           const assetYmlExistsAfter = fs.existsSync(assetYml);
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(assetYmlExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(assetYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -857,8 +857,8 @@ argument', function (done) {
         () => {
           const assetExistsAfter = fs.existsSync(asset);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
 
           done();
         }
@@ -888,9 +888,9 @@ argument', function (done) {
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpected);
 
           done();
@@ -922,9 +922,9 @@ argument', function (done) {
           const assetYmlExistsAfter = fs.existsSync(assetYml);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedDir);
 
           done();
@@ -953,9 +953,9 @@ argument', function (done) {
           const assetYmlExistsAfter = fs.existsSync(assetYml);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedExt);
 
           done();
@@ -987,9 +987,9 @@ argument', function (done) {
           const assetYmlExistsAfter = fs.existsSync(assetYml);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedDir + assetYmlExpectedExt);
 
           done();
@@ -1018,10 +1018,10 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
           const assetYmlExistsAfter = fs.existsSync(assetYml);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(assetYmlExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(assetYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -1049,10 +1049,10 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
           const assetYmlExistsAfter = fs.existsSync(assetYml);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -1083,9 +1083,9 @@ argument', function (done) {
           const assetYmlExistsAfter = fs.existsSync(assetYml);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedDir);
 
 
@@ -1120,10 +1120,10 @@ argument', function (done) {
           const assetYmlExistsAfter = fs.existsSync(assetYml);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetYmlExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
-          expect(assetYmlExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetYmlExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
+          expect(assetYmlExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedExt);
 
           done();
@@ -1154,8 +1154,8 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal('');
 
           done();
@@ -1184,8 +1184,8 @@ argument', function (done) {
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
 
           done();
         }
@@ -1212,8 +1212,8 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
 
           expect(pref.backend.synced_dirs.assets_ext).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
 
           done();
         }
@@ -1240,8 +1240,8 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
 
           done();
         }
@@ -1268,8 +1268,8 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal('');
 
           done();
@@ -1299,8 +1299,8 @@ argument', function (done) {
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
           expect(pref.backend.synced_dirs.assets_dir).to.not.exist;
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
           expect(assetYmlActual).to.equal(assetYmlExpected);
 
           done();
@@ -1331,8 +1331,8 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedDir);
 
           done();
@@ -1360,8 +1360,8 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedExt);
 
           done();
@@ -1392,8 +1392,8 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(true);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.true;
           expect(assetYmlActual).to.equal(assetYmlExpectedDir + assetYmlExpectedExt);
 
           done();
@@ -1420,8 +1420,8 @@ argument', function (done) {
         () => {
           const assetExistsAfter = fs.existsSync(asset);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
 
           done();
         }
@@ -1447,8 +1447,8 @@ argument', function (done) {
         () => {
           const assetExistsAfter = fs.existsSync(asset);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
 
           done();
         }
@@ -1478,8 +1478,8 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
           expect(assetYmlActual).to.equal(assetYmlExpectedDir);
 
           done();
@@ -1510,8 +1510,8 @@ argument', function (done) {
           const assetExistsAfter = fs.existsSync(asset);
           const assetYmlActual = fs.readFileSync(assetYml, conf.enc);
 
-          expect(assetExistsBefore).to.equal(false);
-          expect(assetExistsAfter).to.equal(false);
+          expect(assetExistsBefore).to.be.false;
+          expect(assetExistsAfter).to.be.false;
           expect(assetYmlActual).to.equal(assetYmlExpectedExt);
 
           done();
