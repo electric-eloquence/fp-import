@@ -170,8 +170,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -196,8 +196,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -222,8 +222,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -249,8 +249,8 @@ describe('fp export', function () {
           const templateExportExistsAfter = fs.existsSync(templateExport);
           const templateExportActual = fs.readFileSync(templateExport, conf.enc);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
           expect(templateExportActual).to.equal(templateExportExpected);
 
           done();
@@ -281,8 +281,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -312,8 +312,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -343,8 +343,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
 
           done();
         }
@@ -374,8 +374,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
 
           done();
         }
@@ -400,8 +400,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -430,8 +430,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -545,8 +545,8 @@ describe('fp export', function () {
           const templateExportExistsAfter = fs.existsSync(templateExport);
           const templateExportActual = fs.readFileSync(templateExport, conf.enc);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
           expect(templateExportActual).to.equal(templateExportExpected);
 
           done();
@@ -572,8 +572,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -598,8 +598,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -624,8 +624,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -651,8 +651,8 @@ describe('fp export', function () {
           const templateExportExistsAfter = fs.existsSync(templateExport);
           const templateExportActual = fs.readFileSync(templateExport, conf.enc);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
           expect(templateExportActual).to.equal(templateExportExpected);
 
           done();
@@ -683,8 +683,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -714,8 +714,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -745,8 +745,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
 
           done();
         }
@@ -776,8 +776,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
 
           done();
         }
@@ -802,8 +802,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -832,8 +832,8 @@ describe('fp export', function () {
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -980,8 +980,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1006,8 +1006,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1032,8 +1032,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1059,8 +1059,8 @@ jsp_4: |2
           const templateExportExistsAfter = fs.existsSync(templateExport);
           const templateExportActual = fs.readFileSync(templateExport, conf.enc);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
           expect(templateExportActual).to.equal(templateExportExpected);
 
           done();
@@ -1091,8 +1091,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1122,8 +1122,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1153,8 +1153,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1184,8 +1184,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1210,8 +1210,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1240,8 +1240,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1344,8 +1344,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1370,8 +1370,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1396,8 +1396,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1423,8 +1423,8 @@ jsp_4: |2
           const templateExportExistsAfter = fs.existsSync(templateExport);
           const templateExportActual = fs.readFileSync(templateExport, conf.enc);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
           expect(templateExportActual).to.equal(templateExportExpected);
 
           done();
@@ -1455,8 +1455,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1486,8 +1486,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1517,8 +1517,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1548,8 +1548,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1574,8 +1574,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1604,8 +1604,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1719,8 +1719,8 @@ jsp_4: |2
           const templateExportExistsAfter = fs.existsSync(templateExport);
           const templateExportActual = fs.readFileSync(templateExport, conf.enc);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
           expect(templateExportActual).to.equal(templateExportExpected);
 
           done();
@@ -1746,8 +1746,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1772,8 +1772,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1798,8 +1798,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1825,8 +1825,8 @@ jsp_4: |2
           const templateExportExistsAfter = fs.existsSync(templateExport);
           const templateExportActual = fs.readFileSync(templateExport, conf.enc);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
           expect(templateExportActual).to.equal(templateExportExpected);
 
           done();
@@ -1857,8 +1857,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1888,8 +1888,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1919,8 +1919,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1950,8 +1950,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(true);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1976,8 +1976,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }
@@ -2006,8 +2006,8 @@ jsp_4: |2
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
 
-          expect(templateExportExistsBefore).to.equal(false);
-          expect(templateExportExistsAfter).to.equal(false);
+          expect(templateExportExistsBefore).to.be.false;
+          expect(templateExportExistsAfter).to.be.false;
 
           done();
         }

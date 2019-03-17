@@ -146,10 +146,10 @@ describe('fp import:erb', function () {
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedDir + templateYmlExpectedExt + templateYmlExpected);
 
@@ -183,10 +183,10 @@ describe('fp import:erb', function () {
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedDir + templateYmlExpectedExt + templateYmlExpected);
 
@@ -219,10 +219,10 @@ describe('fp import:erb', function () {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedExt + templateYmlExpected);
 
@@ -255,10 +255,10 @@ describe('fp import:erb', function () {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedDir + templateYmlExpected);
 
@@ -290,10 +290,10 @@ describe('fp import:erb', function () {
           const templateMustacheActual = fs.readFileSync(template, conf.enc);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
@@ -325,9 +325,9 @@ describe('fp import:erb', function () {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -358,9 +358,9 @@ describe('fp import:erb', function () {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -390,9 +390,9 @@ describe('fp import:erb', function () {
           const templateYmlExistsAfter = fs.existsSync(templateYml);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -422,9 +422,9 @@ describe('fp import:erb', function () {
           const templateYmlExistsAfter = fs.existsSync(templateYml);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -454,9 +454,9 @@ describe('fp import:erb', function () {
           const templateYmlExistsAfter = fs.existsSync(templateYml);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -488,10 +488,10 @@ describe('fp import:erb', function () {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedDir + templateYmlExpectedExt + templateYmlExpected);
 
@@ -524,10 +524,10 @@ describe('fp import:erb', function () {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedDir + templateYmlExpectedExt + templateYmlExpected);
 
@@ -560,9 +560,9 @@ describe('fp import:erb', function () {
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -594,9 +594,9 @@ describe('fp import:erb', function () {
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -630,10 +630,10 @@ describe('fp import:erb', function () {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedDir + templateYmlExpectedExt + templateYmlExpected);
 
@@ -668,9 +668,9 @@ describe('fp import:erb', function () {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedDir + templateYmlExpectedExt + templateYmlExpected);
 
@@ -707,9 +707,9 @@ argument', function (done) {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -743,9 +743,9 @@ argument', function (done) {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -785,10 +785,10 @@ argument', function (done) {
           const templateMustacheActual = fs.readFileSync(template, conf.enc);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
@@ -820,10 +820,10 @@ argument', function (done) {
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -852,10 +852,10 @@ argument', function (done) {
           const templateYmlExistsAfter = fs.existsSync(templateYml);
 
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -884,10 +884,10 @@ argument', function (done) {
           const templateYmlExistsAfter = fs.existsSync(templateYml);
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -917,10 +917,10 @@ argument', function (done) {
           const templateMustacheActual = fs.readFileSync(template, conf.enc);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
@@ -952,9 +952,9 @@ argument', function (done) {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -985,9 +985,9 @@ argument', function (done) {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -1020,9 +1020,9 @@ argument', function (done) {
           const templateMustacheActual = fs.readFileSync(template, conf.enc);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedDir + templateYmlExpected);
 
@@ -1053,9 +1053,9 @@ argument', function (done) {
           const templateMustacheActual = fs.readFileSync(template, conf.enc);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedExt + templateYmlExpected);
 
@@ -1086,9 +1086,9 @@ argument', function (done) {
           const templateMustacheActual = fs.readFileSync(template, conf.enc);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedDir + templateYmlExpectedExt + templateYmlExpected);
 
@@ -1118,10 +1118,10 @@ argument', function (done) {
           const templateExistsAfter = fs.existsSync(template);
           const templateYmlExistsAfter = fs.existsSync(templateYml);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -1149,10 +1149,10 @@ argument', function (done) {
           const templateExistsAfter = fs.existsSync(template);
           const templateYmlExistsAfter = fs.existsSync(templateYml);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateYmlExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateYmlExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.false;
 
           done();
         }
@@ -1183,9 +1183,9 @@ argument', function (done) {
           const templateYmlExistsAfter = fs.existsSync(templateYml);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpectedDir);
 
 
@@ -1216,9 +1216,9 @@ argument', function (done) {
           const templateYmlExistsAfter = fs.existsSync(templateYml);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
-          expect(templateYmlExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
+          expect(templateYmlExistsAfter).to.be.true;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -1256,8 +1256,8 @@ argument', function (done) {
           const templateMustacheActual = fs.readFileSync(template, conf.enc);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
@@ -1287,8 +1287,8 @@ argument', function (done) {
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
 
           done();
         }
@@ -1315,8 +1315,8 @@ argument', function (done) {
           const templateExistsAfter = fs.existsSync(template);
 
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
 
           done();
         }
@@ -1343,8 +1343,8 @@ argument', function (done) {
           const templateExistsAfter = fs.existsSync(template);
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
 
           done();
         }
@@ -1372,8 +1372,8 @@ argument', function (done) {
           const templateMustacheActual = fs.readFileSync(template, conf.enc);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
@@ -1404,8 +1404,8 @@ argument', function (done) {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_ext).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -1435,8 +1435,8 @@ argument', function (done) {
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
           expect(pref.backend.synced_dirs.templates_dir).to.not.exist;
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();
@@ -1468,8 +1468,8 @@ argument', function (done) {
           const templateMustacheActual = fs.readFileSync(template, conf.enc);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedDir + templateYmlExpected);
 
@@ -1499,8 +1499,8 @@ argument', function (done) {
           const templateMustacheActual = fs.readFileSync(template, conf.enc);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedExt + templateYmlExpected);
 
@@ -1530,8 +1530,8 @@ argument', function (done) {
           const templateMustacheActual = fs.readFileSync(template, conf.enc);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(true);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.true;
           expect(templateMustacheActual).to.equal(templateMustacheExpected);
           expect(templateYmlActual).to.equal(templateYmlExpectedDir + templateYmlExpectedExt + templateYmlExpected);
 
@@ -1559,8 +1559,8 @@ argument', function (done) {
         () => {
           const templateExistsAfter = fs.existsSync(template);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
 
           done();
         }
@@ -1586,8 +1586,8 @@ argument', function (done) {
         () => {
           const templateExistsAfter = fs.existsSync(template);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
 
           done();
         }
@@ -1617,8 +1617,8 @@ argument', function (done) {
           const templateExistsAfter = fs.existsSync(template);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
           expect(templateYmlActual).to.equal(templateYmlExpectedDir);
 
           done();
@@ -1647,8 +1647,8 @@ argument', function (done) {
           const templateExistsAfter = fs.existsSync(template);
           const templateYmlActual = fs.readFileSync(templateYml, conf.enc);
 
-          expect(templateExistsBefore).to.equal(false);
-          expect(templateExistsAfter).to.equal(false);
+          expect(templateExistsBefore).to.be.false;
+          expect(templateExistsAfter).to.be.false;
           expect(templateYmlActual).to.equal(templateYmlExpected);
 
           done();

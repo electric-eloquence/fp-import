@@ -111,8 +111,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(true);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.true;
 
           done();
         }
@@ -137,8 +137,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(false);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.false;
 
           done();
         }
@@ -163,8 +163,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(true);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.true;
 
           done();
         }
@@ -189,8 +189,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(false);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.false;
 
           done();
         }
@@ -215,8 +215,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(true);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.true;
 
           done();
         }
@@ -246,8 +246,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(true);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.true;
 
           done();
         }
@@ -277,8 +277,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(false);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.false;
 
           done();
         }
@@ -308,8 +308,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(true);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.true;
 
           done();
         }
@@ -343,9 +343,9 @@ describe('fp export', function () {
           const assetExportExistsAfter = fs.existsSync(assetExport);
           const assetIgnoredExportExistsAfter = fs.existsSync(assetIgnoredExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(true);
-          expect(assetIgnoredExportExistsAfter).to.equal(false);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.true;
+          expect(assetIgnoredExportExistsAfter).to.be.false;
 
           done();
         }
@@ -381,8 +381,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(true);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.true;
 
           done();
         }
@@ -407,8 +407,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(false);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.false;
 
           done();
         }
@@ -433,8 +433,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(true);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.true;
 
           done();
         }
@@ -463,8 +463,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(false);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.false;
 
           done();
         }
@@ -493,8 +493,8 @@ describe('fp export', function () {
         () => {
           const assetExportExistsAfter = fs.existsSync(assetExport);
 
-          expect(assetExportExistsBefore).to.equal(false);
-          expect(assetExportExistsAfter).to.equal(true);
+          expect(assetExportExistsBefore).to.be.false;
+          expect(assetExportExistsAfter).to.be.true;
 
           done();
         }
@@ -544,8 +544,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(true);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.true;
 
           done();
         }
@@ -570,8 +570,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(false);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.false;
 
           done();
         }
@@ -596,8 +596,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(true);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.true;
 
           done();
         }
@@ -622,8 +622,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(false);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.false;
 
           done();
         }
@@ -648,8 +648,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(true);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.true;
 
           done();
         }
@@ -679,8 +679,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(true);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.true;
 
           done();
         }
@@ -710,8 +710,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(false);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.false;
 
           done();
         }
@@ -741,8 +741,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(true);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.true;
 
           done();
         }
@@ -776,9 +776,9 @@ describe('fp export', function () {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
           const scriptIgnoredExportExistsAfter = fs.existsSync(scriptIgnoredExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(true);
-          expect(scriptIgnoredExportExistsAfter).to.equal(false);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.true;
+          expect(scriptIgnoredExportExistsAfter).to.be.false;
 
           done();
         }
@@ -814,8 +814,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(true);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.true;
 
           done();
         }
@@ -840,8 +840,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(false);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.false;
 
           done();
         }
@@ -867,8 +867,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(true);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.true;
 
           done();
         }
@@ -897,8 +897,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(false);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.false;
 
           done();
         }
@@ -928,8 +928,8 @@ describe('fp export', function () {
         () => {
           const scriptExportExistsAfter = fs.existsSync(scriptExport);
 
-          expect(scriptExportExistsBefore).to.equal(false);
-          expect(scriptExportExistsAfter).to.equal(true);
+          expect(scriptExportExistsBefore).to.be.false;
+          expect(scriptExportExistsAfter).to.be.true;
 
           done();
         }
@@ -979,8 +979,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(true);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1005,8 +1005,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(false);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1031,8 +1031,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(true);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1057,8 +1057,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(false);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1083,8 +1083,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(true);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1114,8 +1114,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(true);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1145,8 +1145,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(false);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1176,8 +1176,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(true);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1211,9 +1211,9 @@ describe('fp export', function () {
           const styleExportExistsAfter = fs.existsSync(styleExport);
           const styleIgnoredExportExistsAfter = fs.existsSync(styleIgnoredExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(true);
-          expect(styleIgnoredExportExistsAfter).to.equal(false);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.true;
+          expect(styleIgnoredExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1249,8 +1249,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(true);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1275,8 +1275,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(false);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1301,8 +1301,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(true);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.true;
 
           done();
         }
@@ -1331,8 +1331,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(false);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.false;
 
           done();
         }
@@ -1361,8 +1361,8 @@ describe('fp export', function () {
         () => {
           const styleExportExistsAfter = fs.existsSync(styleExport);
 
-          expect(styleExportExistsBefore).to.equal(false);
-          expect(styleExportExistsAfter).to.equal(true);
+          expect(styleExportExistsBefore).to.be.false;
+          expect(styleExportExistsAfter).to.be.true;
 
           done();
         }
