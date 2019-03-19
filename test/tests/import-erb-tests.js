@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 const path = require('path');
 
 const diveSync = require('diveSync');
-const expect = require('chai').expect;
+const {expect} = require('chai');
 
 // Instantiate a gulp instance and assign it to the fp const.
 process.env.ROOT_DIR = path.normalize(`${__dirname}/..`);
