@@ -1,4 +1,4 @@
-# Import extension for Fepper
+# Template Import extension for Fepper
 
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![Mac/Linux Build Status][travis-image]][travis-url]
@@ -7,6 +7,13 @@
 [![License][license-image]][license-url]
 
 ### WARNING! Importing from the backend will overwrite your frontend files!
+
+### Install
+
+```shell
+cd extend
+npm install --save-dev fp-import
+```
 
 ### Commands
 
