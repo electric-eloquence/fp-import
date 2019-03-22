@@ -1,19 +1,20 @@
 'use strict';
 
-const fs = require('fs-extra');
-const glob = require('glob');
-const gulp = require('gulp');
-const utils = require('fepper-utils');
-const yaml = require('js-yaml');
-const yargs = require('yargs');
-
-const slash = require('slash');
 const path = require('path');
 const {
   basename,
   dirname,
   extname
 } = path;
+
+const fs = require('fs-extra');
+const glob = require('glob');
+const gulp = require('gulp');
+const slash = require('slash');
+const utils = require('fepper-utils');
+const yaml = require('js-yaml');
+const yargs = require('yargs');
+
 const normalize = rawPath => slash(path.normalize(rawPath));
 const resolve = rawPath => slash(path.resolve(rawPath));
 
@@ -1046,3 +1047,9 @@ for (let i = 0; i < engines.length; i++) {
     cb();
   });
 }
+
+// Export tasks in case users want to run them without gulp.
+
+exports.exportBackendFile = exportBackendFile;
+exports.importBackendFileByArg = importBackendFileByArg;
+exports.importBackendFiles = importBackendFiles;
