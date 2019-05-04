@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/electric-eloquence/fp-import#readme",
   "engines": {
-    "node": ">= 8.10.0"
+    "node": ">= 8.16.0"
   },
   "dependencies": {
     "fepper-utils": "*",
