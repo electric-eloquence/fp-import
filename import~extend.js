@@ -1048,6 +1048,30 @@ for (let i = 0; i < engines.length; i++) {
   });
 }
 
+gulp.task('import:help', function (cb) {
+  let out = `
+Fepper Import Extension
+
+Use:
+    <task> [<additional args>...]
+
+Tasks:
+    fp import           Import assets, scripts, styles, and templates from backend to frontend.
+    fp import:erb       Import an Embedded Ruby template.
+    fp import:hbs       Import a Handlebars template.
+    fp import:jsp       Import a Java Server Pages template.
+    fp import:php       Import a PHP template.
+    fp import:twig      Import a Twig template. 
+    fp import:asset     Import an asset file.
+    fp import:script    Import a script file.
+    fp import:style     Import a style file.
+    fp export           Export an asset, script, style, or template file from frontend to backend.
+`;
+
+  utils.info(out);
+  cb();
+});
+
 // Export tasks in case users want to run them without gulp.
 
 exports.exportBackendFile = exportBackendFile;
