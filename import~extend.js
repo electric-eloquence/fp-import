@@ -1066,6 +1066,7 @@ Tasks:
     fp import:script    Import a script file.
     fp import:style     Import a style file.
     fp export           Export an asset, script, style, or template file from frontend to backend.
+    fp import:help      Print fp-import tasks and descriptions.
 `;
 
   utils.info(out);
