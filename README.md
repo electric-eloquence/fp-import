@@ -109,7 +109,7 @@ escaped):
 
 #### <a id="fp-import-erb"></a>`fp import:erb -f <path to backend file>`<br />`fp import:erb -f <path to frontend file>`
 
-A targeted import for an embedded Ruby template. This type of import allows for 
+A targeted import for an Embedded Ruby template. This type of import allows for 
 alternate file extensions since the language is declared in the command.
 
 #### <a id="fp-import-hbs"></a>`fp import:hbs -f <path to backend file>`<br />`fp import:hbs -f <path to frontend file>`
@@ -119,7 +119,7 @@ alternate file extensions since the language is declared in the command.
 
 #### <a id="fp-import-jsp"></a>`fp import:jsp -f <path to backend file>`<br />`fp import:jsp -f <path to frontend file>`
 
-A targeted import for a JavaServer Pages template. This type of import allows 
+A targeted import for a Java Server Pages template. This type of import allows 
 for alternate file extensions since the language is declared in the command.
 
 #### <a id="fp-import-php"></a>`fp import:php -f <path to backend file>`<br />`fp import:php -f <path to frontend file>`
