@@ -101,7 +101,7 @@ describe('fp import:php', function () {
   });
 
   it('should error with no -f argument', function (done) {
-    fp.runSequence(
+    fp.runSeq(
       'import:php',
       done
     );
@@ -133,7 +133,7 @@ describe('fp import:php', function () {
       delete pref.backend.synced_dirs.templates_dir;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -170,7 +170,7 @@ describe('fp import:php', function () {
       delete pref.backend.synced_dirs.templates_dir;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -207,7 +207,7 @@ describe('fp import:php', function () {
       pref.backend.synced_dirs.templates_dir = templatesDirBackSub;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -243,7 +243,7 @@ describe('fp import:php', function () {
       delete pref.backend.synced_dirs.templates_dir;
       pref.backend.synced_dirs.templates_ext = '.php';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -279,7 +279,7 @@ describe('fp import:php', function () {
       pref.backend.synced_dirs.templates_dir = templatesDirBackSub;
       pref.backend.synced_dirs.templates_ext = '.php';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -314,7 +314,7 @@ describe('fp import:php', function () {
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -347,7 +347,7 @@ describe('fp import:php', function () {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -380,7 +380,7 @@ describe('fp import:php', function () {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -412,7 +412,7 @@ describe('fp import:php', function () {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -444,7 +444,7 @@ describe('fp import:php', function () {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -476,7 +476,7 @@ describe('fp import:php', function () {
       pref.backend.synced_dirs.templates_dir = templatesDirBackNonex;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -512,7 +512,7 @@ describe('fp import:php', function () {
       delete pref.backend.synced_dirs.templates_dir;
       pref.backend.synced_dirs.templates_ext = '.foo';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -548,7 +548,7 @@ describe('fp import:php', function () {
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -582,7 +582,7 @@ describe('fp import:php', function () {
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -618,7 +618,7 @@ describe('fp import:php', function () {
       pref.backend.synced_dirs.templates_dir = templatesDirBack;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -656,7 +656,7 @@ describe('fp import:php', function () {
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -696,7 +696,7 @@ argument', function (done) {
       fs.ensureDirSync(templateDir);
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -732,7 +732,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -774,7 +774,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_dir = templatesDirBackSub;
       pref.backend.synced_dirs.templates_ext = '.php';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -809,7 +809,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.templates_dir;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -842,7 +842,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_dir = templatesDirBackSub;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -874,7 +874,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.templates_dir;
       pref.backend.synced_dirs.templates_ext = '.php';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -906,7 +906,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_dir = templatesDirBackSub;
       pref.backend.synced_dirs.templates_ext = '.php';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -941,7 +941,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -974,7 +974,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1009,7 +1009,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1042,7 +1042,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.foo';
       fs.writeFileSync(templateYml, templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1075,7 +1075,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.foo';
       fs.writeFileSync(templateYml, templateYmlExpectedDir + templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1109,7 +1109,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_dir = templatesDirBackNonex;
       pref.backend.synced_dirs.templates_ext = '.php';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1140,7 +1140,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_dir = templatesDirBackSub;
       pref.backend.synced_dirs.templates_ext = '.foo';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1173,7 +1173,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1206,7 +1206,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1246,7 +1246,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1277,7 +1277,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1306,7 +1306,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1334,7 +1334,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1362,7 +1362,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1394,7 +1394,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1425,7 +1425,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1458,7 +1458,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1489,7 +1489,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.foo';
       fs.writeFileSync(templateYml, templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1520,7 +1520,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.foo';
       fs.writeFileSync(templateYml, templateYmlExpectedDir + templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1551,7 +1551,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1578,7 +1578,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.foo';
       fs.writeFileSync(templateYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1608,7 +1608,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
@@ -1638,7 +1638,7 @@ argument', function (done) {
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:php',
         () => {
           const templateExistsAfter = fs.existsSync(template);
