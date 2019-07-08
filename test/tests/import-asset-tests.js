@@ -68,7 +68,7 @@ describe('fp import:asset', function () {
   });
 
   it('should error with no -f argument', function (done) {
-    fp.runSequence(
+    fp.runSeq(
       'import:asset',
       done
     );
@@ -98,7 +98,7 @@ describe('fp import:asset', function () {
       delete pref.backend.synced_dirs.assets_dir;
       delete pref.backend.synced_dirs.assets_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -136,7 +136,7 @@ describe('fp import:asset', function () {
       delete pref.backend.synced_dirs.assets_dir;
       delete pref.backend.synced_dirs.assets_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -171,7 +171,7 @@ describe('fp import:asset', function () {
       pref.backend.synced_dirs.assets_dir = assetsDirBack;
       delete pref.backend.synced_dirs.assets_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -208,7 +208,7 @@ describe('fp import:asset', function () {
       delete pref.backend.synced_dirs.assets_dir;
       pref.backend.synced_dirs.assets_ext = '.svg';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -242,7 +242,7 @@ describe('fp import:asset', function () {
       pref.backend.synced_dirs.assets_dir = assetsDirBack;
       pref.backend.synced_dirs.assets_ext = '.svg';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -273,7 +273,7 @@ describe('fp import:asset', function () {
       delete pref.backend.synced_dirs.assets_ext;
       fs.writeFileSync(assetYml, assetYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -306,7 +306,7 @@ describe('fp import:asset', function () {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, assetYmlToIgnore);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -344,7 +344,7 @@ describe('fp import:asset', function () {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, assetYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -376,7 +376,7 @@ describe('fp import:asset', function () {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, assetYmlToIgnore);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -411,7 +411,7 @@ describe('fp import:asset', function () {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, assetYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -446,7 +446,7 @@ describe('fp import:asset', function () {
       pref.backend.synced_dirs.assets_dir = assetsDirBackNonex;
       delete pref.backend.synced_dirs.assets_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -483,7 +483,7 @@ describe('fp import:asset', function () {
       delete pref.backend.synced_dirs.assets_dir;
       pref.backend.synced_dirs.assets_ext = '.foo';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -517,7 +517,7 @@ describe('fp import:asset', function () {
       delete pref.backend.synced_dirs.assets_ext;
       fs.writeFileSync(assetYml, assetYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -551,7 +551,7 @@ describe('fp import:asset', function () {
       delete pref.backend.synced_dirs.assets_ext;
       fs.writeFileSync(assetYml, assetYmlToIgnore);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -590,7 +590,7 @@ describe('fp import:asset', function () {
       pref.backend.synced_dirs.assets_dir = assetsDirBack;
       delete pref.backend.synced_dirs.assets_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -629,7 +629,7 @@ describe('fp import:asset', function () {
       delete pref.backend.synced_dirs.assets_ext;
       fs.writeFileSync(assetYml, assetYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -668,7 +668,7 @@ describe('fp import:asset', function () {
       fs.ensureDirSync(assetDir);
       fs.writeFileSync(assetYml, assetYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -704,7 +704,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.assets_ext;
       fs.writeFileSync(assetYml, assetYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -734,7 +734,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_dir = assetsDirBackSub;
       pref.backend.synced_dirs.assets_ext = '.svg';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -762,7 +762,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.assets_dir;
       delete pref.backend.synced_dirs.assets_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -793,7 +793,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_dir = assetsDirBackSub;
       delete pref.backend.synced_dirs.assets_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -822,7 +822,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.assets_dir;
       pref.backend.synced_dirs.assets_ext = '.svg';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -852,7 +852,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_dir = assetsDirBackSub;
       pref.backend.synced_dirs.assets_ext = '.svg';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -880,7 +880,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, assetYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -915,7 +915,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, assetYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -946,7 +946,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.foo';
       fs.writeFileSync(assetYml, assetYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -980,7 +980,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.foo';
       fs.writeFileSync(assetYml, assetYmlExpectedDir + assetYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1012,7 +1012,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_dir = assetsDirBackNonex;
       pref.backend.synced_dirs.assets_ext = '.svg';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1043,7 +1043,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_dir = assetsDirBack;
       pref.backend.synced_dirs.assets_ext = '.foo';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1076,7 +1076,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, assetYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1113,7 +1113,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, assetYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1148,7 +1148,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1177,7 +1177,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.assets_ext;
       fs.writeFileSync(assetYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1206,7 +1206,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.assets_ext;
       fs.writeFileSync(assetYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1234,7 +1234,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1262,7 +1262,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1292,7 +1292,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, assetYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1325,7 +1325,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, assetYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1354,7 +1354,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.foo';
       fs.writeFileSync(assetYml, assetYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1386,7 +1386,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.foo';
       fs.writeFileSync(assetYml, assetYmlExpectedDir + assetYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1415,7 +1415,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1442,7 +1442,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.bar';
       fs.writeFileSync(assetYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1472,7 +1472,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, assetYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);
@@ -1504,7 +1504,7 @@ argument', function (done) {
       pref.backend.synced_dirs.assets_ext = '.svg';
       fs.writeFileSync(assetYml, assetYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:asset',
         () => {
           const assetExistsAfter = fs.existsSync(asset);

@@ -68,7 +68,7 @@ describe('fp import:script', function () {
   });
 
   it('should error with no -f argument', function (done) {
-    fp.runSequence(
+    fp.runSeq(
       'import:script',
       done
     );
@@ -98,7 +98,7 @@ describe('fp import:script', function () {
       delete pref.backend.synced_dirs.scripts_dir;
       delete pref.backend.synced_dirs.scripts_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -136,7 +136,7 @@ describe('fp import:script', function () {
       delete pref.backend.synced_dirs.scripts_dir;
       delete pref.backend.synced_dirs.scripts_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -171,7 +171,7 @@ describe('fp import:script', function () {
       pref.backend.synced_dirs.scripts_dir = scriptsDirBack;
       delete pref.backend.synced_dirs.scripts_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -208,7 +208,7 @@ describe('fp import:script', function () {
       delete pref.backend.synced_dirs.scripts_dir;
       pref.backend.synced_dirs.scripts_ext = '.js';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -242,7 +242,7 @@ describe('fp import:script', function () {
       pref.backend.synced_dirs.scripts_dir = scriptsDirBack;
       pref.backend.synced_dirs.scripts_ext = '.js';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -273,7 +273,7 @@ describe('fp import:script', function () {
       delete pref.backend.synced_dirs.scripts_ext;
       fs.writeFileSync(scriptYml, scriptYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -306,7 +306,7 @@ describe('fp import:script', function () {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, scriptYmlToIgnore);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -344,7 +344,7 @@ describe('fp import:script', function () {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, scriptYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -376,7 +376,7 @@ describe('fp import:script', function () {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, scriptYmlToIgnore);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -411,7 +411,7 @@ describe('fp import:script', function () {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, scriptYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -446,7 +446,7 @@ describe('fp import:script', function () {
       pref.backend.synced_dirs.scripts_dir = scriptsDirBackNonex;
       delete pref.backend.synced_dirs.scripts_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -483,7 +483,7 @@ describe('fp import:script', function () {
       delete pref.backend.synced_dirs.scripts_dir;
       pref.backend.synced_dirs.scripts_ext = '.foo';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -517,7 +517,7 @@ describe('fp import:script', function () {
       delete pref.backend.synced_dirs.scripts_ext;
       fs.writeFileSync(scriptYml, scriptYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -551,7 +551,7 @@ describe('fp import:script', function () {
       delete pref.backend.synced_dirs.scripts_ext;
       fs.writeFileSync(scriptYml, scriptYmlToIgnore);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -590,7 +590,7 @@ describe('fp import:script', function () {
       pref.backend.synced_dirs.scripts_dir = scriptsDirBack;
       delete pref.backend.synced_dirs.scripts_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -629,7 +629,7 @@ describe('fp import:script', function () {
       delete pref.backend.synced_dirs.scripts_ext;
       fs.writeFileSync(scriptYml, scriptYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -668,7 +668,7 @@ describe('fp import:script', function () {
       fs.ensureDirSync(scriptDir);
       fs.writeFileSync(scriptYml, scriptYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -704,7 +704,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.scripts_ext;
       fs.writeFileSync(scriptYml, scriptYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -734,7 +734,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_dir = scriptsDirBackSub;
       pref.backend.synced_dirs.scripts_ext = '.js';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -762,7 +762,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.scripts_dir;
       delete pref.backend.synced_dirs.scripts_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -793,7 +793,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_dir = scriptsDirBackSub;
       delete pref.backend.synced_dirs.scripts_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -822,7 +822,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.scripts_dir;
       pref.backend.synced_dirs.scripts_ext = '.js';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -852,7 +852,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_dir = scriptsDirBackSub;
       pref.backend.synced_dirs.scripts_ext = '.js';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -880,7 +880,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, scriptYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -915,7 +915,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, scriptYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -946,7 +946,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.foo';
       fs.writeFileSync(scriptYml, scriptYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -980,7 +980,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.foo';
       fs.writeFileSync(scriptYml, scriptYmlExpectedDir + scriptYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1012,7 +1012,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_dir = scriptsDirBackNonex;
       pref.backend.synced_dirs.scripts_ext = '.js';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1043,7 +1043,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_dir = scriptsDirBack;
       pref.backend.synced_dirs.scripts_ext = '.foo';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1076,7 +1076,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, scriptYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1113,7 +1113,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, scriptYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1148,7 +1148,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1177,7 +1177,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.scripts_ext;
       fs.writeFileSync(scriptYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1206,7 +1206,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.scripts_ext;
       fs.writeFileSync(scriptYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1234,7 +1234,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1262,7 +1262,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1292,7 +1292,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, scriptYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1325,7 +1325,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, scriptYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1354,7 +1354,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.foo';
       fs.writeFileSync(scriptYml, scriptYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1386,7 +1386,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.foo';
       fs.writeFileSync(scriptYml, scriptYmlExpectedDir + scriptYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1415,7 +1415,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1442,7 +1442,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.bar';
       fs.writeFileSync(scriptYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1472,7 +1472,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, scriptYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);
@@ -1504,7 +1504,7 @@ argument', function (done) {
       pref.backend.synced_dirs.scripts_ext = '.js';
       fs.writeFileSync(scriptYml, scriptYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:script',
         () => {
           const scriptExistsAfter = fs.existsSync(script);

@@ -53,7 +53,7 @@ describe('fp export', function () {
   });
 
   it('should error with no -f argument', function (done) {
-    fp.runSequence(
+    fp.runSeq(
       'export',
       done
     );
@@ -63,7 +63,7 @@ describe('fp export', function () {
     process.argv.push('-f');
     process.argv.push('backend/export/templates/templates-erb.erb');
 
-    fp.runSequence(
+    fp.runSeq(
       'export',
       done
     );
@@ -165,7 +165,7 @@ describe('fp export', function () {
       delete pref.backend.synced_dirs.templates_dir;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -191,7 +191,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_dir = templatesDirBackRel;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -217,7 +217,7 @@ describe('fp export', function () {
       delete pref.backend.synced_dirs.templates_dir;
       pref.backend.synced_dirs.templates_ext = '.erb';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -243,7 +243,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_dir = templatesDirBackRel;
       pref.backend.synced_dirs.templates_ext = '.erb';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -276,7 +276,7 @@ describe('fp export', function () {
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -307,7 +307,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_ext = '.erb';
       fs.writeFileSync(templateYml, templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -338,7 +338,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_ext = '.erb';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -369,7 +369,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_ext = '.erb';
       fs.writeFileSync(templateYml, templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -395,7 +395,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_dir = 'nonex/templates';
       pref.backend.synced_dirs.templates_ext = '.erb';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -425,7 +425,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_ext = '.erb';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -539,7 +539,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_dir = templatesDirBackRel;
       pref.backend.synced_dirs.templates_ext = '.hbs';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -567,7 +567,7 @@ describe('fp export', function () {
       delete pref.backend.synced_dirs.templates_dir;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -593,7 +593,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_dir = templatesDirBackRel;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -619,7 +619,7 @@ describe('fp export', function () {
       delete pref.backend.synced_dirs.templates_dir;
       pref.backend.synced_dirs.templates_ext = '.hbs';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -645,7 +645,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_dir = templatesDirBackRel;
       pref.backend.synced_dirs.templates_ext = '.hbs';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -678,7 +678,7 @@ describe('fp export', function () {
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -709,7 +709,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_ext = '.hbs';
       fs.writeFileSync(templateYml, templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -740,7 +740,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_ext = '.hbs';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -771,7 +771,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_ext = '.hbs';
       fs.writeFileSync(templateYml, templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -797,7 +797,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_dir = 'nonex/templates';
       pref.backend.synced_dirs.templates_ext = '.hbs';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -827,7 +827,7 @@ describe('fp export', function () {
       pref.backend.synced_dirs.templates_ext = '.hbs';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -975,7 +975,7 @@ jsp_4: |2
       delete pref.backend.synced_dirs.templates_dir;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1001,7 +1001,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_dir = templatesDirBackRel;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1027,7 +1027,7 @@ jsp_4: |2
       delete pref.backend.synced_dirs.templates_dir;
       pref.backend.synced_dirs.templates_ext = '.jsp';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1053,7 +1053,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_dir = templatesDirBackRel;
       pref.backend.synced_dirs.templates_ext = '.jsp';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1086,7 +1086,7 @@ jsp_4: |2
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1117,7 +1117,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_ext = '.jsp';
       fs.writeFileSync(templateYml, templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1148,7 +1148,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_ext = '.jsp';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1179,7 +1179,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_ext = '.jsp';
       fs.writeFileSync(templateYml, templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1205,7 +1205,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_dir = 'nonex/templates';
       pref.backend.synced_dirs.templates_ext = '.jsp';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1235,7 +1235,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_ext = '.jsp';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1339,7 +1339,7 @@ jsp_4: |2
       delete pref.backend.synced_dirs.templates_dir;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1365,7 +1365,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_dir = templatesDirBackRel;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1391,7 +1391,7 @@ jsp_4: |2
       delete pref.backend.synced_dirs.templates_dir;
       pref.backend.synced_dirs.templates_ext = '.php';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1417,7 +1417,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_dir = templatesDirBackRel;
       pref.backend.synced_dirs.templates_ext = '.php';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1450,7 +1450,7 @@ jsp_4: |2
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1481,7 +1481,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1512,7 +1512,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1543,7 +1543,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1569,7 +1569,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_dir = 'nonex/templates';
       pref.backend.synced_dirs.templates_ext = '.php';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1599,7 +1599,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_ext = '.php';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1713,7 +1713,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_dir = templatesDirBackRel;
       pref.backend.synced_dirs.templates_ext = '.twig';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1741,7 +1741,7 @@ jsp_4: |2
       delete pref.backend.synced_dirs.templates_dir;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1767,7 +1767,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_dir = templatesDirBackRel;
       delete pref.backend.synced_dirs.templates_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1793,7 +1793,7 @@ jsp_4: |2
       delete pref.backend.synced_dirs.templates_dir;
       pref.backend.synced_dirs.templates_ext = '.twig';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1819,7 +1819,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_dir = templatesDirBackRel;
       pref.backend.synced_dirs.templates_ext = '.twig';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1852,7 +1852,7 @@ jsp_4: |2
       delete pref.backend.synced_dirs.templates_ext;
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1883,7 +1883,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_ext = '.twig';
       fs.writeFileSync(templateYml, templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1914,7 +1914,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_ext = '.twig';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1945,7 +1945,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_ext = '.twig';
       fs.writeFileSync(templateYml, templateYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -1971,7 +1971,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_dir = 'nonex/templates';
       pref.backend.synced_dirs.templates_ext = '.twig';
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);
@@ -2001,7 +2001,7 @@ jsp_4: |2
       pref.backend.synced_dirs.templates_ext = '.twig';
       fs.writeFileSync(templateYml, templateYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'export',
         () => {
           const templateExportExistsAfter = fs.existsSync(templateExport);

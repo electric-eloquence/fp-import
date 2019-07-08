@@ -68,7 +68,7 @@ describe('fp import:style', function () {
   });
 
   it('should error with no -f argument', function (done) {
-    fp.runSequence(
+    fp.runSeq(
       'import:style',
       done
     );
@@ -98,7 +98,7 @@ describe('fp import:style', function () {
       delete pref.backend.synced_dirs.styles_dir;
       delete pref.backend.synced_dirs.styles_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -136,7 +136,7 @@ describe('fp import:style', function () {
       delete pref.backend.synced_dirs.styles_dir;
       delete pref.backend.synced_dirs.styles_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -171,7 +171,7 @@ describe('fp import:style', function () {
       pref.backend.synced_dirs.styles_dir = stylesDirBack;
       delete pref.backend.synced_dirs.styles_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -208,7 +208,7 @@ describe('fp import:style', function () {
       delete pref.backend.synced_dirs.styles_dir;
       pref.backend.synced_dirs.styles_ext = '.css';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -242,7 +242,7 @@ describe('fp import:style', function () {
       pref.backend.synced_dirs.styles_dir = stylesDirBack;
       pref.backend.synced_dirs.styles_ext = '.css';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -273,7 +273,7 @@ describe('fp import:style', function () {
       delete pref.backend.synced_dirs.styles_ext;
       fs.writeFileSync(styleYml, styleYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -306,7 +306,7 @@ describe('fp import:style', function () {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, styleYmlToIgnore);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -344,7 +344,7 @@ describe('fp import:style', function () {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, styleYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -376,7 +376,7 @@ describe('fp import:style', function () {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, styleYmlToIgnore);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -411,7 +411,7 @@ describe('fp import:style', function () {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, styleYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -446,7 +446,7 @@ describe('fp import:style', function () {
       pref.backend.synced_dirs.styles_dir = stylesDirBackNonex;
       delete pref.backend.synced_dirs.styles_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -483,7 +483,7 @@ describe('fp import:style', function () {
       delete pref.backend.synced_dirs.styles_dir;
       pref.backend.synced_dirs.styles_ext = '.foo';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -517,7 +517,7 @@ describe('fp import:style', function () {
       delete pref.backend.synced_dirs.styles_ext;
       fs.writeFileSync(styleYml, styleYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -551,7 +551,7 @@ describe('fp import:style', function () {
       delete pref.backend.synced_dirs.styles_ext;
       fs.writeFileSync(styleYml, styleYmlToIgnore);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -590,7 +590,7 @@ describe('fp import:style', function () {
       pref.backend.synced_dirs.styles_dir = stylesDirBack;
       delete pref.backend.synced_dirs.styles_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -629,7 +629,7 @@ describe('fp import:style', function () {
       delete pref.backend.synced_dirs.styles_ext;
       fs.writeFileSync(styleYml, styleYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -668,7 +668,7 @@ describe('fp import:style', function () {
       fs.ensureDirSync(styleDir);
       fs.writeFileSync(styleYml, styleYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -704,7 +704,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.styles_ext;
       fs.writeFileSync(styleYml, styleYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -734,7 +734,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_dir = stylesDirBackSub;
       pref.backend.synced_dirs.styles_ext = '.css';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -762,7 +762,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.styles_dir;
       delete pref.backend.synced_dirs.styles_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -793,7 +793,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_dir = stylesDirBackSub;
       delete pref.backend.synced_dirs.styles_ext;
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -822,7 +822,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.styles_dir;
       pref.backend.synced_dirs.styles_ext = '.css';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -852,7 +852,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_dir = stylesDirBackSub;
       pref.backend.synced_dirs.styles_ext = '.css';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -880,7 +880,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, styleYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -915,7 +915,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, styleYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -946,7 +946,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.foo';
       fs.writeFileSync(styleYml, styleYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -980,7 +980,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.foo';
       fs.writeFileSync(styleYml, styleYmlExpectedDir + styleYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1012,7 +1012,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_dir = stylesDirBackNonex;
       pref.backend.synced_dirs.styles_ext = '.css';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1043,7 +1043,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_dir = stylesDirBack;
       pref.backend.synced_dirs.styles_ext = '.foo';
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1076,7 +1076,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, styleYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1113,7 +1113,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, styleYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1148,7 +1148,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1177,7 +1177,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.styles_ext;
       fs.writeFileSync(styleYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1206,7 +1206,7 @@ argument', function (done) {
       delete pref.backend.synced_dirs.styles_ext;
       fs.writeFileSync(styleYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1234,7 +1234,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1262,7 +1262,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1292,7 +1292,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, styleYmlExpected);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1325,7 +1325,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, styleYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1354,7 +1354,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.foo';
       fs.writeFileSync(styleYml, styleYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1386,7 +1386,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.foo';
       fs.writeFileSync(styleYml, styleYmlExpectedDir + styleYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1415,7 +1415,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1442,7 +1442,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.bar';
       fs.writeFileSync(styleYml, '');
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1472,7 +1472,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, styleYmlExpectedDir);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
@@ -1504,7 +1504,7 @@ argument', function (done) {
       pref.backend.synced_dirs.styles_ext = '.css';
       fs.writeFileSync(styleYml, styleYmlExpectedExt);
 
-      fp.runSequence(
+      fp.runSeq(
         'import:style',
         () => {
           const styleExistsAfter = fs.existsSync(style);
