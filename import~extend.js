@@ -61,7 +61,7 @@ const getIndexOfSubString = (string, subString) => {
   return string.indexOf(subString);
 };
 
-const getRelativePath = relPath => relPath.replace(`${rootDir}/`, '');
+const getRelativePath = (relPath) => relPath.replace(`${rootDir}/`, '');
 
 // We want to declare sourceDirDefaults, sourceExtDefaults, and targetDirDefaults as convenience objects, with
 // properties keyed by type. Since we might mutate the pref object for testing (or any other practical purpose), we need
