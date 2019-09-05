@@ -67,7 +67,7 @@ describe('fp import:style', function () {
     resetStylesDir();
   });
 
-  it('should error with no -f argument', function (done) {
+  it('errors with no -f argument', function (done) {
     fp.runSeq(
       'import:style',
       done
@@ -80,7 +80,7 @@ describe('fp import:style', function () {
   describe('fp import:style with backend -f argument', function () {
     const stylesDirBackBld = `${stylesDirBack}/bld`;
 
-    it('should import using absolute path argument', function (done) {
+    it('imports using absolute path argument', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBackBld}
 `;
@@ -118,7 +118,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should import using undefined styles_dir, and ignore undefined styles_ext', function (done) {
+    it('imports using undefined styles_dir, and ignore undefined styles_ext', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBackBld}
 `;
@@ -156,7 +156,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should import using global styles_dir, and ignore undefined styles_ext', function (done) {
+    it('imports using global styles_dir, and ignore undefined styles_ext', function (done) {
       const {
         styleExistsBefore,
         styleYmlExistsBefore
@@ -190,7 +190,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should import using undefined styles_dir, and ignore global styles_ext', function (done) {
+    it('imports using undefined styles_dir, and ignore global styles_ext', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBackBld}
 `;
@@ -227,7 +227,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should import using global styles_dir, and ignore global styles_ext', function (done) {
+    it('imports using global styles_dir, and ignore global styles_ext', function (done) {
       const {
         styleExistsBefore,
         styleYmlExistsBefore
@@ -258,7 +258,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should error using conflicting styles_dir, and ignore undefined styles_ext', function (done) {
+    it('errors using conflicting styles_dir, and ignore undefined styles_ext', function (done) {
       const styleYmlExpected = `styles_dir: ${stylesDirBackNonex}`;
       const {
         styleExistsBefore
@@ -291,7 +291,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should import using undefined styles_dir, and ignore conflicting styles_ext', function (done) {
+    it('imports using undefined styles_dir, and ignore conflicting styles_ext', function (done) {
       const styleYmlToIgnore = 'styles_ext: .foo';
       const {
         styleExistsBefore
@@ -329,7 +329,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should error using conflicting styles_dir, and ignore global styles_ext', function (done) {
+    it('errors using conflicting styles_dir, and ignore global styles_ext', function (done) {
       const styleYmlExpected = `styles_dir: ${stylesDirBackNonex}`;
       const {
         styleExistsBefore
@@ -361,7 +361,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should import using global styles_dir, and ignore conflicting styles_ext', function (done) {
+    it('imports using global styles_dir, and ignore conflicting styles_ext', function (done) {
       const styleYmlToIgnore = 'styles_ext: .foo';
       const {
         styleExistsBefore
@@ -396,7 +396,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should error using conflicting styles_dir, and ignore conflicting styles_ext', function (done) {
+    it('errors using conflicting styles_dir, and ignore conflicting styles_ext', function (done) {
       const styleYmlExpected = `styles_dir: ${stylesDirBackNonex}\nstyles_ext: .foo`;
       const {
         styleExistsBefore
@@ -428,7 +428,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should import even if global styles_dir points to a nonexistent directory', function (done) {
+    it('imports even if global styles_dir points to a nonexistent directory', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBackBld}
 `;
@@ -465,7 +465,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should import even if global styles_ext mismatches arg extension', function (done) {
+    it('imports even if global styles_ext mismatches arg extension', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBackBld}
 `;
@@ -502,7 +502,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should error using local styles_dir that points to a nonexistent directory', function (done) {
+    it('errors using local styles_dir that points to a nonexistent directory', function (done) {
       const styleYmlExpected = `styles_dir: ${stylesDirBackNonex}`;
       const {
         styleExistsBefore
@@ -536,7 +536,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should import ignoring local styles_ext that mismatches arg extension', function (done) {
+    it('imports ignoring local styles_ext that mismatches arg extension', function (done) {
       const styleYmlToIgnore = 'styles_ext: .foo';
       const {
         styleExistsBefore
@@ -575,7 +575,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should import using global styles_dir that nests the arg path', function (done) {
+    it('imports using global styles_dir that nests the arg path', function (done) {
       const {
         styleExistsBefore,
         styleYmlExistsBefore
@@ -609,7 +609,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should import where local styles_dir is nested by global styles_dir, and immediately nests -f argument\
+    it('imports where local styles_dir is nested by global styles_dir, and immediately nests -f argument\
 ', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBackBld}
@@ -648,7 +648,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should error where local styles_dir is nested by global styles_dir, but does not immediately nest -f argument\
+    it('errors where local styles_dir is nested by global styles_dir, but does not immediately nest -f argument\
 ', function (done) {
       const styleDir = `${stylesDirFront}/styles/argv.f-backend`;
       const style = `${styleDir}/${styleBase}.css`;
@@ -686,7 +686,7 @@ describe('fp import:style', function () {
       );
     });
 
-    it('should error where local styles_dir nests global local styles_dir, and therefore cannot immediately nest -f \
+    it('errors where local styles_dir nests global local styles_dir, and therefore cannot immediately nest -f \
 argument', function (done) {
       const style = `${stylesDirFrontBld}/${styleBase}.css`;
       const styleYml = `${stylesDirFrontBld}/${styleBase}.yml`;
@@ -721,7 +721,7 @@ argument', function (done) {
 
   // Test success and error cases. The error cases should pass as tests.
   describe('fp import:style with frontend -f argument and style extension', function () {
-    it('should import using absolute path argument', function (done) {
+    it('imports using absolute path argument', function (done) {
       const {
         styleExistsBefore
       } = resetStylesDir({
@@ -747,7 +747,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined styles_dir, and undefined styles_ext', function (done) {
+    it('errors using undefined styles_dir, and undefined styles_ext', function (done) {
       const {
         styleExistsBefore,
         styleYmlExistsBefore
@@ -780,7 +780,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global styles_dir, and undefined styles_ext', function (done) {
+    it('imports using global styles_dir, and undefined styles_ext', function (done) {
       const {
         styleExistsBefore
       } = resetStylesDir({
@@ -807,7 +807,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined styles_dir, and global styles_ext', function (done) {
+    it('errors using undefined styles_dir, and global styles_ext', function (done) {
       const {
         styleExistsBefore,
         styleYmlExistsBefore
@@ -839,7 +839,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global styles_dir, and global styles_ext', function (done) {
+    it('imports using global styles_dir, and global styles_ext', function (done) {
       const {
         styleExistsBefore
       } = resetStylesDir({
@@ -865,7 +865,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined styles_dir, and overriding local styles_ext', function (done) {
+    it('errors using undefined styles_dir, and overriding local styles_ext', function (done) {
       const styleYmlExpected = 'styles_ext: .foo';
       const {
         styleExistsBefore
@@ -898,7 +898,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local styles_dir, and global styles_ext', function (done) {
+    it('imports using overriding local styles_dir, and global styles_ext', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBack}/styles_dir-local
 `;
@@ -932,7 +932,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global styles_dir, and overriding local styles_ext', function (done) {
+    it('imports using global styles_dir, and overriding local styles_ext', function (done) {
       const {
         styleExistsBefore
       } = resetStylesDir({
@@ -963,7 +963,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local styles_dir, and overriding local styles_ext', function (done) {
+    it('imports using overriding local styles_dir, and overriding local styles_ext', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBack}/styles_dir-local
 `;
@@ -997,7 +997,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global styles_dir points to a nonexistent directory', function (done) {
+    it('errors if global styles_dir points to a nonexistent directory', function (done) {
       const {
         styleExistsBefore,
         styleYmlExistsBefore
@@ -1028,7 +1028,7 @@ argument', function (done) {
       );
     });
 
-    it('should import ignoring global styles_ext that mismatches arg extension', function (done) {
+    it('imports ignoring global styles_ext that mismatches arg extension', function (done) {
       const {
         styleExistsBefore,
         styleYmlExistsBefore
@@ -1059,7 +1059,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local styles_dir points to a nonexistent directory', function (done) {
+    it('errors if local styles_dir points to a nonexistent directory', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBackNonex}
 `;
@@ -1094,7 +1094,7 @@ argument', function (done) {
       );
     });
 
-    it('should import ignoring local styles_ext that mismatches arg extension', function (done) {
+    it('imports ignoring local styles_ext that mismatches arg extension', function (done) {
       const styleYmlExpectedExt = `'styles_ext': |2
   .bar
 `;
@@ -1134,7 +1134,7 @@ argument', function (done) {
 
   // Test success and error cases. The error cases should pass as tests.
   describe('fp import:style with frontend -f argument and .yml extension', function () {
-    it('should import using absolute path argument', function (done) {
+    it('imports using absolute path argument', function (done) {
       const {
         styleExistsBefore
       } = resetStylesDir({
@@ -1163,7 +1163,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined styles_dir, and undefined styles_ext', function (done) {
+    it('errors using undefined styles_dir, and undefined styles_ext', function (done) {
       const {
         styleExistsBefore
       } = resetStylesDir({
@@ -1192,7 +1192,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using global styles_dir, and undefined styles_ext', function (done) {
+    it('errors using global styles_dir, and undefined styles_ext', function (done) {
       const {
         styleExistsBefore
       } = resetStylesDir({
@@ -1220,7 +1220,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined styles_dir, and global styles_ext', function (done) {
+    it('errors using undefined styles_dir, and global styles_ext', function (done) {
       const {
         styleExistsBefore
       } = resetStylesDir({
@@ -1248,7 +1248,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global styles_dir, and global styles_ext', function (done) {
+    it('imports using global styles_dir, and global styles_ext', function (done) {
       const {
         styleExistsBefore
       } = resetStylesDir({
@@ -1277,7 +1277,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined styles_dir, and overriding local styles_ext', function (done) {
+    it('errors using undefined styles_dir, and overriding local styles_ext', function (done) {
       const styleYmlExpected = 'styles_ext: .foo';
       const {
         styleExistsBefore
@@ -1308,7 +1308,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local styles_dir, and global styles_ext', function (done) {
+    it('imports using overriding local styles_dir, and global styles_ext', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBack}/styles_dir-local
 `;
@@ -1340,7 +1340,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global styles_dir, and overriding local styles_ext', function (done) {
+    it('imports using global styles_dir, and overriding local styles_ext', function (done) {
       const {
         styleExistsBefore
       } = resetStylesDir({
@@ -1369,7 +1369,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local styles_dir, and overriding local styles_ext', function (done) {
+    it('imports using overriding local styles_dir, and overriding local styles_ext', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBack}/styles_dir-local
 `;
@@ -1401,7 +1401,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global styles_dir points to a nonexistent directory', function (done) {
+    it('errors f global styles_dir points to a nonexistent directory', function (done) {
       const {
         styleExistsBefore
       } = resetStylesDir({
@@ -1428,7 +1428,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global styles_ext mismatches actual extension', function (done) {
+    it('errors if global styles_ext mismatches actual extension', function (done) {
       const {
         styleExistsBefore
       } = resetStylesDir({
@@ -1455,7 +1455,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local styles_dir points to a nonexistent directory', function (done) {
+    it('errors if local styles_dir points to a nonexistent directory', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBackNonex}
 `;
@@ -1487,7 +1487,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local styles_ext mismatches actual extension', function (done) {
+    it('errors if local styles_ext mismatches actual extension', function (done) {
       const styleYmlExpectedExt = `'styles_ext': |2
   .bar
 `;

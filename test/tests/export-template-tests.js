@@ -52,14 +52,14 @@ describe('fp export', function () {
     resetArgv();
   });
 
-  it('should error with no -f argument', function (done) {
+  it('errors with no -f argument', function (done) {
     fp.runSeq(
       'export',
       done
     );
   });
 
-  it('should error if -f argument points to the backend', function (done) {
+  it('errors if -f argument points to the backend', function (done) {
     process.argv.push('-f');
     process.argv.push('backend/export/templates/templates-erb.erb');
 
@@ -152,7 +152,7 @@ describe('fp export', function () {
       resetTemplatesDir();
     });
 
-    it('should error using undefined templates_dir, and undefined templates_ext', function (done) {
+    it('errors using undefined templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -178,7 +178,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using global templates_dir, and undefined templates_ext', function (done) {
+    it('errors using global templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -204,7 +204,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined templates_dir, and global templates_ext', function (done) {
+    it('errors using undefined templates_dir, and global templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -230,7 +230,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export template using global templates_dir, and global templates_ext', function (done) {
+    it('exports template using global templates_dir, and global templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -258,7 +258,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using overriding local templates_dir, and undefined templates_ext', function (done) {
+    it('errors using overriding local templates_dir, and undefined templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/templates_dir-local/${templateBase}.erb`;
       const templateYmlExpectedDir = `templates_dir: |2
   ${templatesDirBackRel}/templates_dir-local
@@ -289,7 +289,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined templates_dir, and overriding templates_ext', function (done) {
+    it('errors using undefined templates_dir, and overriding templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/${templateBase}.foo`;
       const templateYmlExpectedExt = `templates_ext: |2
   .foo
@@ -320,7 +320,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export template using overriding local templates_dir, and global templates_ext', function (done) {
+    it('exports template using overriding local templates_dir, and global templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/templates_dir-local/${templateBase}.erb`;
       const templateYmlExpectedDir = `templates_dir: |2
   ${templatesDirBackRel}/templates_dir-local
@@ -351,7 +351,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export template using global templates_dir, and overriding local templates_ext', function (done) {
+    it('exports template using global templates_dir, and overriding local templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/${templateBase}.foo`;
       const templateYmlExpectedExt = `templates_ext: |2
   .foo
@@ -382,7 +382,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error if global templates_dir points to a nonexistent directory', function (done) {
+    it('errors if global templates_dir points to a nonexistent directory', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -408,7 +408,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error if local templates_dir points to a nonexistent directory', function (done) {
+    it('errors if local templates_dir points to a nonexistent directory', function (done) {
       const templateYmlExpectedDir = `templates_dir: |2
   nonex/templates
 `;
@@ -526,7 +526,7 @@ describe('fp export', function () {
       resetTemplatesDir();
     });
 
-    it('should export template using relative path argument', function (done) {
+    it('exports template using relative path argument', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -554,7 +554,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined templates_dir, and undefined templates_ext', function (done) {
+    it('errors using undefined templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -580,7 +580,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using global templates_dir, and undefined templates_ext', function (done) {
+    it('errors using global templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -606,7 +606,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined templates_dir, and global templates_ext', function (done) {
+    it('errors using undefined templates_dir, and global templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -632,7 +632,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export template using global templates_dir, and global templates_ext', function (done) {
+    it('exports template using global templates_dir, and global templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -660,7 +660,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using overriding local templates_dir, and undefined templates_ext', function (done) {
+    it('errors using overriding local templates_dir, and undefined templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/templates_dir-local/${templateBase}.hbs`;
       const templateYmlExpectedDir = `templates_dir: |2
   ${templatesDirBackRel}/templates_dir-local
@@ -691,7 +691,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined templates_dir, and overriding templates_ext', function (done) {
+    it('errors using undefined templates_dir, and overriding templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/${templateBase}.foo`;
       const templateYmlExpectedExt = `templates_ext: |2
   .foo
@@ -722,7 +722,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export template using overriding local templates_dir, and global templates_ext', function (done) {
+    it('exports template using overriding local templates_dir, and global templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/templates_dir-local/${templateBase}.hbs`;
       const templateYmlExpectedDir = `templates_dir: |2
   ${templatesDirBackRel}/templates_dir-local
@@ -753,7 +753,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export template using global templates_dir, and overriding local templates_ext', function (done) {
+    it('exports template using global templates_dir, and overriding local templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/${templateBase}.foo`;
       const templateYmlExpectedExt = `templates_ext: |2
   .foo
@@ -784,7 +784,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error if global templates_dir points to a nonexistent directory', function (done) {
+    it('errors if global templates_dir points to a nonexistent directory', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -810,7 +810,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error if local templates_dir points to a nonexistent directory', function (done) {
+    it('errors if local templates_dir points to a nonexistent directory', function (done) {
       const templateYmlExpectedDir = `templates_dir: |2
   nonex/templates
 `;
@@ -962,7 +962,7 @@ jsp_4: |2
       resetTemplatesDir();
     });
 
-    it('should error using undefined templates_dir, and undefined templates_ext', function (done) {
+    it('errors using undefined templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -988,7 +988,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using global templates_dir, and undefined templates_ext', function (done) {
+    it('errors using global templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1014,7 +1014,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using undefined templates_dir, and global templates_ext', function (done) {
+    it('errors using undefined templates_dir, and global templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1040,7 +1040,7 @@ jsp_4: |2
       );
     });
 
-    it('should export template using global templates_dir, and global templates_ext', function (done) {
+    it('exports template using global templates_dir, and global templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1068,7 +1068,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using overriding local templates_dir, and undefined templates_ext', function (done) {
+    it('errors using overriding local templates_dir, and undefined templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/templates_dir-local/${templateBase}.jsp`;
       const templateYmlExpectedDir = `templates_dir: |2
   ${templatesDirBackRel}/templates_dir-local
@@ -1099,7 +1099,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using undefined templates_dir, and overriding templates_ext', function (done) {
+    it('errors using undefined templates_dir, and overriding templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/${templateBase}.foo`;
       const templateYmlExpectedExt = `templates_ext: |2
   .foo
@@ -1130,7 +1130,7 @@ jsp_4: |2
       );
     });
 
-    it('should export template using overriding local templates_dir, and global templates_ext', function (done) {
+    it('exports template using overriding local templates_dir, and global templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/templates_dir-local/${templateBase}.jsp`;
       const templateYmlExpectedDir = `templates_dir: |2
   ${templatesDirBackRel}/templates_dir-local
@@ -1161,7 +1161,7 @@ jsp_4: |2
       );
     });
 
-    it('should export template using global templates_dir, and overriding local templates_ext', function (done) {
+    it('exports template using global templates_dir, and overriding local templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/${templateBase}.foo`;
       const templateYmlExpectedExt = `templates_ext: |2
   .foo
@@ -1192,7 +1192,7 @@ jsp_4: |2
       );
     });
 
-    it('should error if global templates_dir points to a nonexistent directory', function (done) {
+    it('errors if global templates_dir points to a nonexistent directory', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1218,7 +1218,7 @@ jsp_4: |2
       );
     });
 
-    it('should error if local templates_dir points to a nonexistent directory', function (done) {
+    it('errors if local templates_dir points to a nonexistent directory', function (done) {
       const templateYmlExpectedDir = `templates_dir: |2
   nonex/templates
 `;
@@ -1326,7 +1326,7 @@ jsp_4: |2
       resetTemplatesDir();
     });
 
-    it('should error using undefined templates_dir, and undefined templates_ext', function (done) {
+    it('errors using undefined templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1352,7 +1352,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using global templates_dir, and undefined templates_ext', function (done) {
+    it('errors using global templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1378,7 +1378,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using undefined templates_dir, and global templates_ext', function (done) {
+    it('errors using undefined templates_dir, and global templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1404,7 +1404,7 @@ jsp_4: |2
       );
     });
 
-    it('should export template using global templates_dir, and global templates_ext', function (done) {
+    it('exports template using global templates_dir, and global templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1432,7 +1432,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using overriding local templates_dir, and undefined templates_ext', function (done) {
+    it('errors using overriding local templates_dir, and undefined templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/templates_dir-local/${templateBase}.php`;
       const templateYmlExpectedDir = `templates_dir: |2
   ${templatesDirBackRel}/templates_dir-local
@@ -1463,7 +1463,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using undefined templates_dir, and overriding templates_ext', function (done) {
+    it('errors using undefined templates_dir, and overriding templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/${templateBase}.foo`;
       const templateYmlExpectedExt = `templates_ext: |2
   .foo
@@ -1494,7 +1494,7 @@ jsp_4: |2
       );
     });
 
-    it('should export template using overriding local templates_dir, and global templates_ext', function (done) {
+    it('exports template using overriding local templates_dir, and global templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/templates_dir-local/${templateBase}.php`;
       const templateYmlExpectedDir = `templates_dir: |2
   ${templatesDirBackRel}/templates_dir-local
@@ -1525,7 +1525,7 @@ jsp_4: |2
       );
     });
 
-    it('should export template using global templates_dir, and overriding local templates_ext', function (done) {
+    it('exports template using global templates_dir, and overriding local templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/${templateBase}.foo`;
       const templateYmlExpectedExt = `templates_ext: |2
   .foo
@@ -1556,7 +1556,7 @@ jsp_4: |2
       );
     });
 
-    it('should error if global templates_dir points to a nonexistent directory', function (done) {
+    it('errors if global templates_dir points to a nonexistent directory', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1582,7 +1582,7 @@ jsp_4: |2
       );
     });
 
-    it('should error if local templates_dir points to a nonexistent directory', function (done) {
+    it('errors if local templates_dir points to a nonexistent directory', function (done) {
       const templateYmlExpectedDir = `templates_dir: |2
   nonex/templates
 `;
@@ -1700,7 +1700,7 @@ jsp_4: |2
       resetTemplatesDir();
     });
 
-    it('should export template using relative path argument', function (done) {
+    it('exports template using relative path argument', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1728,7 +1728,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using undefined templates_dir, and undefined templates_ext', function (done) {
+    it('errors using undefined templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1754,7 +1754,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using global templates_dir, and undefined templates_ext', function (done) {
+    it('errors using global templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1780,7 +1780,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using undefined templates_dir, and global templates_ext', function (done) {
+    it('errors using undefined templates_dir, and global templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1806,7 +1806,7 @@ jsp_4: |2
       );
     });
 
-    it('should export template using global templates_dir, and global templates_ext', function (done) {
+    it('exports template using global templates_dir, and global templates_ext', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1834,7 +1834,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using overriding local templates_dir, and undefined templates_ext', function (done) {
+    it('errors using overriding local templates_dir, and undefined templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/templates_dir-local/${templateBase}.twig`;
       const templateYmlExpectedDir = `templates_dir: |2
   ${templatesDirBackRel}/templates_dir-local
@@ -1865,7 +1865,7 @@ jsp_4: |2
       );
     });
 
-    it('should error using undefined templates_dir, and overriding templates_ext', function (done) {
+    it('errors using undefined templates_dir, and overriding templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/${templateBase}.foo`;
       const templateYmlExpectedExt = `templates_ext: |2
   .foo
@@ -1896,7 +1896,7 @@ jsp_4: |2
       );
     });
 
-    it('should export template using overriding local templates_dir, and global templates_ext', function (done) {
+    it('exports template using overriding local templates_dir, and global templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/templates_dir-local/${templateBase}.twig`;
       const templateYmlExpectedDir = `templates_dir: |2
   ${templatesDirBackRel}/templates_dir-local
@@ -1927,7 +1927,7 @@ jsp_4: |2
       );
     });
 
-    it('should export template using global templates_dir, and overriding local templates_ext', function (done) {
+    it('exports template using global templates_dir, and overriding local templates_ext', function (done) {
       const templateExport = `${templatesDirBack}/${templateBase}.foo`;
       const templateYmlExpectedExt = `templates_ext: |2
   .foo
@@ -1958,7 +1958,7 @@ jsp_4: |2
       );
     });
 
-    it('should error if global templates_dir points to a nonexistent directory', function (done) {
+    it('errors if global templates_dir points to a nonexistent directory', function (done) {
       const {
         templateExportExistsBefore
       } = resetExportsDir({
@@ -1984,7 +1984,7 @@ jsp_4: |2
       );
     });
 
-    it('should error if local templates_dir points to a nonexistent directory', function (done) {
+    it('errors if local templates_dir points to a nonexistent directory', function (done) {
       const templateYmlExpectedDir = `templates_dir: |2
   nonex/templates
 `;

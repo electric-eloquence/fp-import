@@ -103,7 +103,7 @@ describe('fp import:erb', function () {
     resetTemplatesDir();
   });
 
-  it('should error with no -f argument', function (done) {
+  it('errors with no -f argument', function (done) {
     fp.runSeq(
       'import:erb',
       done
@@ -121,7 +121,7 @@ describe('fp import:erb', function () {
   ${templatesDirBackSub}
 `;
 
-    it('should import using absolute path argument', function (done) {
+    it('imports using absolute path argument', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -158,7 +158,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should import using undefined templates_dir, and undefined templates_ext', function (done) {
+    it('imports using undefined templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -195,7 +195,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should import using global templates_dir, and undefined templates_ext', function (done) {
+    it('imports using global templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -231,7 +231,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should import using undefined templates_dir, and global templates_ext', function (done) {
+    it('imports using undefined templates_dir, and global templates_ext', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -267,7 +267,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should import using global templates_dir, and global templates_ext', function (done) {
+    it('imports using global templates_dir, and global templates_ext', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -302,7 +302,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should error using conflicting templates_dir, and undefined templates_ext', function (done) {
+    it('errors using conflicting templates_dir, and undefined templates_ext', function (done) {
       const templateYmlExpected = `templates_dir: ${templatesDirBackNonex}`;
       const {
         templateExistsBefore
@@ -335,7 +335,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should error using undefined templates_dir, and conflicting templates_ext', function (done) {
+    it('errors using undefined templates_dir, and conflicting templates_ext', function (done) {
       const templateYmlExpected = 'templates_ext: .foo';
       const {
         templateExistsBefore
@@ -368,7 +368,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should error using conflicting templates_dir, and global templates_ext', function (done) {
+    it('errors using conflicting templates_dir, and global templates_ext', function (done) {
       const templateYmlExpected = `templates_dir: ${templatesDirBackNonex}`;
       const {
         templateExistsBefore
@@ -400,7 +400,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should error using global templates_dir, and conflicting templates_ext', function (done) {
+    it('errors using global templates_dir, and conflicting templates_ext', function (done) {
       const templateYmlExpected = 'templates_ext: .foo';
       const {
         templateExistsBefore
@@ -432,7 +432,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should error using conflicting templates_dir, and conflicting templates_ext', function (done) {
+    it('errors using conflicting templates_dir, and conflicting templates_ext', function (done) {
       const templateYmlExpected = `templates_dir: ${templatesDirBackNonex}\ntemplates_ext: .foo`;
       const {
         templateExistsBefore
@@ -464,7 +464,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should import even if global templates_dir points to a nonexistent directory', function (done) {
+    it('imports even if global templates_dir points to a nonexistent directory', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -500,7 +500,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should import even if global templates_ext mismatches arg extension', function (done) {
+    it('imports even if global templates_ext mismatches arg extension', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -536,7 +536,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should error using local templates_dir that points to a nonexistent directory', function (done) {
+    it('errors using local templates_dir that points to a nonexistent directory', function (done) {
       const templateYmlExpected = `templates_dir: ${templatesDirBackNonex}`;
       const {
         templateExistsBefore
@@ -570,7 +570,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should error using local templates_ext that mismatches arg extension', function (done) {
+    it('errors using local templates_ext that mismatches arg extension', function (done) {
       const templateYmlExpected = 'templates_ext: .foo';
       const {
         templateExistsBefore
@@ -604,7 +604,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should import using global templates_dir that nests the arg path', function (done) {
+    it('imports using global templates_dir that nests the arg path', function (done) {
       const template = `${templatesDirFrontSub}/${templateBase}.mustache`;
       const templateYml = `${templatesDirFrontSub}/${templateBase}.yml`;
       const {
@@ -642,7 +642,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should import where local templates_dir is nested by global templates_dir, and immediately nests -f argument\
+    it('imports where local templates_dir is nested by global templates_dir, and immediately nests -f argument\
 ', function (done) {
       const template = `${templatesDirFrontSub}/${templateBase}.mustache`;
       const templateYml = `${templatesDirFrontSub}/${templateBase}.yml`;
@@ -679,7 +679,7 @@ describe('fp import:erb', function () {
       );
     });
 
-    it('should error where local templates_dir is nested by global templates_dir, but does not immediately nest -f \
+    it('errors where local templates_dir is nested by global templates_dir, but does not immediately nest -f \
 argument', function (done) {
       const templateDir = `${templatesDirFront}/templates/${subdir}`;
       const template = `${templateDir}/${templateBase}.mustache`;
@@ -717,7 +717,7 @@ argument', function (done) {
       );
     });
 
-    it('should error where local templates_dir nests global local templates_dir, and therefore cannot immediately nest \
+    it('errors where local templates_dir nests global local templates_dir, and therefore cannot immediately nest \
 -f argument', function (done) {
       const template = `${templatesDirFront}/${templateBase}.mustache`;
       const templateYml = `${templatesDirFront}/${templateBase}.yml`;
@@ -762,7 +762,7 @@ argument', function (done) {
   ${templatesDirBackSub}
 `;
 
-    it('should import using absolute path argument', function (done) {
+    it('imports using absolute path argument', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -797,7 +797,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined templates_dir, and undefined templates_ext', function (done) {
+    it('errors using undefined templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -830,7 +830,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using global templates_dir, and undefined templates_ext', function (done) {
+    it('errors using global templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -862,7 +862,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined templates_dir, and global templates_ext', function (done) {
+    it('errors using undefined templates_dir, and global templates_ext', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -894,7 +894,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global templates_dir, and global templates_ext', function (done) {
+    it('imports using global templates_dir, and global templates_ext', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -929,7 +929,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using overriding local templates_dir, and undefined templates_ext', function (done) {
+    it('errors using overriding local templates_dir, and undefined templates_ext', function (done) {
       const templateYmlExpected = `templates_dir: ${templatesDirBackNonex}`;
       const {
         templateExistsBefore
@@ -962,7 +962,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined templates_dir, and overriding local templates_ext', function (done) {
+    it('errors using undefined templates_dir, and overriding local templates_ext', function (done) {
       const templateYmlExpected = 'templates_ext: .foo';
       const {
         templateExistsBefore
@@ -995,7 +995,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local templates_dir, and global templates_ext', function (done) {
+    it('imports using overriding local templates_dir, and global templates_ext', function (done) {
       const templateYmlExpectedDir = `'templates_dir': |2
   ${templatesDirBack}/templates_dir-local
 `;
@@ -1031,7 +1031,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global templates_dir, and overriding local templates_ext', function (done) {
+    it('imports using global templates_dir, and overriding local templates_ext', function (done) {
       const {
         templateExistsBefore
       } = resetTemplatesDir({
@@ -1064,7 +1064,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local templates_dir, and overriding local templates_ext', function (done) {
+    it('imports using overriding local templates_dir, and overriding local templates_ext', function (done) {
       const {
         templateExistsBefore
       } = resetTemplatesDir({
@@ -1097,7 +1097,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global templates_dir points to a nonexistent directory', function (done) {
+    it('errors if global templates_dir points to a nonexistent directory', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -1128,7 +1128,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global templates_ext mismatches actual extension', function (done) {
+    it('errors if global templates_ext mismatches actual extension', function (done) {
       const {
         templateExistsBefore,
         templateYmlExistsBefore
@@ -1159,7 +1159,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local templates_dir points to a nonexistent directory', function (done) {
+    it('errors if local templates_dir points to a nonexistent directory', function (done) {
       const templateYmlExpectedDir = `'templates_dir': |2
   ${templatesDirBackNonex}
 `;
@@ -1194,7 +1194,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local templates_ext mismatches actual extension', function (done) {
+    it('errors if local templates_ext mismatches actual extension', function (done) {
       const templateYmlExpected = 'templates_ext: .foo';
       const {
         templateExistsBefore
@@ -1235,7 +1235,7 @@ argument', function (done) {
   ${templatesDirBackSub}
 `;
 
-    it('should import using absolute path argument', function (done) {
+    it('imports using absolute path argument', function (done) {
       const {
         templateExistsBefore
       } = resetTemplatesDir({
@@ -1266,7 +1266,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined templates_dir, and undefined templates_ext', function (done) {
+    it('errors using undefined templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExistsBefore
       } = resetTemplatesDir({
@@ -1295,7 +1295,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using global templates_dir, and undefined templates_ext', function (done) {
+    it('errors using global templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExistsBefore
       } = resetTemplatesDir({
@@ -1323,7 +1323,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined templates_dir, and global templates_ext', function (done) {
+    it('errors using undefined templates_dir, and global templates_ext', function (done) {
       const {
         templateExistsBefore
       } = resetTemplatesDir({
@@ -1351,7 +1351,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global templates_dir, and global templates_ext', function (done) {
+    it('imports using global templates_dir, and global templates_ext', function (done) {
       const {
         templateExistsBefore
       } = resetTemplatesDir({
@@ -1382,7 +1382,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using overriding local templates_dir, and undefined templates_ext', function (done) {
+    it('errors using overriding local templates_dir, and undefined templates_ext', function (done) {
       const templateYmlExpected = `templates_dir: ${templatesDirBackNonex}`;
       const {
         templateExistsBefore
@@ -1413,7 +1413,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined templates_dir, and overriding local templates_ext', function (done) {
+    it('errors using undefined templates_dir, and overriding local templates_ext', function (done) {
       const templateYmlExpected = 'templates_ext: .foo';
       const {
         templateExistsBefore
@@ -1444,7 +1444,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local templates_dir, and global templates_ext', function (done) {
+    it('imports using overriding local templates_dir, and global templates_ext', function (done) {
       const templateYmlExpectedDir = `'templates_dir': |2
   ${templatesDirBack}/templates_dir-local
 `;
@@ -1478,7 +1478,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global templates_dir, and overriding local templates_ext', function (done) {
+    it('imports using global templates_dir, and overriding local templates_ext', function (done) {
       const {
         templateExistsBefore
       } = resetTemplatesDir({
@@ -1509,7 +1509,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local templates_dir, and overriding local templates_ext', function (done) {
+    it('imports using overriding local templates_dir, and overriding local templates_ext', function (done) {
       const {
         templateExistsBefore
       } = resetTemplatesDir({
@@ -1540,7 +1540,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global templates_dir points to a nonexistent directory', function (done) {
+    it('errors if global templates_dir points to a nonexistent directory', function (done) {
       const {
         templateExistsBefore
       } = resetTemplatesDir({
@@ -1567,7 +1567,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global templates_ext mismatches actual extension', function (done) {
+    it('errors if global templates_ext mismatches actual extension', function (done) {
       const {
         templateExistsBefore
       } = resetTemplatesDir({
@@ -1594,7 +1594,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local templates_dir points to a nonexistent directory', function (done) {
+    it('errors if local templates_dir points to a nonexistent directory', function (done) {
       const templateYmlExpectedDir = `'templates_dir': |2
   ${templatesDirBackNonex}
 `;
@@ -1626,7 +1626,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local templates_ext mismatches actual extension', function (done) {
+    it('errors if local templates_ext mismatches actual extension', function (done) {
       const templateYmlExpected = 'templates_ext: .foo';
       const {
         templateExistsBefore

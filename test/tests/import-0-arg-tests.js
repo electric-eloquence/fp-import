@@ -48,7 +48,7 @@ describe('fp import', function () {
     resetArgv();
   });
 
-  it('should error with an argument', function (done) {
+  it('errors with an argument', function (done) {
     process.argv.push('-f');
     process.argv.push('backend/import/templates/templates-jsp.jsp');
 
@@ -87,7 +87,7 @@ describe('fp import', function () {
       resetAssetsDir();
     });
 
-    it('should not import assets using undefined assets_dir, and undefined assets_ext', function (done) {
+    it('does not import assets using undefined assets_dir, and undefined assets_ext', function (done) {
       const {
         assetExistsBefore,
         asset1ExistsBefore,
@@ -125,7 +125,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import assets using global assets_dir, and undefined assets_ext', function (done) {
+    it('imports assets using global assets_dir, and undefined assets_ext', function (done) {
       const {
         assetExistsBefore,
         asset1ExistsBefore,
@@ -163,7 +163,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import assets using undefined assets_dir, and global assets_ext', function (done) {
+    it('does not import assets using undefined assets_dir, and global assets_ext', function (done) {
       const {
         assetExistsBefore,
         asset1ExistsBefore,
@@ -201,7 +201,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import assets using global assets_dir, and global assets_ext', function (done) {
+    it('imports assets using global assets_dir, and global assets_ext', function (done) {
       const {
         assetExistsBefore,
         asset1ExistsBefore,
@@ -239,7 +239,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import assets using overriding local assets_dir, and undefined assets_ext', function (done) {
+    it('does not import assets using overriding local assets_dir, and undefined assets_ext', function (done) {
       const {
         assetExistsBefore,
         asset1ExistsBefore,
@@ -289,7 +289,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import assets using undefined assets_dir, and conflicting assets_ext', function (done) {
+    it('does not import assets using undefined assets_dir, and conflicting assets_ext', function (done) {
       const assetYmlExpectedExt = `'assets_ext': |2
   .foo
 `;
@@ -334,7 +334,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import assets using overriding local assets_dir, and global assets_ext', function (done) {
+    it('imports assets using overriding local assets_dir, and global assets_ext', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBack}/assets_dir-local
 `;
@@ -376,7 +376,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should error using global assets_dir, and overriding local assets_ext', function (done) {
+    it('errors using global assets_dir, and overriding local assets_ext', function (done) {
       const asset = `${assetsDirFrontSrc}/${assetBase}.foo`;
       const assetYmlExpectedExt = `'assets_ext': |2
   .foo
@@ -419,7 +419,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import assets using overriding local assets_dir, and overriding local assets_ext', function (done) {
+    it('imports assets using overriding local assets_dir, and overriding local assets_ext', function (done) {
       const asset = `${assetsDirFrontSrc}/${assetBase}.foo`;
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBack}/assets_dir-local
@@ -460,7 +460,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import assets if global assets_dir points to a nonexistent directory', function (done) {
+    it('does not import assets if global assets_dir points to a nonexistent directory', function (done) {
       const {
         assetExistsBefore,
         asset1ExistsBefore,
@@ -498,7 +498,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import assets if global assets_ext mismatches actual extension', function (done) {
+    it('does not import assets if global assets_ext mismatches actual extension', function (done) {
       const {
         assetExistsBefore,
         asset1ExistsBefore,
@@ -536,7 +536,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should error if local assets_dir points to a nonexistent directory', function (done) {
+    it('errors if local assets_dir points to a nonexistent directory', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   nonex/assets
 `;
@@ -578,7 +578,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should error if local assets_ext mismatches actual extension', function (done) {
+    it('errors if local assets_ext mismatches actual extension', function (done) {
       const assetYmlExpectedExt = `'assets_ext': |2
   .foo
 `;
@@ -650,7 +650,7 @@ describe('fp import', function () {
       resetScriptsDir();
     });
 
-    it('should not import scripts using undefined scripts_dir, and undefined scripts_ext', function (done) {
+    it('does not import scripts using undefined scripts_dir, and undefined scripts_ext', function (done) {
       const {
         scriptExistsBefore,
         script1ExistsBefore,
@@ -688,7 +688,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import scripts using global scripts_dir, and undefined scripts_ext', function (done) {
+    it('imports scripts using global scripts_dir, and undefined scripts_ext', function (done) {
       const {
         scriptExistsBefore,
         script1ExistsBefore,
@@ -726,7 +726,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import scripts using undefined scripts_dir, and global scripts_ext', function (done) {
+    it('does not import scripts using undefined scripts_dir, and global scripts_ext', function (done) {
       const {
         scriptExistsBefore,
         script1ExistsBefore,
@@ -764,7 +764,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import scripts using global scripts_dir, and global scripts_ext', function (done) {
+    it('imports scripts using global scripts_dir, and global scripts_ext', function (done) {
       const {
         scriptExistsBefore,
         script1ExistsBefore,
@@ -802,7 +802,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import scripts using overriding local scripts_dir, and undefined scripts_ext', function (done) {
+    it('does not import scripts using overriding local scripts_dir, and undefined scripts_ext', function (done) {
       const {
         scriptExistsBefore,
         script1ExistsBefore,
@@ -852,7 +852,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import scripts using undefined scripts_dir, and conflicting scripts_ext', function (done) {
+    it('does not import scripts using undefined scripts_dir, and conflicting scripts_ext', function (done) {
       const scriptYmlExpectedExt = `'scripts_ext': |2
   .foo
 `;
@@ -897,7 +897,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import scripts using overriding local scripts_dir, and global scripts_ext', function (done) {
+    it('imports scripts using overriding local scripts_dir, and global scripts_ext', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBack}/scripts_dir-local
 `;
@@ -934,7 +934,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should error using global scripts_dir, and overriding local scripts_ext', function (done) {
+    it('errors using global scripts_dir, and overriding local scripts_ext', function (done) {
       const script = `${scriptsDirFrontSrc}/${scriptBase}.foo`;
       const scriptYmlExpectedExt = `'scripts_ext': |2
   .foo
@@ -977,7 +977,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import scripts using overriding local scripts_dir, and overriding local scripts_ext', function (done) {
+    it('imports scripts using overriding local scripts_dir, and overriding local scripts_ext', function (done) {
       const script = `${scriptsDirFrontSrc}/${scriptBase}.foo`;
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBack}/scripts_dir-local
@@ -1018,7 +1018,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import scripts if global scripts_dir points to a nonexistent directory', function (done) {
+    it('does not import scripts if global scripts_dir points to a nonexistent directory', function (done) {
       const {
         scriptExistsBefore,
         script1ExistsBefore,
@@ -1056,7 +1056,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import scripts if global scripts_ext mismatches actual extension', function (done) {
+    it('does not import scripts if global scripts_ext mismatches actual extension', function (done) {
       const {
         scriptExistsBefore,
         script1ExistsBefore,
@@ -1094,7 +1094,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should error if local scripts_dir points to a nonexistent directory', function (done) {
+    it('errors if local scripts_dir points to a nonexistent directory', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   nonex/scripts
 `;
@@ -1136,7 +1136,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should error if local scripts_ext mismatches actual extension', function (done) {
+    it('errors if local scripts_ext mismatches actual extension', function (done) {
       const scriptYmlExpectedExt = `'scripts_ext': |2
   .foo
 `;
@@ -1208,7 +1208,7 @@ describe('fp import', function () {
       resetStylesDir();
     });
 
-    it('should not import styles using undefined styles_dir, and undefined styles_ext', function (done) {
+    it('does not import styles using undefined styles_dir, and undefined styles_ext', function (done) {
       const {
         styleExistsBefore,
         style1ExistsBefore,
@@ -1246,7 +1246,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import styles using global styles_dir, and undefined styles_ext', function (done) {
+    it('imports styles using global styles_dir, and undefined styles_ext', function (done) {
       const {
         styleExistsBefore,
         style1ExistsBefore,
@@ -1284,7 +1284,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import styles using undefined styles_dir, and global styles_ext', function (done) {
+    it('does not import styles using undefined styles_dir, and global styles_ext', function (done) {
       const {
         styleExistsBefore,
         style1ExistsBefore,
@@ -1322,7 +1322,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import styles using global styles_dir, and global styles_ext', function (done) {
+    it('imports styles using global styles_dir, and global styles_ext', function (done) {
       const {
         styleExistsBefore,
         style1ExistsBefore,
@@ -1360,7 +1360,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import styles using overriding local styles_dir, and undefined styles_ext', function (done) {
+    it('does not import styles using overriding local styles_dir, and undefined styles_ext', function (done) {
       const {
         styleExistsBefore,
         style1ExistsBefore,
@@ -1410,7 +1410,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import styles using undefined styles_dir, and conflicting styles_ext', function (done) {
+    it('does not import styles using undefined styles_dir, and conflicting styles_ext', function (done) {
       const styleYmlExpectedExt = `'styles_ext': |2
   .foo
 `;
@@ -1455,7 +1455,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import styles using overriding local styles_dir, and global styles_ext', function (done) {
+    it('imports styles using overriding local styles_dir, and global styles_ext', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBack}/styles_dir-local
 `;
@@ -1492,7 +1492,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import using global styles_dir, and overriding local styles_ext', function (done) {
+    it('imports using global styles_dir, and overriding local styles_ext', function (done) {
       const style = `${stylesDirFrontBld}/${styleBase}.foo`;
       const styleYmlExpectedExt = `'styles_ext': |2
   .foo
@@ -1535,7 +1535,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import styles using overriding local styles_dir, and overriding local styles_ext', function (done) {
+    it('imports styles using overriding local styles_dir, and overriding local styles_ext', function (done) {
       const style = `${stylesDirFrontBld}/${styleBase}.foo`;
       const styleYmlExpectedDir = `'styles_dir': |2
   ${stylesDirBack}/styles_dir-local
@@ -1576,7 +1576,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import styles if global styles_dir points to a nonexistent directory', function (done) {
+    it('does not import styles if global styles_dir points to a nonexistent directory', function (done) {
       const {
         styleExistsBefore,
         style1ExistsBefore,
@@ -1614,7 +1614,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import styles if global styles_ext mismatches actual extension', function (done) {
+    it('does not import styles if global styles_ext mismatches actual extension', function (done) {
       const {
         styleExistsBefore,
         style1ExistsBefore,
@@ -1652,7 +1652,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should error if local styles_dir points to a nonexistent directory', function (done) {
+    it('errors if local styles_dir points to a nonexistent directory', function (done) {
       const styleYmlExpectedDir = `'styles_dir': |2
   nonex/styles
 `;
@@ -1694,7 +1694,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should error if local styles_ext mismatches actual extension', function (done) {
+    it('errors if local styles_ext mismatches actual extension', function (done) {
       const styleYmlExpectedExt = `'styles_ext': |2
   .foo
 `;
@@ -1839,7 +1839,7 @@ describe('fp import', function () {
       resetTemplatesDir();
     });
 
-    it('should not import templates using undefined templates_dir, and undefined templates_ext', function (done) {
+    it('does not import templates using undefined templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExistsBefore,
         template1ExistsBefore,
@@ -1877,7 +1877,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import templates using global templates_dir, and undefined templates_ext', function (done) {
+    it('does not import templates using global templates_dir, and undefined templates_ext', function (done) {
       const {
         templateExistsBefore,
         template1ExistsBefore,
@@ -1915,7 +1915,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import templates using undefined templates_dir, and global templates_ext', function (done) {
+    it('does not import templates using undefined templates_dir, and global templates_ext', function (done) {
       const {
         templateExistsBefore,
         template1ExistsBefore,
@@ -1953,7 +1953,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import templates using global templates_dir, and global templates_ext', function (done) {
+    it('imports templates using global templates_dir, and global templates_ext', function (done) {
       const {
         templateExistsBefore,
         template1ExistsBefore,
@@ -2007,7 +2007,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import templates using overriding local templates_dir, and undefined templates_ext\
+    it('does not import templates using overriding local templates_dir, and undefined templates_ext\
 ', function (done) {
       const templateYmlExpectedDir = `'templates_dir': |2
   ${templatesDirBack}/templates_dir-local
@@ -2050,7 +2050,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import templates using undefined templates_dir, and conflicting templates_ext', function (done) {
+    it('does not import templates using undefined templates_dir, and conflicting templates_ext', function (done) {
       const templateYmlExpectedExt = `'templates_ext': |2
   .foo
 `;
@@ -2095,7 +2095,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import templates using overriding local templates_dir, and global templates_ext', function (done) {
+    it('imports templates using overriding local templates_dir, and global templates_ext', function (done) {
       const templateYmlExpectedDir = `'templates_dir': |2
   ${templatesDirBack}/templates_dir-local
 `;
@@ -2141,7 +2141,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import templates using global templates_dir, and overriding local templates_ext', function (done) {
+    it('imports templates using global templates_dir, and overriding local templates_ext', function (done) {
       const templateYmlExpectedExt = `'templates_ext': |2
   .foo
 `;
@@ -2199,7 +2199,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should import templates using overriding local templates_dir, and overriding local templates_ext\
+    it('imports templates using overriding local templates_dir, and overriding local templates_ext\
 ', function (done) {
       const templateYmlExpectedDir = `'templates_dir': |2
   ${templatesDirBack}/templates_dir-local
@@ -2261,7 +2261,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import templates if global templates_dir points to a nonexistent directory', function (done) {
+    it('does not import templates if global templates_dir points to a nonexistent directory', function (done) {
       const {
         templateExistsBefore,
         template1ExistsBefore,
@@ -2299,7 +2299,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should not import templates if global templates_ext mismatches actual extension', function (done) {
+    it('does not import templates if global templates_ext mismatches actual extension', function (done) {
       const {
         templateExistsBefore,
         template1ExistsBefore,
@@ -2337,7 +2337,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should error if local templates_dir points to a nonexistent directory', function (done) {
+    it('errors if local templates_dir points to a nonexistent directory', function (done) {
       const templateYmlExpectedDir = `'templates_dir': |2
   nonex/templates
 `;
@@ -2379,7 +2379,7 @@ describe('fp import', function () {
       );
     });
 
-    it('should error if local templates_ext mismatches actual extension', function (done) {
+    it('errors if local templates_ext mismatches actual extension', function (done) {
       const templateYmlExpectedExt = `'templates_ext': |2
   .foo
 `;
