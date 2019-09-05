@@ -9,7 +9,7 @@ const fp = require('fepper/tasker');
 require('../../import~extend');
 
 describe('fp import:help', function () {
-  it('should print help text', function (done) {
+  it('prints help text', function (done) {
     fp.runSeq(
       'import:help',
       done

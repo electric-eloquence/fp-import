@@ -67,7 +67,7 @@ describe('fp import:script', function () {
     resetScriptsDir();
   });
 
-  it('should error with no -f argument', function (done) {
+  it('errors with no -f argument', function (done) {
     fp.runSeq(
       'import:script',
       done
@@ -80,7 +80,7 @@ describe('fp import:script', function () {
   describe('fp import:script with backend -f argument', function () {
     const scriptsDirBackSrc = `${scriptsDirBack}/src`;
 
-    it('should import using absolute path argument', function (done) {
+    it('imports using absolute path argument', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBackSrc}
 `;
@@ -118,7 +118,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should import using undefined scripts_dir, and undefined scripts_ext', function (done) {
+    it('imports using undefined scripts_dir, and undefined scripts_ext', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBackSrc}
 `;
@@ -156,7 +156,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should import using global scripts_dir, and undefined scripts_ext', function (done) {
+    it('imports using global scripts_dir, and undefined scripts_ext', function (done) {
       const {
         scriptExistsBefore,
         scriptYmlExistsBefore
@@ -190,7 +190,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should import using undefined scripts_dir, and global scripts_ext', function (done) {
+    it('imports using undefined scripts_dir, and global scripts_ext', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBackSrc}
 `;
@@ -227,7 +227,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should import using global scripts_dir, and global scripts_ext', function (done) {
+    it('imports using global scripts_dir, and global scripts_ext', function (done) {
       const {
         scriptExistsBefore,
         scriptYmlExistsBefore
@@ -258,7 +258,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should error using conflicting scripts_dir, and ignore undefined scripts_ext', function (done) {
+    it('errors using conflicting scripts_dir, and ignore undefined scripts_ext', function (done) {
       const scriptYmlExpected = `scripts_dir: ${scriptsDirBackNonex}`;
       const {
         scriptExistsBefore
@@ -291,7 +291,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should import using undefined scripts_dir, and ignore conflicting scripts_ext', function (done) {
+    it('imports using undefined scripts_dir, and ignore conflicting scripts_ext', function (done) {
       const scriptYmlToIgnore = 'scripts_ext: .foo';
       const {
         scriptExistsBefore
@@ -329,7 +329,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should error using conflicting scripts_dir, and ignore global scripts_ext', function (done) {
+    it('errors using conflicting scripts_dir, and ignore global scripts_ext', function (done) {
       const scriptYmlExpected = `scripts_dir: ${scriptsDirBackNonex}`;
       const {
         scriptExistsBefore
@@ -361,7 +361,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should import using global scripts_dir, and ignore conflicting scripts_ext', function (done) {
+    it('imports using global scripts_dir, and ignore conflicting scripts_ext', function (done) {
       const scriptYmlToIgnore = 'scripts_ext: .foo';
       const {
         scriptExistsBefore
@@ -396,7 +396,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should error using conflicting scripts_dir, and ignore conflicting scripts_ext', function (done) {
+    it('errors using conflicting scripts_dir, and ignore conflicting scripts_ext', function (done) {
       const scriptYmlExpected = `scripts_dir: ${scriptsDirBackNonex}\nscripts_ext: .foo`;
       const {
         scriptExistsBefore
@@ -428,7 +428,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should import even if global scripts_dir points to a nonexistent directory', function (done) {
+    it('imports even if global scripts_dir points to a nonexistent directory', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBackSrc}
 `;
@@ -465,7 +465,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should import even if global scripts_ext mismatches arg extension', function (done) {
+    it('imports even if global scripts_ext mismatches arg extension', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBackSrc}
 `;
@@ -502,7 +502,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should error using local scripts_dir that points to a nonexistent directory', function (done) {
+    it('errors using local scripts_dir that points to a nonexistent directory', function (done) {
       const scriptYmlExpected = `scripts_dir: ${scriptsDirBackNonex}`;
       const {
         scriptExistsBefore
@@ -536,7 +536,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should import ignoring local scripts_ext that mismatches arg extension', function (done) {
+    it('imports ignoring local scripts_ext that mismatches arg extension', function (done) {
       const scriptYmlToIgnore = 'scripts_ext: .foo';
       const {
         scriptExistsBefore
@@ -575,7 +575,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should import using global scripts_dir that nests the arg path', function (done) {
+    it('imports using global scripts_dir that nests the arg path', function (done) {
       const {
         scriptExistsBefore,
         scriptYmlExistsBefore
@@ -609,7 +609,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should import where local scripts_dir is nested by global scripts_dir, and immediately nests -f argument\
+    it('imports where local scripts_dir is nested by global scripts_dir, and immediately nests -f argument\
 ', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBackSrc}
@@ -648,7 +648,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should error where local scripts_dir is nested by global scripts_dir, but does not immediately nest -f argument\
+    it('errors where local scripts_dir is nested by global scripts_dir, but does not immediately nest -f argument\
 ', function (done) {
       const scriptDir = `${scriptsDirFront}/scripts/argv.f-backend`;
       const script = `${scriptDir}/${scriptBase}.js`;
@@ -686,7 +686,7 @@ describe('fp import:script', function () {
       );
     });
 
-    it('should error where local scripts_dir nests global local scripts_dir, and therefore cannot immediately nest -f \
+    it('errors where local scripts_dir nests global local scripts_dir, and therefore cannot immediately nest -f \
 argument', function (done) {
       const script = `${scriptsDirFrontSrc}/${scriptBase}.js`;
       const scriptYml = `${scriptsDirFrontSrc}/${scriptBase}.yml`;
@@ -721,7 +721,7 @@ argument', function (done) {
 
   // Test success and error cases. The error cases should pass as tests.
   describe('fp import:script with frontend -f argument and script extension', function () {
-    it('should import using absolute path argument', function (done) {
+    it('imports using absolute path argument', function (done) {
       const {
         scriptExistsBefore
       } = resetScriptsDir({
@@ -747,7 +747,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined scripts_dir, and undefined scripts_ext', function (done) {
+    it('errors using undefined scripts_dir, and undefined scripts_ext', function (done) {
       const {
         scriptExistsBefore,
         scriptYmlExistsBefore
@@ -780,7 +780,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global scripts_dir, and undefined scripts_ext', function (done) {
+    it('imports using global scripts_dir, and undefined scripts_ext', function (done) {
       const {
         scriptExistsBefore
       } = resetScriptsDir({
@@ -807,7 +807,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined scripts_dir, and global scripts_ext', function (done) {
+    it('errors using undefined scripts_dir, and global scripts_ext', function (done) {
       const {
         scriptExistsBefore,
         scriptYmlExistsBefore
@@ -839,7 +839,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global scripts_dir, and global scripts_ext', function (done) {
+    it('imports using global scripts_dir, and global scripts_ext', function (done) {
       const {
         scriptExistsBefore
       } = resetScriptsDir({
@@ -865,7 +865,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined scripts_dir, and overriding local scripts_ext', function (done) {
+    it('errors using undefined scripts_dir, and overriding local scripts_ext', function (done) {
       const scriptYmlExpected = 'scripts_ext: .foo';
       const {
         scriptExistsBefore
@@ -898,7 +898,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local scripts_dir, and global scripts_ext', function (done) {
+    it('imports using overriding local scripts_dir, and global scripts_ext', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBack}/scripts_dir-local
 `;
@@ -932,7 +932,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global scripts_dir, and overriding local scripts_ext', function (done) {
+    it('imports using global scripts_dir, and overriding local scripts_ext', function (done) {
       const {
         scriptExistsBefore
       } = resetScriptsDir({
@@ -963,7 +963,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local scripts_dir, and overriding local scripts_ext', function (done) {
+    it('imports using overriding local scripts_dir, and overriding local scripts_ext', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBack}/scripts_dir-local
 `;
@@ -997,7 +997,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global scripts_dir points to a nonexistent directory', function (done) {
+    it('errors if global scripts_dir points to a nonexistent directory', function (done) {
       const {
         scriptExistsBefore,
         scriptYmlExistsBefore
@@ -1028,7 +1028,7 @@ argument', function (done) {
       );
     });
 
-    it('should import ignoring global scripts_ext that mismatches arg extension', function (done) {
+    it('imports ignoring global scripts_ext that mismatches arg extension', function (done) {
       const {
         scriptExistsBefore,
         scriptYmlExistsBefore
@@ -1059,7 +1059,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local scripts_dir points to a nonexistent directory', function (done) {
+    it('errors if local scripts_dir points to a nonexistent directory', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBackNonex}
 `;
@@ -1094,7 +1094,7 @@ argument', function (done) {
       );
     });
 
-    it('should import ignoring local scripts_ext that mismatches arg extension', function (done) {
+    it('imports ignoring local scripts_ext that mismatches arg extension', function (done) {
       const scriptYmlExpectedExt = `'scripts_ext': |2
   .bar
 `;
@@ -1134,7 +1134,7 @@ argument', function (done) {
 
   // Test success and error cases. The error cases should pass as tests.
   describe('fp import:script with frontend -f argument and .yml extension', function () {
-    it('should import using absolute path argument', function (done) {
+    it('imports using absolute path argument', function (done) {
       const {
         scriptExistsBefore
       } = resetScriptsDir({
@@ -1163,7 +1163,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined scripts_dir, and undefined scripts_ext', function (done) {
+    it('errors using undefined scripts_dir, and undefined scripts_ext', function (done) {
       const {
         scriptExistsBefore
       } = resetScriptsDir({
@@ -1192,7 +1192,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using global scripts_dir, and undefined scripts_ext', function (done) {
+    it('errors using global scripts_dir, and undefined scripts_ext', function (done) {
       const {
         scriptExistsBefore
       } = resetScriptsDir({
@@ -1220,7 +1220,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined scripts_dir, and global scripts_ext', function (done) {
+    it('errors using undefined scripts_dir, and global scripts_ext', function (done) {
       const {
         scriptExistsBefore
       } = resetScriptsDir({
@@ -1248,7 +1248,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global scripts_dir, and global scripts_ext', function (done) {
+    it('imports using global scripts_dir, and global scripts_ext', function (done) {
       const {
         scriptExistsBefore
       } = resetScriptsDir({
@@ -1277,7 +1277,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined scripts_dir, and overriding local scripts_ext', function (done) {
+    it('errors using undefined scripts_dir, and overriding local scripts_ext', function (done) {
       const scriptYmlExpected = 'scripts_ext: .foo';
       const {
         scriptExistsBefore
@@ -1308,7 +1308,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local scripts_dir, and global scripts_ext', function (done) {
+    it('imports using overriding local scripts_dir, and global scripts_ext', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBack}/scripts_dir-local
 `;
@@ -1340,7 +1340,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global scripts_dir, and overriding local scripts_ext', function (done) {
+    it('imports using global scripts_dir, and overriding local scripts_ext', function (done) {
       const {
         scriptExistsBefore
       } = resetScriptsDir({
@@ -1369,7 +1369,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local scripts_dir, and overriding local scripts_ext', function (done) {
+    it('imports using overriding local scripts_dir, and overriding local scripts_ext', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBack}/scripts_dir-local
 `;
@@ -1401,7 +1401,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global scripts_dir points to a nonexistent directory', function (done) {
+    it('errors if global scripts_dir points to a nonexistent directory', function (done) {
       const {
         scriptExistsBefore
       } = resetScriptsDir({
@@ -1428,7 +1428,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global scripts_ext mismatches actual extension', function (done) {
+    it('errors if global scripts_ext mismatches actual extension', function (done) {
       const {
         scriptExistsBefore
       } = resetScriptsDir({
@@ -1455,7 +1455,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local scripts_dir points to a nonexistent directory', function (done) {
+    it('errors if local scripts_dir points to a nonexistent directory', function (done) {
       const scriptYmlExpectedDir = `'scripts_dir': |2
   ${scriptsDirBackNonex}
 `;
@@ -1487,7 +1487,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local scripts_ext mismatches actual extension', function (done) {
+    it('errors if local scripts_ext mismatches actual extension', function (done) {
       const scriptYmlExpectedExt = `'scripts_ext': |2
   .bar
 `;

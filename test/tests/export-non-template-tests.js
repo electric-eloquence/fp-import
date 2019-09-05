@@ -52,14 +52,14 @@ describe('fp export', function () {
     resetArgv();
   });
 
-  it('should error with no -f argument', function (done) {
+  it('errors with no -f argument', function (done) {
     fp.runSeq(
       'export',
       done
     );
   });
 
-  it('should error if -f argument points to the backend', function (done) {
+  it('errors if -f argument points to the backend', function (done) {
     process.argv.push('-f');
     process.argv.push('backend/export/assets/asset-svg.svg');
 
@@ -93,7 +93,7 @@ describe('fp export', function () {
       resetAssetsDir();
     });
 
-    it('should export asset using relative path argument', function (done) {
+    it('exports asset using relative path argument', function (done) {
       const {
         assetExportExistsBefore
       } = resetExportsDir({
@@ -119,7 +119,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined assets_dir, and undefined assets_ext', function (done) {
+    it('errors using undefined assets_dir, and undefined assets_ext', function (done) {
       const {
         assetExportExistsBefore
       } = resetExportsDir({
@@ -145,7 +145,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export asset using global assets_dir, and undefined assets_ext', function (done) {
+    it('exports asset using global assets_dir, and undefined assets_ext', function (done) {
       const {
         assetExportExistsBefore
       } = resetExportsDir({
@@ -171,7 +171,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined assets_dir, and global assets_ext', function (done) {
+    it('errors using undefined assets_dir, and global assets_ext', function (done) {
       const {
         assetExportExistsBefore
       } = resetExportsDir({
@@ -197,7 +197,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export asset using global assets_dir, and ignore global assets_ext', function (done) {
+    it('exports asset using global assets_dir, and ignore global assets_ext', function (done) {
       const {
         assetExportExistsBefore
       } = resetExportsDir({
@@ -223,7 +223,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export asset using overriding local assets_dir, and undefined assets_ext', function (done) {
+    it('exports asset using overriding local assets_dir, and undefined assets_ext', function (done) {
       const assetExport = `${assetsDirBack}/assets_dir-local/${assetBase}.svg`;
       const assetYmlExpectedDir = `assets_dir: |2
   ${assetsDirBackRel}/assets_dir-local
@@ -254,7 +254,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined assets_dir, and overriding assets_ext', function (done) {
+    it('errors using undefined assets_dir, and overriding assets_ext', function (done) {
       const assetExport = `${assetsDirBackSrc}/${assetBase}.foo`;
       const assetYmlExpectedExt = `assets_ext: |2
   .foo
@@ -285,7 +285,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export asset using overriding local assets_dir, and ignore global assets_ext', function (done) {
+    it('exports asset using overriding local assets_dir, and ignore global assets_ext', function (done) {
       const assetExport = `${assetsDirBack}/assets_dir-local/${assetBase}.svg`;
       const assetYmlExpectedDir = `assets_dir: |2
   ${assetsDirBackRel}/assets_dir-local
@@ -316,7 +316,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export asset using global assets_dir, and ignore overriding local assets_ext', function (done) {
+    it('exports asset using global assets_dir, and ignore overriding local assets_ext', function (done) {
       const assetIgnored = `${assetsDirFrontSrc}/${assetBase}.foo`;
       const assetIgnoredExport = `${assetsDirBackSrc}/${assetBase}.foo`;
       const assetYmlExpectedExt = `assets_ext: |2
@@ -352,7 +352,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export asset using overriding local assets_dir, and ignore overriding local assets_ext\
+    it('exports asset using overriding local assets_dir, and ignore overriding local assets_ext\
 ', function (done) {
       const asset = `${assetsDirFrontSrc}/${assetBase}.foo`;
       const assetExport = `${assetsDirBack}/assets_dir-local/${assetBase}.foo`;
@@ -389,7 +389,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error if global assets_dir points to a nonexistent directory', function (done) {
+    it('errors if global assets_dir points to a nonexistent directory', function (done) {
       const {
         assetExportExistsBefore
       } = resetExportsDir({
@@ -415,7 +415,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export asset, and ignore assets_ext if global assets_ext mismatches actual extension', function (done) {
+    it('exports asset, and ignore assets_ext if global assets_ext mismatches actual extension', function (done) {
       const {
         assetExportExistsBefore
       } = resetExportsDir({
@@ -441,7 +441,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error if local assets_dir points to a nonexistent directory', function (done) {
+    it('errors if local assets_dir points to a nonexistent directory', function (done) {
       const assetYmlExpectedDir = `assets_dir: |2
   nonex/assets
 `;
@@ -471,7 +471,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export asset, and ignore assets_ext if local assets_ext mismatches actual extension', function (done) {
+    it('exports asset, and ignore assets_ext if local assets_ext mismatches actual extension', function (done) {
       const assetYmlExpectedExt = `assets_ext: |2
   .foo
 `;
@@ -526,7 +526,7 @@ describe('fp export', function () {
       resetScriptsDir();
     });
 
-    it('should export script using relative path argument', function (done) {
+    it('exports script using relative path argument', function (done) {
       const {
         scriptExportExistsBefore
       } = resetExportsDir({
@@ -552,7 +552,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined scripts_dir, and undefined scripts_ext', function (done) {
+    it('errors using undefined scripts_dir, and undefined scripts_ext', function (done) {
       const {
         scriptExportExistsBefore
       } = resetExportsDir({
@@ -578,7 +578,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export script using global scripts_dir, and undefined scripts_ext', function (done) {
+    it('exports script using global scripts_dir, and undefined scripts_ext', function (done) {
       const {
         scriptExportExistsBefore
       } = resetExportsDir({
@@ -604,7 +604,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined scripts_dir, and global scripts_ext', function (done) {
+    it('errors using undefined scripts_dir, and global scripts_ext', function (done) {
       const {
         scriptExportExistsBefore
       } = resetExportsDir({
@@ -630,7 +630,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export script using global scripts_dir, and ignore global scripts_ext', function (done) {
+    it('exports script using global scripts_dir, and ignore global scripts_ext', function (done) {
       const {
         scriptExportExistsBefore
       } = resetExportsDir({
@@ -656,7 +656,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export script using overriding local scripts_dir, and undefined scripts_ext', function (done) {
+    it('exports script using overriding local scripts_dir, and undefined scripts_ext', function (done) {
       const scriptExport = `${scriptsDirBack}/scripts_dir-local/${scriptBase}.js`;
       const scriptYmlExpectedDir = `scripts_dir: |2
   ${scriptsDirBackRel}/scripts_dir-local
@@ -687,7 +687,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined scripts_dir, and overriding scripts_ext', function (done) {
+    it('errors using undefined scripts_dir, and overriding scripts_ext', function (done) {
       const scriptExport = `${scriptsDirBackSrc}/${scriptBase}.foo`;
       const scriptYmlExpectedExt = `scripts_ext: |2
   .foo
@@ -718,7 +718,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export script using overriding local scripts_dir, and ignore global scripts_ext', function (done) {
+    it('exports script using overriding local scripts_dir, and ignore global scripts_ext', function (done) {
       const scriptExport = `${scriptsDirBack}/scripts_dir-local/${scriptBase}.js`;
       const scriptYmlExpectedDir = `scripts_dir: |2
   ${scriptsDirBackRel}/scripts_dir-local
@@ -749,7 +749,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export script using global scripts_dir, and ignore overriding local scripts_ext', function (done) {
+    it('exports script using global scripts_dir, and ignore overriding local scripts_ext', function (done) {
       const scriptIgnored = `${scriptsDirFrontSrc}/${scriptBase}.foo`;
       const scriptIgnoredExport = `${scriptsDirBackSrc}/${scriptBase}.foo`;
       const scriptYmlExpectedExt = `scripts_ext: |2
@@ -785,7 +785,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export script using overriding local scripts_dir, and ignore overriding local scripts_ext\
+    it('exports script using overriding local scripts_dir, and ignore overriding local scripts_ext\
 ', function (done) {
       const script = `${scriptsDirFrontSrc}/${scriptBase}.foo`;
       const scriptExport = `${scriptsDirBack}/scripts_dir-local/${scriptBase}.foo`;
@@ -822,7 +822,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error if global scripts_dir points to a nonexistent directory', function (done) {
+    it('errors if global scripts_dir points to a nonexistent directory', function (done) {
       const {
         scriptExportExistsBefore
       } = resetExportsDir({
@@ -848,7 +848,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export script, and ignore scripts_ext if global scripts_ext mismatches actual extension\
+    it('exports script, and ignore scripts_ext if global scripts_ext mismatches actual extension\
 ', function (done) {
       const {
         scriptExportExistsBefore
@@ -875,7 +875,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error if local scripts_dir points to a nonexistent directory', function (done) {
+    it('errors if local scripts_dir points to a nonexistent directory', function (done) {
       const scriptYmlExpectedDir = `scripts_dir: |2
   nonex/scripts
 `;
@@ -905,7 +905,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export script, and ignore scripts_ext if local scripts_ext mismatches actual extension\
+    it('exports script, and ignore scripts_ext if local scripts_ext mismatches actual extension\
 ', function (done) {
       const scriptYmlExpectedExt = `scripts_ext: |2
   .foo
@@ -961,7 +961,7 @@ describe('fp export', function () {
       resetStylesDir();
     });
 
-    it('should export style using relative path argument', function (done) {
+    it('exports style using relative path argument', function (done) {
       const {
         styleExportExistsBefore
       } = resetExportsDir({
@@ -987,7 +987,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined styles_dir, and undefined styles_ext', function (done) {
+    it('errors using undefined styles_dir, and undefined styles_ext', function (done) {
       const {
         styleExportExistsBefore
       } = resetExportsDir({
@@ -1013,7 +1013,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export style using global styles_dir, and undefined styles_ext', function (done) {
+    it('exports style using global styles_dir, and undefined styles_ext', function (done) {
       const {
         styleExportExistsBefore
       } = resetExportsDir({
@@ -1039,7 +1039,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined styles_dir, and global styles_ext', function (done) {
+    it('errors using undefined styles_dir, and global styles_ext', function (done) {
       const {
         styleExportExistsBefore
       } = resetExportsDir({
@@ -1065,7 +1065,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export style using global styles_dir, and ignore global styles_ext', function (done) {
+    it('exports style using global styles_dir, and ignore global styles_ext', function (done) {
       const {
         styleExportExistsBefore
       } = resetExportsDir({
@@ -1091,7 +1091,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export style using overriding local styles_dir, and undefined styles_ext', function (done) {
+    it('exports style using overriding local styles_dir, and undefined styles_ext', function (done) {
       const styleExport = `${stylesDirBack}/styles_dir-local/${styleBase}.css`;
       const styleYmlExpectedDir = `styles_dir: |2
   ${stylesDirBackRel}/styles_dir-local
@@ -1122,7 +1122,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error using undefined styles_dir, and overriding styles_ext', function (done) {
+    it('errors using undefined styles_dir, and overriding styles_ext', function (done) {
       const styleExport = `${stylesDirBackBld}/${styleBase}.foo`;
       const styleYmlExpectedExt = `styles_ext: |2
   .foo
@@ -1153,7 +1153,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export style using overriding local styles_dir, and ignore global styles_ext', function (done) {
+    it('exports style using overriding local styles_dir, and ignore global styles_ext', function (done) {
       const styleExport = `${stylesDirBack}/styles_dir-local/${styleBase}.css`;
       const styleYmlExpectedDir = `styles_dir: |2
   ${stylesDirBackRel}/styles_dir-local
@@ -1184,7 +1184,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export style using global styles_dir, and ignore overriding local styles_ext', function (done) {
+    it('exports style using global styles_dir, and ignore overriding local styles_ext', function (done) {
       const styleIgnored = `${stylesDirFrontBld}/${styleBase}.foo`;
       const styleIgnoredExport = `${stylesDirBackBld}/${styleBase}.foo`;
       const styleYmlExpectedExt = `styles_ext: |2
@@ -1220,7 +1220,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export style using overriding local styles_dir, and ignore overriding local styles_ext\
+    it('exports style using overriding local styles_dir, and ignore overriding local styles_ext\
 ', function (done) {
       const style = `${stylesDirFrontBld}/${styleBase}.foo`;
       const styleExport = `${stylesDirBack}/styles_dir-local/${styleBase}.foo`;
@@ -1257,7 +1257,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error if global styles_dir points to a nonexistent directory', function (done) {
+    it('errors if global styles_dir points to a nonexistent directory', function (done) {
       const {
         styleExportExistsBefore
       } = resetExportsDir({
@@ -1283,7 +1283,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export style, and ignore styles_ext if global styles_ext mismatches actual extension', function (done) {
+    it('exports style, and ignore styles_ext if global styles_ext mismatches actual extension', function (done) {
       const {
         styleExportExistsBefore
       } = resetExportsDir({
@@ -1309,7 +1309,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should error if local styles_dir points to a nonexistent directory', function (done) {
+    it('errors if local styles_dir points to a nonexistent directory', function (done) {
       const styleYmlExpectedDir = `styles_dir: |2
   nonex/styles
 `;
@@ -1339,7 +1339,7 @@ describe('fp export', function () {
       );
     });
 
-    it('should export style, and ignore styles_ext if local styles_ext mismatches actual extension', function (done) {
+    it('exports style, and ignore styles_ext if local styles_ext mismatches actual extension', function (done) {
       const styleYmlExpectedExt = `styles_ext: |2
   .foo
 `;

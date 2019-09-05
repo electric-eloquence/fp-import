@@ -67,7 +67,7 @@ describe('fp import:asset', function () {
     resetAssetsDir();
   });
 
-  it('should error with no -f argument', function (done) {
+  it('errors with no -f argument', function (done) {
     fp.runSeq(
       'import:asset',
       done
@@ -80,7 +80,7 @@ describe('fp import:asset', function () {
   describe('fp import:asset with backend -f argument', function () {
     const assetsDirBackSrc = `${assetsDirBack}/src`;
 
-    it('should import using absolute path argument', function (done) {
+    it('imports using absolute path argument', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBackSrc}
 `;
@@ -118,7 +118,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should import using undefined assets_dir, and undefined assets_ext', function (done) {
+    it('imports using undefined assets_dir, and undefined assets_ext', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBackSrc}
 `;
@@ -156,7 +156,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should import using global assets_dir, and undefined assets_ext', function (done) {
+    it('imports using global assets_dir, and undefined assets_ext', function (done) {
       const {
         assetExistsBefore,
         assetYmlExistsBefore
@@ -190,7 +190,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should import using undefined assets_dir, and global assets_ext', function (done) {
+    it('imports using undefined assets_dir, and global assets_ext', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBackSrc}
 `;
@@ -227,7 +227,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should import using global assets_dir, and global assets_ext', function (done) {
+    it('imports using global assets_dir, and global assets_ext', function (done) {
       const {
         assetExistsBefore,
         assetYmlExistsBefore
@@ -258,7 +258,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should error using conflicting assets_dir, and ignore undefined assets_ext', function (done) {
+    it('errors using conflicting assets_dir, and ignore undefined assets_ext', function (done) {
       const assetYmlExpected = `assets_dir: ${assetsDirBackNonex}`;
       const {
         assetExistsBefore
@@ -291,7 +291,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should import using undefined assets_dir, and ignore conflicting assets_ext', function (done) {
+    it('imports using undefined assets_dir, and ignore conflicting assets_ext', function (done) {
       const assetYmlToIgnore = 'assets_ext: .foo';
       const {
         assetExistsBefore
@@ -329,7 +329,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should error using conflicting assets_dir, and ignore global assets_ext', function (done) {
+    it('errors using conflicting assets_dir, and ignore global assets_ext', function (done) {
       const assetYmlExpected = `assets_dir: ${assetsDirBackNonex}`;
       const {
         assetExistsBefore
@@ -361,7 +361,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should import using global assets_dir, and ignore conflicting assets_ext', function (done) {
+    it('imports using global assets_dir, and ignore conflicting assets_ext', function (done) {
       const assetYmlToIgnore = 'assets_ext: .foo';
       const {
         assetExistsBefore
@@ -396,7 +396,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should error using conflicting assets_dir, and ignore conflicting assets_ext', function (done) {
+    it('errors using conflicting assets_dir, and ignore conflicting assets_ext', function (done) {
       const assetYmlExpected = `assets_dir: ${assetsDirBackNonex}\nassets_ext: .foo`;
       const {
         assetExistsBefore
@@ -428,7 +428,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should import even if global assets_dir points to a nonexistent directory', function (done) {
+    it('imports even if global assets_dir points to a nonexistent directory', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBackSrc}
 `;
@@ -465,7 +465,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should import even if global assets_ext mismatches arg extension', function (done) {
+    it('imports even if global assets_ext mismatches arg extension', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBackSrc}
 `;
@@ -502,7 +502,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should error using local assets_dir that points to a nonexistent directory', function (done) {
+    it('errors using local assets_dir that points to a nonexistent directory', function (done) {
       const assetYmlExpected = `assets_dir: ${assetsDirBackNonex}`;
       const {
         assetExistsBefore
@@ -536,7 +536,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should import ignoring local assets_ext that mismatches arg extension', function (done) {
+    it('imports ignoring local assets_ext that mismatches arg extension', function (done) {
       const assetYmlToIgnore = 'assets_ext: .foo';
       const {
         assetExistsBefore
@@ -575,7 +575,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should import using global assets_dir that nests the arg path', function (done) {
+    it('imports using global assets_dir that nests the arg path', function (done) {
       const {
         assetExistsBefore,
         assetYmlExistsBefore
@@ -609,7 +609,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should import where local assets_dir is nested by global assets_dir, and immediately nests -f argument\
+    it('imports where local assets_dir is nested by global assets_dir, and immediately nests -f argument\
 ', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBackSrc}
@@ -648,7 +648,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should error where local assets_dir is nested by global assets_dir, but does not immediately nest -f argument\
+    it('errors where local assets_dir is nested by global assets_dir, but does not immediately nest -f argument\
 ', function (done) {
       const assetDir = `${assetsDirFront}/assets/argv.f-backend`;
       const asset = `${assetDir}/${assetBase}.svg`;
@@ -686,7 +686,7 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('should error where local assets_dir nests global local assets_dir, and therefore cannot immediately nest -f \
+    it('errors where local assets_dir nests global local assets_dir, and therefore cannot immediately nest -f \
 argument', function (done) {
       const asset = `${assetsDirFrontSrc}/${assetBase}.svg`;
       const assetYml = `${assetsDirFrontSrc}/${assetBase}.yml`;
@@ -721,7 +721,7 @@ argument', function (done) {
 
   // Test success and error cases. The error cases should pass as tests.
   describe('fp import:asset with frontend -f argument and asset extension', function () {
-    it('should import using absolute path argument', function (done) {
+    it('imports using absolute path argument', function (done) {
       const {
         assetExistsBefore
       } = resetAssetsDir({
@@ -747,7 +747,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined assets_dir, and undefined assets_ext', function (done) {
+    it('errors using undefined assets_dir, and undefined assets_ext', function (done) {
       const {
         assetExistsBefore,
         assetYmlExistsBefore
@@ -780,7 +780,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global assets_dir, and undefined assets_ext', function (done) {
+    it('imports using global assets_dir, and undefined assets_ext', function (done) {
       const {
         assetExistsBefore
       } = resetAssetsDir({
@@ -807,7 +807,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined assets_dir, and global assets_ext', function (done) {
+    it('errors using undefined assets_dir, and global assets_ext', function (done) {
       const {
         assetExistsBefore,
         assetYmlExistsBefore
@@ -839,7 +839,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global assets_dir, and global assets_ext', function (done) {
+    it('imports using global assets_dir, and global assets_ext', function (done) {
       const {
         assetExistsBefore
       } = resetAssetsDir({
@@ -865,7 +865,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined assets_dir, and overriding local assets_ext', function (done) {
+    it('errors using undefined assets_dir, and overriding local assets_ext', function (done) {
       const assetYmlExpected = 'assets_ext: .foo';
       const {
         assetExistsBefore
@@ -898,7 +898,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local assets_dir, and global assets_ext', function (done) {
+    it('imports using overriding local assets_dir, and global assets_ext', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBack}/assets_dir-local
 `;
@@ -932,7 +932,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global assets_dir, and overriding local assets_ext', function (done) {
+    it('imports using global assets_dir, and overriding local assets_ext', function (done) {
       const {
         assetExistsBefore
       } = resetAssetsDir({
@@ -963,7 +963,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local assets_dir, and overriding local assets_ext', function (done) {
+    it('imports using overriding local assets_dir, and overriding local assets_ext', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBack}/assets_dir-local
 `;
@@ -997,7 +997,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global assets_dir points to a nonexistent directory', function (done) {
+    it('errors if global assets_dir points to a nonexistent directory', function (done) {
       const {
         assetExistsBefore,
         assetYmlExistsBefore
@@ -1028,7 +1028,7 @@ argument', function (done) {
       );
     });
 
-    it('should import ignoring global assets_ext that mismatches arg extension', function (done) {
+    it('imports ignoring global assets_ext that mismatches arg extension', function (done) {
       const {
         assetExistsBefore,
         assetYmlExistsBefore
@@ -1059,7 +1059,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local assets_dir points to a nonexistent directory', function (done) {
+    it('errors if local assets_dir points to a nonexistent directory', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBackNonex}
 `;
@@ -1094,7 +1094,7 @@ argument', function (done) {
       );
     });
 
-    it('should import ignoring local assets_ext that mismatches arg extension', function (done) {
+    it('imports ignoring local assets_ext that mismatches arg extension', function (done) {
       const assetYmlExpectedExt = `'assets_ext': |2
   .bar
 `;
@@ -1134,7 +1134,7 @@ argument', function (done) {
 
   // Test success and error cases. The error cases should pass as tests.
   describe('fp import:asset with frontend -f argument and .yml extension', function () {
-    it('should import using absolute path argument', function (done) {
+    it('imports using absolute path argument', function (done) {
       const {
         assetExistsBefore
       } = resetAssetsDir({
@@ -1163,7 +1163,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined assets_dir, and undefined assets_ext', function (done) {
+    it('errors using undefined assets_dir, and undefined assets_ext', function (done) {
       const {
         assetExistsBefore
       } = resetAssetsDir({
@@ -1192,7 +1192,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using global assets_dir, and undefined assets_ext', function (done) {
+    it('errors using global assets_dir, and undefined assets_ext', function (done) {
       const {
         assetExistsBefore
       } = resetAssetsDir({
@@ -1220,7 +1220,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined assets_dir, and global assets_ext', function (done) {
+    it('errors using undefined assets_dir, and global assets_ext', function (done) {
       const {
         assetExistsBefore
       } = resetAssetsDir({
@@ -1248,7 +1248,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global assets_dir, and global assets_ext', function (done) {
+    it('imports using global assets_dir, and global assets_ext', function (done) {
       const {
         assetExistsBefore
       } = resetAssetsDir({
@@ -1277,7 +1277,7 @@ argument', function (done) {
       );
     });
 
-    it('should error using undefined assets_dir, and overriding local assets_ext', function (done) {
+    it('errors using undefined assets_dir, and overriding local assets_ext', function (done) {
       const assetYmlExpected = 'assets_ext: .foo';
       const {
         assetExistsBefore
@@ -1308,7 +1308,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local assets_dir, and global assets_ext', function (done) {
+    it('imports using overriding local assets_dir, and global assets_ext', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBack}/assets_dir-local
 `;
@@ -1340,7 +1340,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using global assets_dir, and overriding local assets_ext', function (done) {
+    it('imports using global assets_dir, and overriding local assets_ext', function (done) {
       const {
         assetExistsBefore
       } = resetAssetsDir({
@@ -1369,7 +1369,7 @@ argument', function (done) {
       );
     });
 
-    it('should import using overriding local assets_dir, and overriding local assets_ext', function (done) {
+    it('imports using overriding local assets_dir, and overriding local assets_ext', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBack}/assets_dir-local
 `;
@@ -1401,7 +1401,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global assets_dir points to a nonexistent directory', function (done) {
+    it('errors if global assets_dir points to a nonexistent directory', function (done) {
       const {
         assetExistsBefore
       } = resetAssetsDir({
@@ -1428,7 +1428,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if global assets_ext mismatches actual extension', function (done) {
+    it('errors if global assets_ext mismatches actual extension', function (done) {
       const {
         assetExistsBefore
       } = resetAssetsDir({
@@ -1455,7 +1455,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local assets_dir points to a nonexistent directory', function (done) {
+    it('errors if local assets_dir points to a nonexistent directory', function (done) {
       const assetYmlExpectedDir = `'assets_dir': |2
   ${assetsDirBackNonex}
 `;
@@ -1487,7 +1487,7 @@ argument', function (done) {
       );
     });
 
-    it('should error if local assets_ext mismatches actual extension', function (done) {
+    it('errors if local assets_ext mismatches actual extension', function (done) {
       const assetYmlExpectedExt = `'assets_ext': |2
   .bar
 `;
