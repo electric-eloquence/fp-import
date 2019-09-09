@@ -352,8 +352,7 @@ describe('fp export', function () {
       );
     });
 
-    it('exports asset using overriding local assets_dir, and ignore overriding local assets_ext\
-', function (done) {
+    it('exports asset using overriding local assets_dir, and ignore overriding local assets_ext', function (done) {
       const asset = `${assetsDirFrontSrc}/${assetBase}.foo`;
       const assetExport = `${assetsDirBack}/assets_dir-local/${assetBase}.foo`;
       const assetYmlExpectedDir = `assets_dir: |2
@@ -785,8 +784,7 @@ describe('fp export', function () {
       );
     });
 
-    it('exports script using overriding local scripts_dir, and ignore overriding local scripts_ext\
-', function (done) {
+    it('exports script using overriding local scripts_dir, and ignore overriding local scripts_ext', function (done) {
       const script = `${scriptsDirFrontSrc}/${scriptBase}.foo`;
       const scriptExport = `${scriptsDirBack}/scripts_dir-local/${scriptBase}.foo`;
       const scriptYmlExpectedDir = `scripts_dir: |2
@@ -848,8 +846,7 @@ describe('fp export', function () {
       );
     });
 
-    it('exports script, and ignore scripts_ext if global scripts_ext mismatches actual extension\
-', function (done) {
+    it('exports script, and ignore scripts_ext if global scripts_ext mismatches actual extension', function (done) {
       const {
         scriptExportExistsBefore
       } = resetExportsDir({
@@ -905,8 +902,7 @@ describe('fp export', function () {
       );
     });
 
-    it('exports script, and ignore scripts_ext if local scripts_ext mismatches actual extension\
-', function (done) {
+    it('exports script, and ignore scripts_ext if local scripts_ext mismatches actual extension', function (done) {
       const scriptYmlExpectedExt = `scripts_ext: |2
   .foo
 `;
@@ -1220,8 +1216,7 @@ describe('fp export', function () {
       );
     });
 
-    it('exports style using overriding local styles_dir, and ignore overriding local styles_ext\
-', function (done) {
+    it('exports style using overriding local styles_dir, and ignore overriding local styles_ext', function (done) {
       const style = `${stylesDirFrontBld}/${styleBase}.foo`;
       const styleExport = `${stylesDirBack}/styles_dir-local/${styleBase}.foo`;
       const styleYmlExpectedDir = `styles_dir: |2
