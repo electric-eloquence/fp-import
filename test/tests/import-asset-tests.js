@@ -686,8 +686,8 @@ describe('fp import:asset', function () {
       );
     });
 
-    it('errors where local assets_dir nests global local assets_dir, and therefore cannot immediately nest -f \
-argument', function (done) {
+    it('errors where local assets_dir nests global local assets_dir, and therefore cannot immediately nest -f argument\
+', function (done) {
       const asset = `${assetsDirFrontSrc}/${assetBase}.svg`;
       const assetYml = `${assetsDirFrontSrc}/${assetBase}.yml`;
       const assetYmlExpected = `assets_dir: ${assetsDirBack}`;

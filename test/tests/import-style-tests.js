@@ -686,8 +686,8 @@ describe('fp import:style', function () {
       );
     });
 
-    it('errors where local styles_dir nests global local styles_dir, and therefore cannot immediately nest -f \
-argument', function (done) {
+    it('errors where local styles_dir nests global local styles_dir, and therefore cannot immediately nest -f argument\
+', function (done) {
       const style = `${stylesDirFrontBld}/${styleBase}.css`;
       const styleYml = `${stylesDirFrontBld}/${styleBase}.yml`;
       const styleYmlExpected = `styles_dir: ${stylesDirBack}`;

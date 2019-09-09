@@ -685,8 +685,8 @@ describe('fp import:hbs', function () {
       );
     });
 
-    it('errors where local templates_dir is nested by global templates_dir, but does not immediately nest -f \
-argument', function (done) {
+    it('errors where local templates_dir is nested by global templates_dir, but does not immediately nest -f argument\
+', function (done) {
       const templateDir = `${templatesDirFront}/templates/${subdir}`;
       const template = `${templateDir}/${templateBase}.mustache`;
       const templateYml = `${templateDir}/${templateBase}.yml`;
@@ -723,8 +723,8 @@ argument', function (done) {
       );
     });
 
-    it('errors where local templates_dir nests global local templates_dir, and therefore cannot immediately nest \
--f argument', function (done) {
+    it('errors where local templates_dir nests global local templates_dir, and therefore cannot immediately nest -f \
+argument', function (done) {
       const template = `${templatesDirFront}/${templateBase}.mustache`;
       const templateYml = `${templatesDirFront}/${templateBase}.yml`;
       const templateYmlExpected = `templates_dir: ${templatesDirBack}`;

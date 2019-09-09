@@ -2007,8 +2007,7 @@ describe('fp import', function () {
       );
     });
 
-    it('does not import templates using overriding local templates_dir, and undefined templates_ext\
-', function (done) {
+    it('does not import templates using overriding local templates_dir, and undefined templates_ext', function (done) {
       const templateYmlExpectedDir = `'templates_dir': |2
   ${templatesDirBack}/templates_dir-local
 `;
@@ -2199,8 +2198,7 @@ describe('fp import', function () {
       );
     });
 
-    it('imports templates using overriding local templates_dir, and overriding local templates_ext\
-', function (done) {
+    it('imports templates using overriding local templates_dir, and overriding local templates_ext', function (done) {
       const templateYmlExpectedDir = `'templates_dir': |2
   ${templatesDirBack}/templates_dir-local
 `;
