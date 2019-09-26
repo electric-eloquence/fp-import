@@ -427,13 +427,7 @@ function exportBackendFile(argv) {
   }
 
   // All types except templates.
-  for (let i in targetDirDefaults) {
-    /* istanbul ignore if */
-    if (!targetDirDefaults.hasOwnProperty(i)) {
-      continue;
-    }
-
-    const type = i;
+  for (let type of Object.keys(targetDirDefaults)) {
     const sourceDirDefault = sourceDirDefaults[type];
     const sourceExtDefault = sourceExtDefaults[type];
     const targetDirDefault = targetDirDefaults[type];
