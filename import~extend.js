@@ -22,7 +22,8 @@ const conf = global.conf;
 const pref = global.pref;
 const rootDir = global.rootDir;
 
-const backendDir = pref.backend.backend_dir || conf.backend_dir; // conf.backend_dir is deprecated and will be removed.
+// TODO: conf.backend_dir is deprecated and will be removed.
+const backendDir = pref.backend.backend_dir || conf.backend_dir;
 const engines = [
   '.erb',
   '.jsp',
