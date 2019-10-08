@@ -22,6 +22,7 @@ const conf = global.conf;
 const pref = global.pref;
 const rootDir = global.rootDir;
 
+const backendDir = pref.backend.backend_dir || conf.backend_dir; // conf.backend_dir is deprecated and will be removed.
 const engines = [
   '.erb',
   '.jsp',
@@ -180,10 +181,10 @@ class FpImporter {
       let dir;
 
       if (this.data.templates_dir) {
-        dir = this.data.templates_dir.replace(`${conf.backend_dir}/`, '');
+        dir = this.data.templates_dir.replace(`${backendDir}/`, '');
       }
       else {
-        dir = this.sourceDir.replace(`${conf.backend_dir}/`, '');
+        dir = this.sourceDir.replace(`${backendDir}/`, '');
       }
 
       fs.appendFileSync(this.file, '\'templates_dir\': |2\n');
@@ -359,7 +360,7 @@ class FpImporter {
       return;
     }
 
-    const dir = this.data[`${this.type}_dir`].replace(`${conf.backend_dir}/`, '');
+    const dir = this.data[`${this.type}_dir`].replace(`${backendDir}/`, '');
     const ext = this.data[`${this.type}_ext`];
 
     if (dir || ext) {
@@ -590,7 +591,7 @@ function importBackendFileByArg(type, engine, argv) {
   // -f arguments may point to the backend or frontend.
   // Error and return if neither is the case.
   /* istanbul ignore if */
-  if (getIndexOfSubString(file, conf.backend_dir) !== 0 && getIndexOfSubString(file, targetDirDefault) !== 0) {
+  if (getIndexOfSubString(file, backendDir) !== 0 && getIndexOfSubString(file, targetDirDefault) !== 0) {
     utils.error('Error: invalid path! The -f argument must be a backend file or a template pattern.');
 
     return;
@@ -601,7 +602,7 @@ function importBackendFileByArg(type, engine, argv) {
 
   // Must convert backend path to frontend path to get target path.
   // If backend path, we can only work with sourceDirDefault because we aren't accessing a local .yml file.
-  if (getIndexOfSubString(file, conf.backend_dir) === 0) {
+  if (getIndexOfSubString(file, backendDir) === 0) {
 
     // Must reset targetDirDefault for non-templates if backend path and no sourceDirDefault.
     if (!sourceDirDefault) {
