@@ -154,10 +154,10 @@ targeted.
 [snyk-image]: https://snyk.io/test/github/electric-eloquence/fp-import/master/badge.svg
 [snyk-url]: https://snyk.io/test/github/electric-eloquence/fp-import/master
 
-[travis-image]: https://img.shields.io/travis/electric-eloquence/fp-import.svg?label=mac%20%26%20linux
+[travis-image]: https://img.shields.io/travis/electric-eloquence/fp-import/master.svg?label=mac%20%26%20linux
 [travis-url]: https://travis-ci.org/electric-eloquence/fp-import
 
-[appveyor-image]: https://img.shields.io/appveyor/ci/e2tha-e/fp-import.svg?label=windows
+[appveyor-image]: https://img.shields.io/appveyor/ci/e2tha-e/fp-import/master.svg?label=windows
 [appveyor-url]: https://ci.appveyor.com/project/e2tha-e/fp-import
 
 [coveralls-image]: https://img.shields.io/coveralls/electric-eloquence/fp-import/master.svg
