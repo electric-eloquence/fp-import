@@ -123,10 +123,9 @@ class FpImporter {
           const yml = fs.readFileSync(this.file, conf.enc);
           this.data = yaml.safeLoad(yml) || {};
         }
-        catch (err) {
-          /* istanbul ignore next */
+        catch (err) /* istanbul ignore next */ {
           utils.error(err);
-          /* istanbul ignore next */
+
           return;
         }
       }
@@ -494,9 +493,7 @@ function exportBackendFile(argv) {
           const yml = fs.readFileSync(fileYml, conf.enc);
           data = yaml.safeLoad(yml) || {};
         }
-        catch (err) {
-          // Fail gracefully.
-          /* istanbul ignore next */
+        catch {
           return;
         }
       }
@@ -527,20 +524,18 @@ function exportBackendFile(argv) {
       try {
         fs.ensureDirSync(sourceDir);
       }
-      catch (err) {
-        /* istanbul ignore next */
+      catch (err) /* istanbul ignore next */ {
         utils.error(err);
-        /* istanbul ignore next */
+
         return;
       }
 
       try {
         fs.copySync(fileFrontend, sourceFile);
       }
-      catch (err) {
-        /* istanbul ignore next */
+      catch (err) /* istanbul ignore next */ {
         utils.error(err);
-        /* istanbul ignore next */
+
         return;
       }
 
@@ -667,10 +662,9 @@ function importBackendFileByArg(type, engine, argv) {
       dataLocal[`${type}_dir`] = dataLocal[`${type}_dir`] ? dataLocal[`${type}_dir`].trim() : '';
       dataLocal[`${type}_ext`] = dataLocal[`${type}_ext`] ? dataLocal[`${type}_ext`].trim() : '';
     }
-    catch (err) {
-      /* istanbul ignore next */
+    catch (err) /* istanbul ignore next */ {
       utils.error(err);
-      /* istanbul ignore next */
+
       return;
     }
   }
@@ -799,10 +793,9 @@ function importBackendFiles(type, engine) {
     try {
       stat = fs.statSync(fileYml);
     }
-    catch (err) {
-      /* istanbul ignore next */
+    catch (err) /* istanbul ignore next */ {
       utils.error(err);
-      /* istanbul ignore next */
+
       continue;
     }
 
@@ -818,10 +811,9 @@ function importBackendFiles(type, engine) {
       const yml = fs.readFileSync(fileYml, conf.enc);
       data = yaml.safeLoad(yml) || {};
     }
-    catch (err) {
-      /* istanbul ignore next */
+    catch (err) /* istanbul ignore next */ {
       utils.error(err);
-      /* istanbul ignore next */
+
       continue;
     }
 
@@ -879,10 +871,9 @@ function importBackendFiles(type, engine) {
       try {
         stat = fs.statSync(fileBackend);
       }
-      catch (err) {
-        /* istanbul ignore next */
+      catch (err) /* istanbul ignore next */ {
         utils.error(err);
-        /* istanbul ignore next */
+
         continue;
       }
 
