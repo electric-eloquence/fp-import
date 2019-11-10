@@ -10,10 +10,10 @@ const {
 const fs = require('fs-extra');
 const glob = require('glob');
 const gulp = global.gulp || require('gulp');
+const minimist = require('minimist');
 const slash = require('slash');
 const utils = require('fepper-utils');
 const yaml = require('js-yaml');
-const yargs = require('yargs');
 
 const normalize = rawPath => slash(path.normalize(rawPath));
 const resolve = rawPath => slash(path.resolve(rawPath));
@@ -957,7 +957,7 @@ function importBackendFiles(type, engine) {
 // Declare gulp tasks.
 
 gulp.task('export', function (cb) {
-  const argv = yargs(process.argv).argv;
+  const argv = minimist(process.argv.slice(2));
 
   exportBackendFile(argv);
 
@@ -966,7 +966,7 @@ gulp.task('export', function (cb) {
 
 gulp.task('import', function (cb) {
   // If an -f argument was submitted, it's probably a mistake.
-  const argv = yargs(process.argv).argv;
+  const argv = minimist(process.argv.slice(2));
 
   if (argv.f) {
     utils.error('Error: `fp import` (with no subtask) does not recognize -f argument!');
@@ -1000,7 +1000,7 @@ gulp.task('import', function (cb) {
 });
 
 gulp.task('import:asset', function (cb) {
-  const argv = yargs(process.argv).argv;
+  const argv = minimist(process.argv.slice(2));
 
   importBackendFileByArg('assets', null, argv);
 
@@ -1008,7 +1008,7 @@ gulp.task('import:asset', function (cb) {
 });
 
 gulp.task('import:script', function (cb) {
-  const argv = yargs(process.argv).argv;
+  const argv = minimist(process.argv.slice(2));
 
   importBackendFileByArg('scripts', null, argv);
 
@@ -1016,7 +1016,7 @@ gulp.task('import:script', function (cb) {
 });
 
 gulp.task('import:style', function (cb) {
-  const argv = yargs(process.argv).argv;
+  const argv = minimist(process.argv.slice(2));
 
   importBackendFileByArg('styles', null, argv);
 
@@ -1027,7 +1027,7 @@ for (let i = 0; i < engines.length; i++) {
   const engine = engines[i];
 
   gulp.task(`import:${engine.slice(1)}`, function (cb) {
-    const argv = yargs(process.argv).argv;
+    const argv = minimist(process.argv.slice(2));
 
     importBackendFileByArg('templates', engine, argv);
 
