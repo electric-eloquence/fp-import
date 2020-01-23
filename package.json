@@ -1,6 +1,6 @@
 {
   "name": "fp-import",
-  "version": "0.11.7",
+  "version": "0.11.8",
   "description": "Import extension for Fepper",
   "main": "import~extend.js",
   "scripts": {
