@@ -356,7 +356,7 @@ describe('fp export', function () {
       const asset = `${assetsDirFrontSrc}/${assetBase}.foo`;
       const assetExport = `${assetsDirBack}/assets_dir-local/${assetBase}.foo`;
       const assetYmlExpectedDir = `assets_dir: |2
-  ${assetsDirBack}/assets_dir-local
+  ${assetsDirBackRel}/assets_dir-local
 `;
       const assetYmlExpectedExt = `assets_ext: |2
   .foo
@@ -788,7 +788,7 @@ describe('fp export', function () {
       const script = `${scriptsDirFrontSrc}/${scriptBase}.foo`;
       const scriptExport = `${scriptsDirBack}/scripts_dir-local/${scriptBase}.foo`;
       const scriptYmlExpectedDir = `scripts_dir: |2
-  ${scriptsDirBack}/scripts_dir-local
+  ${scriptsDirBackRel}/scripts_dir-local
 `;
       const scriptYmlExpectedExt = `scripts_ext: |2
   .foo
@@ -1220,7 +1220,7 @@ describe('fp export', function () {
       const style = `${stylesDirFrontBld}/${styleBase}.foo`;
       const styleExport = `${stylesDirBack}/styles_dir-local/${styleBase}.foo`;
       const styleYmlExpectedDir = `styles_dir: |2
-  ${stylesDirBack}/styles_dir-local
+  ${stylesDirBackRel}/styles_dir-local
 `;
       const styleYmlExpectedExt = `styles_ext: |2
   .foo

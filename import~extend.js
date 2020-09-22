@@ -493,7 +493,7 @@ function exportBackendFile(argv) {
           const yml = fs.readFileSync(fileYml, conf.enc);
           data = yaml.safeLoad(yml) || {};
         }
-        catch {
+        catch /* istanbul ignore next */ {
           return;
         }
       }
