@@ -428,7 +428,7 @@ function exportBackendFile(argv) {
   }
 
   // All types except templates.
-  for (let type of Object.keys(targetDirDefaults)) {
+  for (const type of Object.keys(targetDirDefaults)) {
     const sourceDirDefault = sourceDirDefaults[type];
     const sourceExtDefault = sourceExtDefaults[type];
     const targetDirDefault = targetDirDefaults[type];

@@ -111,7 +111,7 @@ function resetTemplatesDir(args = {}) {
 
   const returnObj = {};
 
-  for (let fileKey of Object.keys(args)) {
+  for (const fileKey of Object.keys(args)) {
     returnObj[`${fileKey}ExistsBefore`] = fs.existsSync(args[fileKey]);
   }
 
