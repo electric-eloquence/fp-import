@@ -131,11 +131,11 @@ describe('fp export', function () {
 'erb_3': |2
   <%= Pub::CHECKER %>
 '# templates-responsive_footer': |2
-  <!--\\{\\{# templates-responsive_footer \\}\\}-->
+  <!--{{# templates-responsive_footer }}-->
 '> 03-templates/responsive_footer': |2
-  <!--\\{\\{> 03-templates/responsive_footer \\}\\}-->
+  <!--{{> 03-templates/responsive_footer }}-->
 '/ templates-responsive_footer': |2
-  <!--\\{\\{/ templates-responsive_footer \\}\\}-->
+  <!--{{/ templates-responsive_footer }}-->
 `;
 
     function resetTemplatesDir(args = {}) {
@@ -489,27 +489,27 @@ describe('fp export', function () {
 </html>
 `;
     const templateYmlYaml = `'hbs': |2
-  \\{\\{#if page.title\\}\\}
+  {{#if page.title}}
 'hbs_1': |2
-  \\{\\{page.title\\}\\}
+  {{page.title}}
 'hbs_2': |2
-  \\{\\{config.site.name\\}\\}
+  {{config.site.name}}
 'hbs_3': |2
-  \\{\\{else\\}\\}
+  {{else}}
 'hbs_4': |2
-  \\{\\{config.site.name\\}\\}
+  {{config.site.name}}
 'hbs_5': |2
-  \\{\\{/if\\}\\}
+  {{/if}}
 'hbs_6': |2
-  \\{\\{> meta-partials/meta_tags\\}\\}
+  {{> meta-partials/meta_tags}}
 'hbs_7': |2
-  \\{\\{& page.body\\}\\}
+  {{& page.body}}
 '# templates-responsive_footer': |2
-  <!--\\{\\{# templates-responsive_footer \\}\\}-->
+  <!--{{# templates-responsive_footer }}-->
 '> 03-templates/responsive_footer': |2
-  <!--\\{\\{> 03-templates/responsive_footer \\}\\}-->
+  <!--{{> 03-templates/responsive_footer }}-->
 '/ templates-responsive_footer': |2
-  <!--\\{\\{/ templates-responsive_footer \\}\\}-->
+  <!--{{/ templates-responsive_footer }}-->
 `;
 
     function resetTemplatesDir(args = {}) {
@@ -941,11 +941,11 @@ jsp_3: |2
 jsp_4: |2
   <% JspUtils.include(maincomponent); %>
 '# templates-responsive_footer': |2
-  <!--\\{\\{# templates-responsive_footer \\}\\}-->
+  <!--{{# templates-responsive_footer }}-->
 '> 03-templates/responsive_footer': |2
-  <!--\\{\\{> 03-templates/responsive_footer \\}\\}-->
+  <!--{{> 03-templates/responsive_footer }}-->
 '/ templates-responsive_footer': |2
-  <!--\\{\\{/ templates-responsive_footer \\}\\}-->
+  <!--{{/ templates-responsive_footer }}-->
 `;
 
     function resetTemplatesDir(args = {}) {
@@ -1305,11 +1305,11 @@ jsp_4: |2
 'php_3': |2
   <?php echo Pub::$checker; ?>
 '# templates-responsive_footer': |2
-  <!--\\{\\{# templates-responsive_footer \\}\\}-->
+  <!--{{# templates-responsive_footer }}-->
 '> 03-templates/responsive_footer': |2
-  <!--\\{\\{> 03-templates/responsive_footer \\}\\}-->
+  <!--{{> 03-templates/responsive_footer }}-->
 '/ templates-responsive_footer': |2
-  <!--\\{\\{/ templates-responsive_footer \\}\\}-->
+  <!--{{/ templates-responsive_footer }}-->
 `;
 
     function resetTemplatesDir(args = {}) {
@@ -1665,13 +1665,13 @@ jsp_4: |2
     const templateYmlYaml = `'twig': |2
   {% if page.title %}
 'twig_1': |2
-  \\{\\{ page.title|e \\}\\}
+  {{ page.title|e }}
 'twig_2': |2
-  \\{\\{ config.site.name|e \\}\\}
+  {{ config.site.name|e }}
 'twig_3': |2
   {% else %}
 'twig_4': |2
-  \\{\\{ config.site.name|e \\}\\}
+  {{ config.site.name|e }}
 'twig_5': |2
   {% endif %}
 'twig_6': |2
@@ -1679,11 +1679,11 @@ jsp_4: |2
 'twig_7': |2
   {% page.body %}
 '# templates-responsive_footer': |2
-  <!--\\{\\{# templates-responsive_footer \\}\\}-->
+  <!--{{# templates-responsive_footer }}-->
 '> 03-templates/responsive_footer': |2
-  <!--\\{\\{> 03-templates/responsive_footer \\}\\}-->
+  <!--{{> 03-templates/responsive_footer }}-->
 '/ templates-responsive_footer': |2
-  <!--\\{\\{/ templates-responsive_footer \\}\\}-->
+  <!--{{/ templates-responsive_footer }}-->
 `;
 
     function resetTemplatesDir(args = {}) {
