@@ -43,6 +43,7 @@
     "node": ">= 12.0.0"
   },
   "dependencies": {
+    "fs-extra": "^8.1.0",
     "glob": "^7.1.2",
     "minimist": "^1.2.5"
   },
@@ -54,7 +55,6 @@
     "eslint": "7.x",
     "fepper": "*",
     "fepper-utils": "*",
-    "fs-extra": "^8.1.0",
     "gulp": "https://github.com/electric-eloquence/gulp/tarball/v3-lts",
     "husky": "4.x",
     "js-yaml": "^3.13.1",
