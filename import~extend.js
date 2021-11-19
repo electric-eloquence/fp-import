@@ -121,7 +121,7 @@ class FpImporter {
       if (thisFileExists) {
         try {
           const yml = fs.readFileSync(this.file, conf.enc);
-          this.data = yaml.safeLoad(yml) || {};
+          this.data = yaml.load(yml) || {};
         }
         catch (err) /* istanbul ignore next */ {
           utils.error(err);
@@ -491,7 +491,7 @@ function exportBackendFile(argv) {
       if (fs.existsSync(fileYml)) {
         try {
           const yml = fs.readFileSync(fileYml, conf.enc);
-          data = yaml.safeLoad(yml) || {};
+          data = yaml.load(yml) || {};
         }
         catch /* istanbul ignore next */ {
           return;
@@ -658,7 +658,7 @@ function importBackendFileByArg(type, engine, argv) {
   if (fileExt === '.yml' || fs.existsSync(fileYml)) {
     try {
       const yml = fs.readFileSync(fileYml, conf.enc);
-      dataLocal = yaml.safeLoad(yml) || {};
+      dataLocal = yaml.load(yml) || {};
       dataLocal[`${type}_dir`] = dataLocal[`${type}_dir`] ? dataLocal[`${type}_dir`].trim() : '';
       dataLocal[`${type}_ext`] = dataLocal[`${type}_ext`] ? dataLocal[`${type}_ext`].trim() : '';
     }
@@ -809,7 +809,7 @@ function importBackendFiles(type, engine) {
 
     try {
       const yml = fs.readFileSync(fileYml, conf.enc);
-      data = yaml.safeLoad(yml) || {};
+      data = yaml.load(yml) || {};
     }
     catch (err) /* istanbul ignore next */ {
       utils.error(err);
@@ -907,7 +907,7 @@ function importBackendFiles(type, engine) {
       if (fs.existsSync(fileYml)) {
         try {
           const yml = fs.readFileSync(fileYml, conf.enc);
-          data = yaml.safeLoad(yml) || {};
+          data = yaml.load(yml) || {};
         }
         catch (err) {
           utils.error(err);
