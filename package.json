@@ -48,11 +48,11 @@
     "minimist": "^1.2.5"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.16.3",
     "chai": "4.x",
     "coveralls": "3.x",
     "diveSync": "^0.3.0",
-    "eslint": "7.x",
+    "eslint": "8.x",
     "fepper": "*",
     "fepper-utils": "*",
     "gulp": "https://github.com/electric-eloquence/gulp/tarball/v3-lts",
